@@ -6,6 +6,6 @@ Building a database infrastructure that can be used for additional research of s
 
 >- Information model technology for generating program source code and improving accuracy of expression
 
->-Database technology with a structure that facilitates the addition/deletion of source codes within the company
+>- Database technology with a structure that facilitates the addition/deletion of source codes within the company
 
->-Description of code generation evaluation method reflecting actual needs such as code search, summary, and completion
+>- Description of code generation evaluation method reflecting actual needs such as code search, summary, and completion
