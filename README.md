@@ -1,4 +1,4 @@
-# autocode_dataset
+# Storage (autocode_dataset)
 
 Building a database infrastructure that can be used for additional research of software generation by learning and analyzing codes, documents, and metadata in the source code repository in the future
 
@@ -10,7 +10,7 @@ Building a database infrastructure that can be used for additional research of s
 
 >- Description of code generation evaluation method reflecting actual needs such as code search, summary, and completion
 
-# Image
+# Overview 
 ![image](./overview.jpg)
 
 # Requirements of Source Code Infrastructure
