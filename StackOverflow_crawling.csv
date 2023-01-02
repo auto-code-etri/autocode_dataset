@@ -1,0 +1,1355 @@
+language;code;annotation
+c;"#define _GNU_SOURCE 1
+#include <sys/types.h>
+#include <unistd.h>
+
+#if defined __GLIBC__ && defined __linux__
+
+# if __GLIBC__ > 2 || __GLIBC_MINOR__ > 24
+#  include <sys/random.h>
+
+int
+my_getentropy(void *buf, size_t buflen)
+{
+    return getentropy(buf, buflen);
+}
+
+# else 
+#  include <sys/syscall.h>
+#  include <errno.h>
+
+int
+my_getentropy(void *buf, size_t buflen)
+{
+    if (buflen > 256) {
+        errno = EIO;
+        return -1;
+    }
+    return syscall(SYS_getrandom, buf, buflen, 0);
+}
+
+# endif
+
+#else 
+#error ""Need implementation for whatever operating system this is""
+
+#endif";"/* older glibc */
+/* not linux or not glibc */"
+c;"#define _GNU_SOURCE
+
+#include <unistd.h>
+#include <sys/syscall.h>
+#include <linux/random.h>
+
+int main(int arg, char *argv[])
+{
+        void *buf = NULL;
+        size_t l = 5;
+        unsigned int o = 1;
+        int r = syscall(SYS_getrandom, buf, l, o);
+        return 0;
+}";/* Note that this define is required for syscalls to work. */
+c;"#include <iostream>
+#include <unistd.h>
+#include <sys/syscall.h>
+#include <linux/random.h>
+
+int main() {
+  unsigned long int s;
+  syscall(SYS_getrandom, &s, sizeof(unsigned long int), 0);
+  std::cout << ""The seed is: "" << s << ""."" << std::endl;
+}";
+c;"#include <stdio.h>
+
+#include <unistd.h>
+#include <sys/syscall.h>
+#include <linux/random.h>
+
+int main (int arg, char **argv)
+{
+  size_t length = 5;
+  unsigned char buf[length];
+  int r = syscall(SYS_getrandom, buf, length, 0);
+
+  if (r != 0)
+  {
+    int iIter;
+    printf (""random %zu bytes = "",length);
+    for (iIter = 0 ; iIter < length-1 ; iIter++)
+    {
+      printf (""%02x:"", buf[iIter]);
+    }
+    printf (""%02x\n"", buf[iIter]);
+  }
+  else
+  {
+    perror (""syscall (SYS_getrandom, ...)"");
+  }
+  return 0;
+}";"// $ gcc -v
+
+// Using built-in specs.
+
+// COLLECT_GCC=gcc
+
+// COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/5/lto-wrapper
+
+// Target: x86_64-linux-gnu
+
+// Configured with: ../src/configure -v --with-pkgversion='Ubuntu
+
+//   5.4.0-6ubuntu1~16.04.9' --with-bugurl=file:///usr/share/doc/gcc-5/README.Bugs
+
+//   --enable-languages=c,ada,c++,java,go,d,fortran,objc,obj-c++ --prefix=/usr
+
+//   --program-suffix=-5 --enable-shared --enable-linker-build-id
+
+//   --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix
+
+//   --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu
+
+//   --enable-libstdcxx-debug --enable-libstdcxx-time=yes
+
+//   --with-default-libstdcxx-abi=new --enable-gnu-unique-object
+
+//   --disable-vtable-verify --enable-libmpx --enable-plugin --with-system-zlib
+
+//   --disable-browser-plugin --enable-java-awt=gtk --enable-gtk-cairo
+
+//   --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-5-amd64/jre --enable-java-home
+
+//   --with-jvm-root-dir=/usr/lib/jvm/java-1.5.0-gcj-5-amd64
+
+//   --with-jvm-jar-dir=/usr/lib/jvm-exports/java-1.5.0-gcj-5-amd64
+
+//   --with-arch-directory=amd64 --with-ecj-jar=/usr/share/java/eclipse-ecj.jar
+
+//   --enable-objc-gc --enable-multiarch --disable-werror --with-arch-32=i686
+
+//   --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib
+
+//   --with-tune=generic --enable-checking=release --build=x86_64-linux-gnu
+
+//   --host=x86_64-linux-gnu --target=x86_64-linux-gnu
+
+// Thread model: posix
+
+// gcc version 5.4.0 20160609 (Ubuntu 5.4.0-6ubuntu1~16.04.9)
+
+
+//#define _GNU_SOURCE"
+c;"static inline long int vpsyscall(int a0, void* a1, void* a2, void* a3) {
+    return syscall(a0, a1, a2, a3);
+}
+
+
+int main() {
+    vpsyscall(1, (void *)1, ""hello"", (void *)6);
+}";
+c;"# Makefile for building the sample syscall module
+# $FreeBSD: src/share/examples/kld/syscall/module/Makefile,v 1.2 2001/09/18 12:03:42 ru Exp $
+
+KMOD=   syscall
+SRCS=   syscall.c
+
+.include <bsd.kmod.mk>";
+c;"mem_voidptr_t injection_address;
+    struct user_regs_struct old_regs, regs;
+    int status;
+
+    const mem_byte_t injection_buffer[] = 
+    {
+        0x0f, 0x05,         0xcc            };
+
+    mem_byte_t old_data[sizeof(injection_buffer)];
+
+        char path_buffer[64];
+    snprintf(path_buffer, sizeof(path_buffer), ""/proc/%i/maps"", process.pid);
+    int fd = open(path_buffer, O_RDONLY);
+    if(fd == -1) return alloc_addr;
+
+    int read_check = 0;
+    mem_size_t file_size = 0;
+    mem_string_t file_buffer = mem_string_init();
+
+    for(char c; (read_check = read(fd, &c, 1)) != -1 && read_check != 0; file_size++)
+    {
+        mem_string_resize(&file_buffer, file_size);
+        mem_string_c_set(&file_buffer,  file_size, c);
+    }
+
+    mem_size_t   injection_address_pos, injection_address_end;
+    mem_string_t injection_address_str = mem_string_init();
+    injection_address = (mem_voidptr_t)MEM_BAD_RETURN;
+
+    injection_address_pos = mem_string_find(&file_buffer, ""r-xp"", 0);
+    injection_address_pos = mem_string_rfind(&file_buffer, ""\n"", injection_address_pos);
+    if(injection_address_pos == file_buffer.npos) return alloc_addr;
+
+    injection_address_end = mem_string_find(&file_buffer, ""-"", injection_address_pos);
+    injection_address_str = mem_string_substr(&file_buffer, injection_address_pos, injection_address_end);
+    injection_address = (mem_voidptr_t)strtoull(mem_string_c_str(&injection_address_str), NULL, 16);
+    if(injection_address == (mem_voidptr_t)MEM_BAD_RETURN || injection_address == (mem_voidptr_t)0) return alloc_addr;
+
+        ptrace(PTRACE_ATTACH, process.pid, NULL, NULL);
+
+        for(mem_size_t i = 0; i < sizeof(injection_buffer); i++)
+        ((mem_byte_t*)old_data)[i] = (mem_byte_t)ptrace(PTRACE_PEEKDATA, process.pid, injection_address + i, NULL);
+
+        for(mem_size_t i = 0; i < sizeof(injection_buffer); i++)
+        ptrace(PTRACE_POKEDATA, process.pid, injection_address + i, ((mem_byte_t*)injection_buffer)[i]);
+
+    ptrace(PTRACE_GETREGS, process.pid, NULL, &old_regs);
+    regs = old_regs;
+
+    regs.rax = __NR_mmap;                            regs.rdi = (mem_uintptr_t)0;                     regs.rsi = (mem_uintptr_t)size;                  regs.rdx = (mem_uintptr_t)protection;            regs.r10 = MAP_PRIVATE | MAP_ANON;               regs.r8  = -1;                                   regs.r9  = 0;                                    regs.rip = (mem_uintptr_t)injection_address;     ptrace(PTRACE_SETREGS, process.pid, NULL, &regs);
+    ptrace(PTRACE_CONT, process.pid, NULL, NULL);
+    waitpid(process.pid, &status, WSTOPPED);
+    ptrace(PTRACE_GETREGS, process.pid, NULL, &regs);
+    alloc_addr = (mem_voidptr_t)regs.rax;
+
+        ptrace(PTRACE_SETREGS, process.pid, NULL, &old_regs);
+
+    for(mem_size_t i = 0; i < sizeof(injection_buffer); i++)
+        ptrace(PTRACE_POKEDATA, process.pid, injection_address + i, ((mem_byte_t*)old_data)[i]);
+
+        ptrace(PTRACE_DETACH, process.pid, NULL, NULL);
+
+    if(alloc_addr == (mem_voidptr_t)__NR_mmap)
+        alloc_addr = (mem_voidptr_t)MEM_BAD_RETURN;
+
+    return alloc_addr;";"//syscall
+
+//int3 (SIGTRAP)
+
+//Find injection address
+
+
+//Inject
+
+//Store data at injection_address
+
+//Write injection buffer to injection address
+
+//syscall number
+
+//arg0 (void* address)
+
+//arg1 (size_t size)
+
+//arg2 (int protection)
+
+//arg3 (int flags)
+
+//arg4 (int fd)
+
+//arg5 (off_t offset)
+
+//next instruction
+
+
+//Restore old execution
+
+//ptrace(PTRACE_CONT, process.pid, NULL, NULL);"
+c;"int n = 5;
+int Child(void *);
+int main() {
+    int n = 5;";
+python;"import numpy as np
+from itertools import chain
+
+a = [1,2,3,4,5,6,7,8,9]
+print type(a), len(a), a
+npa = np.asarray(a)
+print type(npa), npa.shape, ""\n"", npa
+npa = npa.reshape((3, 3))
+print type(npa), npa.shape, ""\n"", npa
+a = list(chain.from_iterable(npa))
+print type(a), len(a), a`";
+python;"c = np.array([[1,2,3],[4,5,6]])
+
+list(c.flatten())";
+python;"my_list = [0,1,2,3,4,5,4,3,2,1,0]
+my_dt = pd.DataFrame(my_list)
+new_list = [i[0] for i in my_dt.values.tolist()]
+
+print(type(my_list),type(my_dt),type(new_list))";
+python;"c.ravel()
+c.ravel().tolist()
+";"# or
+"
+python;"def sinus2d(x, y):
+    return np.sin(x) + np.sin(y)";
+python;"x = np.arange(-4, 4, 0.25)
+y = np.arange(-4, 4, 0.25)
+X, Y = np.meshgrid(x, y)
+R = np.sqrt(X**2 + Y**2)
+Z = np.sin(R)";
+python;"x = np.array([0, 1, 2, 3, 4])
+y = np.array([0, 1, 2, 3, 4])";
+python;"import numpy as np
+
+def meshgrid(x , y):
+    XX = []
+    YY = []
+    for colm in range(len(y)):
+        XX.append([])
+        YY.append([])
+        for row in range(len(x)):
+            XX[colm].append(x[row])
+            YY[colm].append(y[colm])
+    return np.asarray(XX), np.asarray(YY)
+";
+python;"import numpy as np
+
+val = np.float32(0)
+pyval = val.item()
+print(type(pyval))         type(np.float64(0).item()) type(np.uint32(0).item())  type(np.int16(0).item())   type(np.cfloat(0).item())  type(np.datetime64(0, 'D').item())  type(np.datetime64('2001-01-01 00:00:00').item())  type(np.timedelta64(0, 'D').item()) ...";"# for example, numpy.float32 -> python float
+
+# <class 'float'>
+
+
+# and similar...
+
+# <class 'float'>
+
+# <class 'int'>
+
+# <class 'int'>
+
+# <class 'complex'>
+
+# <class 'datetime.date'>
+
+# <class 'datetime.datetime'>
+
+# <class 'datetime.timedelta'>"
+python;"if isinstance(obj, numpy.generic):
+    return numpy.asscalar(obj)
+";
+python;"converted_value = getattr(value, ""tolist"", lambda: value)()
+";
+python;"import numpy as np
+
+def get_type_convert(np_type):
+   convert_type = type(np.zeros(1,np_type).tolist()[0])
+   return (np_type, convert_type)
+
+print get_type_convert(np.float32)
+>> (<type 'numpy.float32'>, <type 'float'>)
+
+print get_type_convert(np.float64)
+>> (<type 'numpy.float64'>, <type 'float'>)";
+python;"def type_np2py(dtype=None, arr=None):
+    
+
+    if ((dtype is None and arr is None) or
+        (dtype is not None and arr is not None)):
+        raise ValueError(
+            ""Provide either keyword argument `dtype` or `arr`: a numpy dtype or a numpy array."")
+
+    if dtype is None:
+        dtype = arr.dtype
+
+                single_entry = np.empty([1], dtype=dtype).astype(object)
+
+    return type(single_entry[0])";"#1) Make a single-entry numpy array of the same dtype
+
+#2) force the array into a python 'object' dtype
+
+#3) the array entry should now be the closest python type
+e"
+python;"list_native_numbers = [i.item() for i in list_numpy_numbers]
+";
+python;"import numpy as np
+import perfplot
+import math
+
+
+def f(x):
+        return np.sqrt(x)
+
+
+vf = np.vectorize(f)
+
+
+def array_for(x):
+    return np.array([f(xi) for xi in x])
+
+
+def array_map(x):
+    return np.array(list(map(f, x)))
+
+
+def fromiter(x):
+    return np.fromiter((f(xi) for xi in x), x.dtype)
+
+
+def vectorize(x):
+    return np.vectorize(f)(x)
+
+
+def vectorize_without_init(x):
+    return vf(x)
+
+
+b = perfplot.bench(
+    setup=np.random.rand,
+    n_range=[2 ** k for k in range(20)],
+    kernels=[
+        f,
+        array_for,
+        array_map,
+        fromiter,
+        vectorize,
+        vectorize_without_init,
+    ],
+    xlabel=""len(x)"",
+)
+b.save(""out1.svg"")
+b.show()";"# return math.sqrt(x)
+"
+python;"import numpy as np
+x = np.array([1, 2, 3, 4, 5])
+squarer = lambda t: t ** 2
+vfunc = np.vectorize(squarer)
+vfunc(x)";# Output : array([ 1,  4,  9, 16, 25])
+python;"import numpy as np
+x = np.array([1, 2, 3, 4, 5])
+f = lambda x: x ** 2
+squares = f(x)";
+python;"def f(x):
+    return x+2*x*x+4*x*x*x
+
+import numpy as np
+vf=np.vectorize(f)
+vf.__name__=""vf""";"# numpy-functionality
+
+# python-function as ufunc
+"
+python;"squares = squarer(x)
+";
+python;"f = lambda x, y: x * y
+f_arr = np.frompyfunc(f, 2, 1)
+vf = np.vectorize(f)
+arr = np.linspace(0, 1, 10000)
+
+%timeit f_arr(arr, arr) %timeit vf(arr, arr)";"# 307ms
+
+# 450ms"
+python;"def along_axis(x):
+    return np.apply_along_axis(f, 0, x)";
+python;"numpy.fromiter((<some_func>(x) for x in <something>),<dtype>,<size of something>)
+";
+python;"import numpy, time
+def timeit():
+    y = numpy.arange(1000000)
+    now = time.time()
+    numpy.array([x * x for x in y.reshape(-1)]).reshape(y.shape)        
+    print(time.time() - now)
+    now = time.time()
+    numpy.fromiter((x * x for x in y.reshape(-1)), y.dtype).reshape(y.shape)
+    print(time.time() - now)
+    now = time.time()
+    numpy.square(y)  
+    print(time.time() - now)";
+python;l = [1,2,3,4,5] a = numpy.array(l) i = a.tolist().index(2) print i;"# Python list
+
+# NumPy array
+
+# i will return index of 2"
+python;"from numba import njit
+import numpy as np
+
+@njit
+def index(array, item):
+    for idx, val in np.ndenumerate(array):
+        if val == item:
+            return idx
+        ";"# If no item was found return None, other return types might be a problem due to
+
+# numbas type inference.
+"
+python;"other_array[first_array == item]
+";
+python;"arr = np.array([1, 1, 1, 2, 3, 3, 4])
+i = np.searchsorted(arr, 3)";
+python;"In [1]: from numpy import *
+In [2]: x = arange(125).reshape((5,5,5))
+In [3]: y = indices(x.shape)
+In [4]: locs = y[:,x >= 120] In [5]: pts = hsplit(locs, len(locs[0]))
+In [6]: for pt in pts:
+   .....:         print(', '.join(str(p[0]) for p in pt))
+4, 4, 0
+4, 4, 1
+4, 4, 2
+4, 4, 3
+4, 4, 4";# put whatever you want in place of x >= 120
+python;">>> import numpy as np
+>>> x = np.arange(100)   >>> next(i for i, x_i in enumerate(x) if x_i == 2)
+2";# x = array([0, 1, 2, 3, ... 99])
+python;"import numpy as np
+from numba import njit
+
+def index_of__v1(arr: np.array, v):
+    is_v = (arr == v)
+    return is_v.argmax() if is_v.any() else -1
+
+
+def index_of__v2(arr: np.array, v):
+    return (arr == v).argmax() if v in arr else -1
+
+
+def index_of__v3(arr: np.array, v):
+    idxs = np.flatnonzero(arr == v)
+    return idxs[0] if len(idxs) > 0 else -1
+
+
+def index_of__v4(arr: np.array, v):
+    return np.r_[False, (arr == v)].argmax() - 1
+
+
+@njit
+def index_of__v5(arr: np.array, v):
+    for idx, val in np.ndenumerate(arr):
+        if val == v:
+            return idx[0]
+    return -1
+
+
+def index_of__v6(arr: np.array, v):
+    return next((idx[0] for idx, val in np.ndenumerate(arr) if val == v), -1)
+
+
+def index_of__v7(arr: np.array, v):
+    return next((idx for idx, val in enumerate(arr) if val == v), -1)
+
+
+def index_of__v8(arr: np.array, v):
+    l = list(arr)
+    try:
+        return l.index(v)
+    except ValueError:
+        return -1";"# Based on: numpy.argmax()
+
+# Proposed by: John Haberstroh (https://stackoverflow.com/a/67497472/7204581)
+
+# Based on: numpy.argmax()
+
+# Based on: numpy.flatnonzero()
+
+# Proposed by: 1'' (https://stackoverflow.com/a/42049655/7204581)
+
+# Based on: numpy.argmax()
+
+# Based on: numba, for loop
+
+# Proposed by: MSeifert (https://stackoverflow.com/a/41578614/7204581)
+
+# Based on: numpy.ndenumerate(), for loop
+
+# Based on: enumerate(), for loop
+
+# Proposed by: Noyer282 (https://stackoverflow.com/a/40426159/7204581)
+
+# Based on: list.index()
+
+# Proposed by: Hima (https://stackoverflow.com/a/23994923/7204581)"
+python;"sequence_of_arrays = [[0, 1], [1, 2], [-5, 0]]
+arrays_to_query = [[-5, 0], [1, 0]]
+
+import numpy_indexed as npi
+idx = npi.indices(sequence_of_arrays, arrays_to_query, missing=-1)
+print(idx)";# [2, -1]
+python;"import bisect
+import numpy as np
+z = np.array([104,113,120,122,126,138])
+bisect.bisect_left(z, 122)";
+python;"your_list = [11, 22, 23, 44, 55]
+result = filter(lambda x:your_list[x]>30, range(len(your_list)))
+import numpy as np
+your_numpy_array = np.array([11, 22, 23, 44, 55])
+result = filter(lambda x:your_numpy_array [x]>30, range(len(your_list)))";"#result: [3, 4]
+
+
+#result: [3, 4]"
+python;"arr = np.array([[1,4],
+                 [2,3]])
+print(arr)
+
+...[[1,4],
+    [2,3]]";
+python;"import numpy as np
+
+arr = np.array([1,2,1,2,1,5,5,3,5,9]) 
+
+vals=np.unique(arr)
+cum_sum=np.cumsum(arr==vals.reshape(-1,1),axis=1)
+bl_mask=np.concatenate([np.zeros((cum_sum.shape[0],1)),cum_sum],axis=1)>=1
+idx=np.where(np.diff(bl_mask))[1]
+
+print(list(zip(vals,idx)))";"# The array in question
+
+# Find all of the present values
+
+# Make all indices up-to and including the desired index positive
+
+# Add zeros to account for the n-1 shape of diff and the all-positive array of the first index
+
+# The desired indices
+
+# Show results"
+python;"index_lst_form_numpy = pd.DataFrame(df).reset_index()[""index""].tolist()
+";
+python;"import sys
+import numpy
+numpy.set_printoptions(threshold=sys.maxsize)
+";
+python;"import numpy as np
+np.set_printoptions(threshold=np.inf)
+";
+python;"with numpy.printoptions(threshold=numpy.inf):
+    print(arr)
+";
+python;"def fullprint(*args, **kwargs):
+  from pprint import pprint
+  import numpy
+  opt = numpy.get_printoptions()
+  numpy.set_printoptions(threshold=numpy.inf)
+  pprint(*args, **kwargs)
+  numpy.set_printoptions(**opt)
+";
+python;"import numpy as np
+np.set_printoptions(threshold=np.nan)
+";
+python;"import numpy as np
+
+
+class fullprint:
+    'context manager for printing full numpy arrays'
+
+    def __init__(self, **kwargs):
+        kwargs.setdefault('threshold', np.inf)
+        self.opt = kwargs
+
+    def __enter__(self):
+        self._opt = np.get_printoptions()
+        np.set_printoptions(**self.opt)
+
+    def __exit__(self, type, value, traceback):
+        np.set_printoptions(**self._opt)
+
+
+if __name__ == '__main__': 
+    a = np.arange(1001)
+
+    with fullprint():
+        print(a)
+
+    print(a)
+
+    with fullprint(threshold=None, edgeitems=10):
+        print(a)";
+python;numpy.savetxt(sys.stdout, numpy.arange(10000));
+python;"import numpy as np
+from contextlib import contextmanager
+
+@contextmanager
+def show_complete_array():
+    oldoptions = np.get_printoptions()
+    np.set_printoptions(threshold=np.inf)
+    try:
+        yield
+    finally:
+        np.set_printoptions(**oldoptions)
+";
+python;"import numpy as np
+np.set_printoptions(threshold=np.inf, linewidth=200)
+
+x = np.arange(1000)
+print(x)";
+python;"import numpy as np
+np.set_printoptions(linewidth=2000)    Mat = np.arange(20000,20150).reshape(2,75)    print(Mat)";"# default = 75
+
+# 150 elements (75 columns)"
+python;"np.set_printoptions(threshold=False)
+";
+python;"from sys import maxsize
+from numpy import set_printoptions
+
+set_printoptions(threshold=maxsize)
+";
+python;arr = numpy.arange(10000).reshape(250,40);
+python;"import numpy as np
+print(str(np.arange(10000).reshape(250,40).tolist()))";
+python;"import numpy as np
+
+a = np.arange(10000).reshape(250,40)
+
+b = [str(row) for row in a.tolist()]
+
+print('\n'.join(b))";
+python;"a = numpy.arange(10000).reshape(250,40)
+print(numpy.array2string(a, threshold=numpy.nan, max_line_width=numpy.nan))";"# [Big output]
+"
+python;"numpy.arange(10000).reshape(250,40)
+    print(pandas.DataFrame(a).to_string(header=False, index=False))";
+python;"dist = numpy.linalg.norm(a-b)
+";
+python;"from scipy.spatial import distance
+a = (1, 2, 3)
+b = (4, 5, 6)
+dst = distance.euclidean(a, b)";
+python;"a_min_b = a - b
+numpy.sqrt(numpy.einsum('ij,ij->j', a_min_b, a_min_b))
+";
+python;"dist = numpy.linalg.norm(a-b)
+";
+python;"def dist(x,y):   
+    return numpy.sqrt(numpy.sum((x-y)**2))
+
+a = numpy.array((xa,ya,za))
+b = numpy.array((xb,yb,zb))
+dist_a_b = dist(a,b)";
+python;"from math import dist
+
+dist((1, 2, 6), (-2, 3, 2))";# 5.0990195135927845
+python;"from math import sqrt
+a = (1, 2, 3) b = (4, 5, 6) print sqrt(sum( (a - b)**2 for a, b in zip(a, b)))";"# Data point 1
+
+# Data point 2"
+python;"import numpy as np
+import matplotlib as plt
+
+a = np.array([1, 2, 3])
+b = np.array([2, 3, 4])
+
+dis = plt.mlab.dist(a, b)";"# Distance between a and b
+"
+python;"a = numpy.array((xa, ya, za))
+b = numpy.array((xb, yb, zb))
+
+tmp = a - b
+sum_squared = numpy.dot(tmp.T, tmp)
+result = numpy.sqrt(sum_squared)
+";
+python;"a = numpy.array((xa,ya,za))
+b = numpy.array((xb,yb,zb))
+
+distance = (np.dot(a-b,a-b))**.5";
+python;"import math
+print( math.dist( (0,0),   (1,1)   )) print( math.dist( (0,0,0), (1,1,1) ))";"# sqrt(2) -> 1.4142
+
+# sqrt(3) -> 1.7321"
+python;"def distance(v1,v2): 
+    return sum([(x-y)**2 for (x,y) in zip(v1,v2)])**(0.5)";
+python;"import math
+
+dist = math.hypot(math.hypot(xa-xb, ya-yb), za-zb)
+";
+python;"import numpy as np
+from scipy.spatial import distance
+input_arr = np.array([[0,3,0],[2,0,0],[0,1,3],[0,1,2],[-1,0,1],[1,1,1]]) 
+test_case = np.array([0,0,0])
+dst=[]
+for i in range(0,6):
+    temp = distance.euclidean(test_case,input_arr[i])
+    dst.append(temp)
+print(dst)";
+python;"import numpy as np
+a = [0, 0]
+b = [3, 4]";"# any two python array as two points
+"
+python;"def findEuclideanDistance(a, b):
+    euclidean_distance = a - b
+    euclidean_distance = np.sum(np.multiply(euclidean_distance, euclidean_distance))
+    euclidean_distance = np.sqrt(euclidean_distance)
+    return euclidean_distance
+";
+python;"i, j, k = 1e+200, 1e+200, 1e+200
+math.hypot(i, j, k)";# 1.7320508075688773e+200
+python;"import numexpr as ne
+import numpy as np
+np.sqrt(ne.evaluate(""sum((a_min_b)**2,axis=1)""))";
+python;"import numpy
+a = numpy.asarray([ [1,2,3], [4,5,6], [7,8,9] ])
+numpy.savetxt(""foo.csv"", a, delimiter="","")";
+python;"import pandas as pd 
+pd.DataFrame(np_array).to_csv(""path/to/file.csv"")
+";
+python;"import numpy as np
+a = np.asarray([ [1,2,3], [4,5,6], [7,8,9] ])
+a.tofile('foo.csv',sep=',',format='%10.5f')";
+python;"narr = np.array([[1,2],
+                 [3,4],
+                 [5,6]], dtype=np.int32)";
+python;"import numpy as np
+
+with open('example.csv', 'w') as fp:
+    fp.write()
+
+ar = np.recfromcsv('example.csv', encoding='ascii')
+print(repr(ar))
+with open('out.csv', 'w') as fp:
+    fp.write(','.join(ar.dtype.names) + '\n')
+    np.savetxt(fp, ar, '%s', ',')
+";"# Write an example CSV file with headers on first line
+
+# Read it as a Numpy record array
+
+# rec.array([(1, 100.1, 'string1'), (2, 222.2, 'second string')], 
+
+#           dtype=[('col1', '<i8'), ('col2', '<f8'), ('col3', '<U13')])
+
+
+# Write as a CSV file with headers on first line"
+python;"        import pandas as pd
+    import nump as np
+
+        corr_mat        my_df = pd.DataFrame(corr_mat)  ";"# Libraries to import
+
+#N x N numpy array (dimensions dont matter)
+
+#your numpy array
+
+#converting it to a pandas dataframe
+"
+python;"    for x in np.nditer(a.T, order='C'): 
+            file.write(str(x))
+            file.write(""\n"")
+";
+python;"csv_rows = [""{},{}"".format(i, j) for i, j in array]
+csv_text = ""\n"".join(csv_rows)
+
+with open('file.csv', 'w') as f:
+    f.write(csv_text)
+";"# format as a block of csv text to do whatever you want
+
+# write it to a file
+"
+python;"import numpy as np
+
+np.savetxt('output.csv', arr, delimiter=',', fmt='%f')
+";
+python;"df = pd.DataFrame(data={'A': [1, 2, 3], 'B': [4, 5, 6], 'C': [7, 8, 9]}, 
+                  index=['a', 'b', 'c'])
+
+df.to_numpy()
+df[['A', 'C']].to_numpy()";"# Setup
+
+# Convert the entire DataFrame
+
+# array([[1, 4, 7],
+
+#        [2, 5, 8],
+
+#        [3, 6, 9]])
+
+
+# Convert specific columns
+
+# array([[1, 7],
+
+#        [2, 8],
+
+#        [3, 9]])"
+python;"import pandas as pd
+import numpy as np
+import six
+
+NaN = float('nan')
+ID = [1, 2, 3, 4, 5, 6, 7]
+A = [NaN, NaN, NaN, 0.1, 0.1, 0.1, 0.1]
+B = [0.2, NaN, 0.2, 0.2, 0.2, NaN, NaN]
+C = [NaN, 0.5, 0.5, NaN, 0.5, 0.5, NaN]
+columns = {'A':A, 'B':B, 'C':C}
+df = pd.DataFrame(columns, index=ID)
+df.index.name = 'ID'
+print(df)
+
+      A    B    C
+ID               
+1   NaN  0.2  NaN
+2   NaN  NaN  0.5
+3   NaN  0.2  0.5
+4   0.1  0.2  NaN
+5   0.1  0.2  0.5
+6   0.1  NaN  0.5
+7   0.1  NaN  NaN";
+python;"import pandas as pd
+df = pd.DataFrame({""A"": [1, 2], ""B"": [3, 4]})
+df_to_array = df.to_numpy()
+array([[1, 3],
+   [2, 4]])";
+python;"np.array(df) 
+
+array([['ID', nan, nan, nan],
+   ['1', nan, 0.2, nan],
+   ['2', nan, nan, 0.5],
+   ['3', nan, 0.2, 0.5],
+   ['4', 0.1, 0.2, nan],
+   ['5', 0.1, 0.2, 0.5],
+   ['6', 0.1, nan, 0.5],
+   ['7', 0.1, nan, nan]], dtype=object)";
+python;"import sys
+import numpy
+from humanize import naturalsize
+
+for size, name in sorted(
+    (value.nbytes, name)
+    for name, value in locals().items()
+    if isinstance(value, numpy.ndarray)):
+  print(""{:>30}: {:>8}"".format(name, naturalsize(size)))";
+python;"import numpy as np
+
+np.r_[a, a]
+np.stack([a, a]).reshape(-1)
+np.hstack([a, a])
+np.concatenate([a, a])";
+python;numpy.concatenate((a,b)) ;"# Note the extra parentheses.
+"
+python;"%pylab
+vector_a = r_[0.:10.] vector_b = array([1,1,1,1])
+vector_c = r_[vector_a,vector_b]
+print vector_a
+print vector_b
+print vector_c, '\n\n'
+
+a = ones((3,4))*4
+print a, '\n'
+c = array([1,1,1])
+b = c_[a,c]
+print b, '\n\n'
+
+a = ones((4,3))*4
+print a, '\n'
+c = array([[1,1,1]])
+b = r_[a,c]
+print b
+
+print type(vector_b)";"#short form of ""arange""
+"
+python;"In [15]: (*a, *b)
+Out[15]: (1, 2, 3, 5, 6)
+
+In [14]: np.ravel((*a, *b))
+Out[14]: array([1, 2, 3, 5, 6])
+
+In [16]: np.array((*a, *b))
+Out[16]: array([1, 2, 3, 5, 6])";"# we'll utilize the concept of unpacking
+
+# using `numpy.ravel()`
+
+# wrap the unpacked elements in `numpy.array()`
+"
+python;">>> a = np.array([[1, 2], [3, 4]])
+>>> b = np.array([[5, 6]])
+
+>>> np.concatenate((a, b), axis=0)
+array([[1, 2],
+       [3, 4],
+       [5, 6]])
+
+>>> np.concatenate((a, b.T), axis=1)    array([[1, 2, 5],
+       [3, 4, 6]])
+
+>>> np.concatenate((a, b), axis=None)
+array([1, 2, 3, 4, 5, 6])";"# Appending below last row
+
+# Appending after last column
+
+# Notice the transpose
+
+# Flattening the final array
+"
+python;">>> a = np.array([9, 4, 4, 3, 3, 9, 0, 4, 6, 0])
+>>> a
+array([9, 4, 4, 3, 3, 9, 0, 4, 6, 0])
+
+>>> ind = np.argpartition(a, -4)[-4:]
+>>> ind
+array([1, 5, 8, 0])
+
+>>> top4 = a[ind]
+>>> top4
+array([4, 9, 6, 9])";
+python;">>> import numpy as np
+>>> arr = np.array([1, 3, 2, 4, 5])
+>>> arr.argsort()[-3:][::-1]
+array([4, 3, 1])";
+python;"def largest_indices(ary, n):
+    
+    flat = ary.flatten()
+    indices = np.argpartition(flat, -n)[-n:]
+    indices = indices[np.argsort(-flat[indices])]
+    return np.unravel_index(indices, ary.shape)
+";.
+python;"import numpy as np
+import time
+import random
+import sys
+from operator import itemgetter
+from heapq import nlargest
+
+
+a1 = list(range(1000000))
+random.shuffle(a1)
+a1 = np.array(a1)
+
+ NPE's Answer Modified A Bit For My Case  Fred Foos Answer Modified A Bit For My Case off99555's Answer - No Modification Needed For My Needs '''
+t0 = time.time()
+result = nlargest(5, enumerate(a1), itemgetter(1))
+t1 = time.time()
+print(""off99555's Answer:"")
+print(result)
+print(t1 - t0)";"################################################ '''
+ 
+ 
+ 
+e
+ "
+python;"K = 4 a = np.array([0, 8, 0, 4, 5, 8, 8, 0, 4, 2])
+np.argpartition(a,-K)[-K:]
+array([4, 1, 5, 6])";"# We want the indices of the four largest values
+"
+python;indices = np.argpartition(arr, -N, axis=1)[:, -N:];# For a 2D array
+python;">>> A = np.random.randint(0,10,10)
+>>> A
+array([5, 1, 5, 5, 2, 3, 2, 4, 1, 0])
+>>> B = np.zeros(3, int)
+>>> for i in xrange(3):
+...     idx = np.argmax(A)
+...     B[i]=idx; A[idx]=0 ...     
+>>> B
+array([0, 2, 3])";"#something smaller than A.min()
+"
+python;"from operator import itemgetter
+from heapq import nlargest
+result = nlargest(N, enumerate(your_list), itemgetter(1))";
+python;"def max_indices(arr, k):
+    
+    assert k <= arr.size, 'k should be smaller or equal to the array size'
+    arr_ = arr.astype(float)      max_idxs = []
+    for _ in range(k):
+        max_element = np.max(arr_)
+        if np.isinf(max_element):
+            break
+        else:
+            idx = np.where(arr_ == max_element)
+        max_idxs.append(idx)
+        arr_[idx] = -np.inf
+    return max_idxs
+";"# make a copy of arr
+ "
+python;"multi_max = [1,1,2,2,4,0,0,4]
+uniques, idx = np.unique(multi_max, return_inverse=True)
+print np.squeeze(np.argwhere(idx == np.argmax(uniques)))
+>> [4 7]";
+python;"M = np.random.random((3, 4))
+print(M)
+print(M.max(axis=1), M.argmax(axis=1))";
+python;"top_k_index_list = [ ]
+for i in range(k):
+    top_k_index_list.append(np.argmax(my_array))
+    my_array[top_k_index_list[-1]] = -float('inf')";
+python;"mat = np.array([[1, 3], [2, 5]])  
+n = 2  n_largest_mat = np.sort(mat, axis=None)[-n:] tf_n_largest = np.zeros((2,2), dtype=bool) for x in n_largest_mat: 
+  tf_n_largest = (tf_n_largest) | (mat == x) n_largest_elems = mat[tf_n_largest]";"# numpy matrix
+
+# n
+
+# n_largest 
+
+# all false matrix
+
+# true-false  
+
+
+# true-false indexing 
+"
+python;"import numpy as np
+
+def get_sorted_top_k(array, top_k=1, axis=-1, reverse=False):
+    if reverse:
+        axis_length = array.shape[axis]
+        partition_index = np.take(np.argpartition(array, kth=-top_k, axis=axis),
+                                  range(axis_length - top_k, axis_length), axis)
+    else:
+        partition_index = np.take(np.argpartition(array, kth=top_k, axis=axis), range(0, top_k), axis)
+    top_scores = np.take_along_axis(array, partition_index, axis)
+        sorted_index = np.argsort(top_scores, axis=axis)
+    if reverse:
+        sorted_index = np.flip(sorted_index, axis=axis)
+    top_sorted_scores = np.take_along_axis(top_scores, sorted_index, axis)
+    top_sorted_indexes = np.take_along_axis(partition_index, sorted_index, axis)
+    return top_sorted_scores, top_sorted_indexes
+
+if __name__ == ""__main__"":
+    import time
+    from sklearn.metrics.pairwise import cosine_similarity
+
+    x = np.random.rand(10, 128)
+    y = np.random.rand(1000000, 128)
+    z = cosine_similarity(x, y)
+    start_time = time.time()
+    sorted_index_1 = get_sorted_top_k(z, top_k=3, axis=1, reverse=True)[1]
+    print(time.time() - start_time)";"# resort partition
+"
+python;"import numpy as np
+nums = np.array([0.2, 0.3, 0.25, 0.15, 0.1])
+
+
+def TopK(x, k):
+    a = dict([(i, j) for i, j in enumerate(x)])
+    sorted_a = dict(sorted(a.items(), key = lambda kv:kv[1], reverse=True))
+    indices = list(sorted_a.keys())[:k]
+    values = list(sorted_a.values())[:k]
+    return (indices, values)
+
+print(f""Indices: {TopK(nums, k = 2)[0]}"")
+print(f""Values: {TopK(nums, k = 2)[1]}"")
+
+
+Indices: [1, 2]
+Values: [0.3, 0.25]";
+python;"k = 3
+probas = np.array([
+    [.6, .1, .15, .15],
+    [.1, .6, .15, .15],
+    [.3, .1, .6, 0],
+])
+
+k_indices = np.argpartition(-probas, k-1, axis=-1)[:, :k]
+
+adjuster = np.arange(probas.shape[0]) * probas.shape[1]
+adjuster = np.broadcast_to(adjuster[:, None], k_indices.shape)
+k_indices_flat = k_indices + adjuster
+
+k_values = probas.flatten()[k_indices_flat]";"# adjust indices to apply in flat array
+
+# k_indices:
+
+# array([[0, 2, 3],
+
+#        [1, 2, 3],
+
+#        [2, 0, 1]])
+
+# k_values:
+
+# array([[0.6 , 0.15, 0.15],
+
+#        [0.6 , 0.15, 0.15],
+
+#       [0.6 , 0.3 , 0.1 ]])"
+python;"import numpy as np
+import pandas as pd    
+
+a = np.array([9, 4, 4, 3, 3, 9, 0, 4, 6, 0])
+
+df = pd.DataFrame(a, columns=['array'])
+max_values = df['array'].sort_values(ascending=False, na_position='last')
+ind = max_values[0:3].index.to_list()";
+python;"import perfplot
+import numpy
+
+
+def setup(n):
+    A = numpy.random.rand(n, n)
+    x = numpy.random.rand(n)
+    return A, x
+
+
+def at(A, x):
+    return A @ x
+
+
+def numpy_dot(A, x):
+    return numpy.dot(A, x)
+
+
+def numpy_matmul(A, x):
+    return numpy.matmul(A, x)
+
+
+perfplot.show(
+    setup=setup,
+    kernels=[at, numpy_dot, numpy_matmul],
+    n_range=[2 ** k for k in range(15)],
+)";
+python;"import numpy as np
+fourbyfour = np.array([
+                       [1,2,3,4],
+                       [3,2,1,4],
+                       [5,4,6,7],
+                       [11,12,13,14]
+                      ])
+
+
+threebyfourbytwo = np.array([
+                             [[2,3],[11,9],[32,21],[28,17]],
+                             [[2,3],[1,9],[3,21],[28,7]],
+                             [[2,3],[1,9],[3,21],[28,7]],
+                            ])
+
+print('4x4*3x4x2 dot:\n {}\n'.format(np.dot(fourbyfour,threebyfourbytwo)))
+print('4x4*3x4x2 matmul:\n {}\n'.format(np.matmul(fourbyfour,threebyfourbytwo)))";
+python;"import numpy as np
+for it in xrange(10000):
+    a = np.random.rand(5,6,2,4)
+    b = np.random.rand(6,4,3)
+    c = np.matmul(a,b)
+    d = np.dot(a,b)
+        
+    for i in range(5):
+        for j in range(6):
+            for k in range(2):
+                for l in range(3):
+                    if not c[i,j,k,l] == d[i,j,k,j,l]:
+                        print it,i,j,k,l,c[i,j,k,l]==d[i,j,k,j,l]";"#print 'c shape: ', c.shape,'d shape:', d.shape
+
+# you will not see them              
+"
+python;np.allclose(np.einsum('ijk,ijk->ijk', a,b), a*b)        np.allclose(np.einsum('ijk,ikl->ijl', a,b), a@b)        np.allclose(np.einsum('ijk,lkm->ijlm',a,b), a.dot(b))   ;"# True 
+
+# True
+
+# True
+"
+python;"X.shape
+>>>(200, 3)
+
+type(X)
+
+>>>pandas.core.frame.DataFrame
+
+w
+
+>>>array([0.37454012, 0.95071431, 0.73199394])
+
+YY = np.matmul(X,w)
+
+>>>  ValueError: Shape of passed values is (200, 1), indices imply (200, 3)""";
+python;"import numpy as np
+a = np.array([1,2,3,4,5])
+p = np.percentile(a, 50) print p
+3.0";# return 50th percentile, e.g median.
+python;"import math
+import functools
+
+def percentile(N, percent, key=lambda x:x):
+    
+    if not N:
+        return None
+    k = (len(N)-1) * percent
+    f = math.floor(k)
+    c = math.ceil(k)
+    if f == c:
+        return key(N[int(k)])
+    d0 = key(N[int(f)]) * (c-k)
+    d1 = key(N[int(c)]) * (k-f)
+    return d0+d1
+
+median = functools.partial(percentile, percent=0.5)";"## {{{ http://code.activestate.com/recipes/511478/ (r1)
+
+# median is 50th percentile.
+
+## end of http://code.activestate.com/recipes/511478/ }}}"
+python;"import numpy as np
+a = [154, 400, 1124, 82, 94, 108]
+print np.percentile(a,95)";# gives the 95th percentile
+python;"from statistics import quantiles
+
+quantiles([1, 2, 3, 4, 5], n=100)
+quantiles([1, 2, 3, 4, 5], n=100)[49]";"# [0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.48, 0.54, 0.6, 0.66, 0.72, 0.78, 0.84, 0.9, 0.96, 1.02, 1.08, 1.14, 1.2, 1.26, 1.32, 1.38, 1.44, 1.5, 1.56, 1.62, 1.68, 1.74, 1.8, 1.86, 1.92, 1.98, 2.04, 2.1, 2.16, 2.22, 2.28, 2.34, 2.4, 2.46, 2.52, 2.58, 2.64, 2.7, 2.76, 2.82, 2.88, 2.94, 3.0, 3.06, 3.12, 3.18, 3.24, 3.3, 3.36, 3.42, 3.48, 3.54, 3.6, 3.66, 3.72, 3.78, 3.84, 3.9, 3.96, 4.02, 4.08, 4.14, 4.2, 4.26, 4.32, 4.38, 4.44, 4.5, 4.56, 4.62, 4.68, 4.74, 4.8, 4.86, 4.92, 4.98, 5.04, 5.1, 5.16, 5.22, 5.28, 5.34, 5.4, 5.46, 5.52, 5.58, 5.64, 5.7, 5.76, 5.82, 5.88, 5.94]
+
+# 50th percentile (e.g median)
+
+# 3.0"
+python;"import math
+
+def percentile(data, perc: int):
+    size = len(data)
+    return sorted(data)[int(math.ceil((size * perc) / 100)) - 1]
+
+percentile([10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0], 90)
+percentile([142, 232, 290, 120, 274, 123, 146, 113, 272, 119, 124, 277, 207], 50)";"# 9.0
+
+# 146"
+python;"def percentile(N, P):
+    
+    n = int(round(P * len(N) + 0.5))
+    return N[n-1]";"# A = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+# B = (15, 20, 35, 40, 50)
+
+#
+
+# print percentile(A, P=0.3)
+
+# 4
+
+# print percentile(A, P=0.8)
+
+# 9
+
+# print percentile(B, P=0.3)
+
+# 20
+
+# print percentile(B, P=0.8)
+
+# 50"
+python;"from scipy.stats import rankdata
+import numpy as np
+
+def calc_percentile(a, method='min'):
+    if isinstance(a, list):
+        a = np.asarray(a)
+    return rankdata(a, method=method) / float(len(a))
+";
+python;"import numpy as np
+
+a = np.array([0,1,2,3,4,5,6,7,8,9,10])
+p50 = np.percentile(a, 50) p90 = np.percentile(a, 90) print('median = ',p50,' and p90 = ',p90)";"# return 50th percentile, e.g median.
+
+# return 90th percentile.
+
+# median =  5.0  and p90 =  9.0"
+python;"import numpy as np
+x=np.random.uniform(10,size=(1000))-5.0
+
+np.percentile(x,70) 2.075966046220879
+
+np.percentile(x,70,interpolation=""nearest"")
+
+2.0729677997904314";# 70th percentile
+python;"df['sales'].describe(percentiles = [0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1])
+
+0.0: .0: minimum
+1: maximum 
+0.1 : 10th percentile and so on";
+python;"import pandas as pd
+ import matplotlib.pyplot as plt
+ import seaborn as sns
+ import numpy as np
+ import json
+ import dc_stat_think as dcst
+
+ data = [154, 400, 1124, 82, 94, 108]
+  bs_data = dcst.draw_bs_reps(data, np.mean, size=6*10)
+
+  x= np.linspace(1,6,6)
+ print(x)
+ for (item1,item2,item3,item4,item5,item6) in bs_data.reshape((10,6)):
+     line_data=[item1,item2,item3,item4,item5,item6]
+     ci=np.percentile(line_data,[.025,.975])
+     mean_avg=np.mean(line_data)
+     fig, ax = plt.subplots()
+     ax.plot(x,line_data)
+     ax.fill_between(x, (line_data-ci[0]), (line_data+ci[1]), color='b', alpha=.1)
+     ax.axhline(mean_avg,color='red')
+     plt.show()";"#print (np.percentile(data,[0.5,95])) # gives the 95th percentile
+
+
+#print(np.reshape(bs_data,(24,6)))"
