@@ -1,0 +1,1875 @@
+0-binary_to_uint.c,"/**
+ * binary_to_uint - converts a binary to an unsigned int
+ * @b: the binary number as a string
+ *
+ * Return: the converted value
+ */
+
+/**
+ * check_valid_string - checks if a string has only 0's and 1's
+ * @b: string to be checked
+ *
+ * Return: 1 if string is valid, 0 otherwise
+ */
+"
+0-create_array.c,"/**
+* create_array - creates an array of chars, and
+* initializes it with a specific char.
+*@size: Size of the array
+*@c: Character to insert
+*Return: NULL if size is zero or if it fails,
+*pointer to array if everything is normal.
+*/
+
+"
+0-hash_table_create.c,"/**
+ * hash_table_create - Creates a hash table.
+ * @size: The size of the array.
+ *
+ * Return: If an error occurs - NULL.
+ *         Otherwise - a pointer to the new hash table.
+ */
+"
+0-holberton.c,"/**
+*main - function prints text as output
+*
+*Return:return 0
+*/
+"
+0-isupper.c,"/**
+*_isupper - function that verifies if a  character is uppercase or not
+*@c: tested character
+*Return: returns 1 if it is uppercase , 0 if not
+*/
+
+"
+0-linear.c,"/**
+ * linear_search - searches for a value in a sorted array of integers
+ * @array: array of integers
+ * @size: size of array
+ * @value: value to search for
+ * Return: index of value or -1 if not found
+ */
+
+
+"
+0-main.c,"/**
+* main - tests function that prints if integer is positive or negative
+* Return: 0
+*/
+
+"
+0-malloc_checked.c,"/**
+ * malloc_checked - allocates memory using malloc, exit(98) if it fails
+ * @b: size of the memory block to be allocated
+ *
+ * Return: pointer to the address of the memory block
+ */
+"
+0-memset.c,"/**
+*_memset - The _memset() function fills
+* the first n bytes of the memory area
+* pointed to by s with the constant byte b
+*@s:target
+*@b: constant byte
+*@n:number of byte
+*Return: returns new value of target
+*/
+
+"
+0-positive_or_negative.c,"/**
+*main - entry point of programs
+*
+*Return: return 0
+*/
+"
+0-print_dlistint.c,"/**
+ * print_dlistint - prints all the elements of a dlistint_t list.
+ * @h: pointer to the head of the list
+ *
+ * Return: number of nodes
+ */
+
+"
+0-print_list.c,"/**
+* print_list - prints all the elements of a list
+*
+* @h:pointer to the list
+*
+*Return: the number of nodes
+*/
+
+"
+0-print_listint.c,"/**
+ * print_listint - prints all the elements of a linked list
+ * @h: head of the list
+ *
+ * Return: the number of nodes
+ */
+"
+0-print_name.c,"/**
+*print_name - prints a name
+*@name:name to print
+*@f: function which print name
+*/
+
+"
+0-puts_recursion.c,"/**
+* _puts_recursion - prints a string followed by a new line
+*@s:character to be printed
+*Return:returns void
+*/
+"
+0-read_textfile.c,"/**
+ * read_textfile - Reads a text file and prints it to POSIX stdout.
+ * @filename: A pointer to the name of the file.
+ * @letters: The number of letters the
+ *           function should read and print.
+ *
+ * Return: If the function fails or filename is NULL - 0.
+ *         O/w - the actual number of bytes the function can read and print.
+ */
+
+"
+0-reset_to_98.c,"/**
+*reset_to_98 - reset value of an integer to 98
+*@n: parameter targeted
+*Return : nothing
+*/
+
+"
+0-strcat.c,"/**
+ *_strcat - concatenates  the string pointed to by @src to
+ * the end of the string pointed to by @dest
+ *@dest: String that will be appended
+ *@src: String to be concatenated upon
+ *
+ * Return: returns poiner to @dest
+ */
+
+"
+0-sum_them_all.c,"/**
+*sum_them_all - sums all its parameters
+*@n: first parameter
+*
+*Return: 0 if n is null
+* or sum of parameters in other case
+*/
+
+"
+0-whatsmyname.c,"/**
+* main - prints program name
+*@argc: number of arguments
+*@argv: array of arguments
+*Return: 0
+*/
+"
+1-alphabet.c,"/**
+*print_alphabet - function that print alphabet
+*it prints in lowercase
+*Return: no return
+*/
+"
+1-args.c,"/**
+* main - prints the number of arguments
+*@argc: number of arguments
+*@argv:array of arguments
+*Return: the number of arguments
+*/
+
+"
+1-array_iterator.c,"/**
+*array_iterator - executes a function on each element of an array
+*@array: array to be targeted
+*@size: size of array
+*@action: function to be executed
+*
+*/
+
+"
+1-binary.c,"/**
+ * binary_search - searches for a value in a sorted array of integers
+ * using the binary search algorithm
+ * @array: array of integers
+ * @size: size of array
+ * @value: value to search for
+ * Return: index of value or -1 if not found
+ */
+
+"
+1-binary_recursive.c,
+1-create_file.c,"/**
+ * create_file - Creates a file.
+ * @filename: A pointer to the name of the file to create.
+ * @text_content: A pointer to a string to write to the file.
+ *
+ * Return: If the function fails - -1.
+ * Otherwise - 1.
+ */
+
+"
+1-djb2.c,"/**
+ * hash_djb2 - implementation of the djb2 algorithm
+ * @str: string used to generate hash value
+ *
+ * Return: hash value
+ */
+
+/* hash * 33 + c */
+"
+1-dlistint_len.c,"/**
+ * dlistint_len - returns the number of elements in a linked dlistint_t list.
+ * @h: pointer to the head of the list
+ *
+ * Return: number of nodes
+ */
+
+"
+1-init_dog.c,"/**
+* init_dog - inits a variable of
+*type dog
+*@d: dog identification
+*@name: name of dog
+*@age: age of dog
+*@owner: owner's name
+*/
+
+"
+1-isdigit.c,"/**
+*_isdigit - function that verifies if a  character is a digit or not
+*@c: tested character
+*Return: returns 1 if it is uppercase , 0 if not
+*/
+
+"
+1-last_digit.c,"/**
+*main - Prints the last digit of random number
+*
+*Return: Return 0
+*/
+"
+1-listint_len.c,"/**
+ *listint_len - Returns the number of elements
+ *in a linked listint_t list
+ *@h: A pointer to the head of the list
+ *
+ *
+ *Return: the number of elements in the listint_t list
+ */
+
+"
+1-list_len.c,"/**
+ * list_len - finds the number of elements in a linked list
+ *@h: pointer to the list
+ *
+ *Return: the number of elements
+*/
+
+"
+1-main.c,"/**
+* main - causes an infinite loop
+* Return: 0
+*/
+
+
+/*
+*while (i < 10)
+*{
+*putchar(i);
+*}
+*/
+"
+1-memcpy.c,"/**
+*_memcpy - The _memcpy() function copies n bytes
+* from memory area src to memory area dest
+*@dest:area where bytes are copied to
+*@src:area where bytes are copied from
+*@n:number of bytes to copy
+*Return: returns a pointer to n
+*/
+"
+1-print_binary.c,"/**
+*print_binary - prints the binary representation of a number
+*@n: number to be printed
+*
+*Return: void
+*/
+
+"
+1-print_numbers.c,"/**
+*print_numbers - prints numbers followed by
+*new line
+*@separator: string to be printed between numbers
+*@n: number of integer to be passed
+*
+*Return: nothing
+*/
+
+"
+1-print_rev_recursion.c,"/**
+* _print_rev_recursion - function that prints a string in reverse.
+*@s: parameter string
+*
+*/
+"
+1-strdup.c,"/**
+* _strdup - returns a pointer to a newly allocated
+*space in memory, which contains a copy of the
+*string given as a parameter.
+*@str:String to be copied
+*
+*Return: NULL in case of error, pointer to allocated
+*space
+*/
+
+"
+1-string_nconcat.c,"/**
+*string_nconcat - Concatenates two strings using at
+*most an inputted number of bytes.
+*@s1: The first string.
+*@s2: The second string.
+*@n: The maximum number of bytes of s2 to concatenate to s1.
+*
+*Return: If the function fails - NULL.
+*Otherwise - a pointer to the concatenated space in memory.
+*/
+
+"
+1-strncat.c,"/**
+ *_strncat - concatenate two strings but add inputted number of bytes
+ *@dest: string to be appended upon
+ *@src: string to be completed at end of dest
+ *@n:integer parameter to compare index to
+ *Return: returns new concatenated string
+ */
+
+"
+1-swap.c,"/**
+*swap_int - swap two integers
+*@a: first integer
+*@b: second integer
+*Return: nothing
+*/
+
+"
+10-add.c,"/**
+*add - sums up two numbers
+*@n:first integer
+*@m:second integer
+*Return: returns 0
+*/
+"
+10-delete_nodeint.c,"/**
+ * delete_nodeint_at_index - deletes a node at an index
+ * @head: pointer to the head of the list
+ * @index: index of the node to be added
+ *
+ * Return: the address of the node
+ */
+
+/**
+ * listint_len - counts the number of nodes in a linked list
+ * @h: head of the list
+ *
+ * Return: the number of elements
+ */
+"
+10-print_triangle.c,"/**
+*print_triangle - prints a triangle
+*@size:size parameter of triangle
+*Return:returns nothing
+*/
+"
+100-argstostr.c,"/**
+* argstostr - a function that concatenates all the arguments of your program
+*@ac: count of args passed to the function
+*@av:array of arguments
+*
+*Return: pointer to the new string
+*/
+
+
+/**
+*len - returns length of str
+*@str: string counted
+*Return: returns the length
+*/
+"
+100-atoi.c,"/**
+* _atoi - changes a string to an int
+* @s: the string to be changed
+*
+* Return: the converted int
+*/
+"
+100-change.c,"/**
+*main - prints the minimum number of coins to make change
+* for an amount of money
+*@argc: number of arguments
+*@argv: array of arguments
+*Return: returns 1 if there is an error; else returns 0
+*/
+
+"
+100-elf_header.c,"/**
+ * check_elf - Checks if a file is an ELF file.
+ * @e_ident: A pointer to an array containing the ELF magic numbers.
+ *
+ * Description: If the file is not an ELF file - exit code 98.
+ */
+
+/**
+ * print_magic - Prints the magic numbers of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF magic numbers.
+ *
+ * Description: Magic numbers are separated by spaces.
+ */
+
+/**
+ * print_class - Prints the class of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF class.
+ */
+
+/**
+ * print_data - Prints the data of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF class.
+ */
+
+/**
+ * print_version - Prints the version of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF version.
+ */
+
+/**
+ * print_osabi - Prints the OS/ABI of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF version.
+ */
+
+/**
+ * print_abi - Prints the ABI version of an ELF header.
+ * @e_ident: A pointer to an array containing the ELF ABI version.
+ */
+
+/**
+ * print_type - Prints the type of an ELF header.
+ * @e_type: The ELF type.
+ * @e_ident: A pointer to an array containing the ELF class.
+ */
+
+/**
+ * print_entry - Prints the entry point of an ELF header.
+ * @e_entry: The address of the ELF entry point.
+ * @e_ident: A pointer to an array containing the ELF class.
+ */
+
+/**
+ * close_elf - Closes an ELF file.
+ * @elf: The file descriptor of the ELF file.
+ *
+ * Description: If the file cannot be closed - exit code 98.
+ */
+
+/**
+ * main - Displays the information contained in the
+ *        ELF header at the start of an ELF file.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
+ *
+ * Return: 0 on success.
+ *
+ * Description: If the file is not an ELF File or
+ *              the function fails - exit code 98.
+ */
+"
+100-first.c,"/**
+ * hare - Prints a string before the
+ *   main function is executed.
+ */
+"
+100-get_endianness.c,"/**
+ * get_endianness - checks whether a machine is big endian or little
+ *
+ * Return: 1 if little endian, 0 otherwise
+ */
+
+"
+100-is_palindrome.c,"/**
+* is_palindrome - returns true if the given string is a palindrome
+*@s: string to check
+*Return: true if the given string is a palindrome
+*/
+
+
+/**
+ * find_strlen - Returns the length of a string.
+ * @s: The string to be measured.
+ *
+ * Return: The length of the string.
+ */
+
+/**
+ * check_palindrome - Checks if a string is a palindrome.
+ * @s: The string to be checked.
+ * @len: The length of s.
+ * @index: The index of the string to be checked.
+ *
+ * Return: If the string is a palindrome - 1.
+ *         If the string is not a palindrome - 0.
+ */
+"
+100-jump.c,"/**
+ * jump_search - function that searches for a value
+ * in a sorted array of integers
+ *
+ * @array: a pointer to the first element of the array to search in
+ * @size:  the number of elements in array
+ * @value: is the value to search for
+ * Return: the first index where value is located
+ */
+
+"
+100-main_opcodes.c,"/**
+*main -  program that prints the opcodes of its own main function.
+*@argc: number of arguments passed to the program
+*@argv: array of arguments
+*
+*Return: on success, 1 or 2 in case of failure
+*/
+
+"
+100-prime_factor.c,"/**
+*main- prints the largest prime factor
+*of a number
+*
+*Return: returns 0
+*/
+
+"
+100-print_comb3.c,"/**
+*main - Prints all combinations of two digits with,
+* and space followed by new line
+*
+*Return: returns 0
+*/
+"
+100-realloc.c,"/**
+* _realloc - reallocates a memory block
+* @ptr: pointer to the memory previously allocated with a call to malloc
+* @old_size: size of ptr
+* @new_size: size of the new memory to be allocated
+*
+* Return: pointer to the address of the new memory block
+*/
+
+"
+100-rot13.c,"/**
+* rot13 -  encodes a string using rot13
+* @str:the string targeted
+*Return: returns the encoded string
+*/
+
+"
+100-set_string.c,"/**
+* set_string - a function that sets the value of a pointer to a char.
+*@s: pointer value
+*@to: value pointed to
+*
+*/
+"
+100-sorted_hash_table.c,"/**
+ * shash_table_create - Creates a sorted hash table.
+ * @size: The size of new sorted hash table.
+ *
+ * Return: If an error occurs - NULL.
+ *         Otherwise - a pointer to the new sorted hash table.
+ */
+
+/**
+ * shash_table_set - Adds an element to a sorted hash table.
+ * @ht: A pointer to the sorted hash table.
+ * @key: The key to add - cannot be an empty string.
+ * @value: The value associated with key.
+ *
+ * Return: Upon failure - 0.
+ *         Otherwise - 1.
+ */
+
+/**
+ * shash_table_get - Retrieve the value associated with
+ *                   a key in a sorted hash table.
+ * @ht: A pointer to the sorted hash table.
+ * @key: The key to get the value of.
+ *
+ * Return: If the key cannot be matched - NULL.
+ *         Otherwise - the value associated with key in ht.
+ */
+
+/**
+ * shash_table_print - Prints a sorted hash table in order.
+ * @ht: A pointer to the sorted hash table.
+ */
+
+/**
+ * shash_table_print_rev - Prints a sorted hash table in reverse order.
+ * @ht: A pointer to the sorted hash table to print.
+ */
+
+/**
+ * shash_table_delete - Deletes a sorted hash table.
+ * @ht: A pointer to the sorted hash table.
+ */
+"
+100-times_table.c,"/**
+*print_times_table - prints the  times table with
+*parameter
+*@n: parameter
+*Return: returns nothing
+*/
+"
+101-keygen.c,"/**
+ * main - entry point generates a random password
+ *
+ * Return: the generated password
+ */
+"
+101-mul.c,"/**
+ * find_len - Finds the length of a string.
+ * @str: The string to be measured.
+ *
+ * Return: The length of the string.
+ */
+
+/**
+ * create_xarray - Creates an array of chars and initializes it with
+ *                 the character 'x'. Adds a terminating null byte.
+ * @size: The size of the array to be initialized.
+ *
+ * Description: If there is insufficient space, the
+ *              function exits with a status of 98.
+ * Return: A pointer to the array.
+ */
+
+/**
+ * iterate_zeroes - Iterates through a string of numbers containing
+ *                  leading zeroes until it hits a non-zero number.
+ * @str: The string of numbers to be iterate through.
+ *
+ * Return: A pointer to the next non-zero element.
+ */
+
+/**
+ * get_digit - Converts a digit character to a corresponding int.
+ * @c: The character to be converted.
+ *
+ * Description: If c is a non-digit, the function
+ *              exits with a status of 98.
+ * Return: The converted int.
+ */
+
+/**
+ * get_prod - Multiplies a string of numbers by a single digit.
+ * @prod: The buffer to store the result.
+ * @mult: The string of numbers.
+ * @digit: The single digit.
+ * @zeroes: The necessary number of leading zeroes.
+ *
+ * Description: If mult contains a non-digit, the function
+ *              exits with a status value of 98.
+ */
+
+/**
+ * add_nums - Adds the numbers stored in two strings.
+ * @final_prod: The buffer storing the running final product.
+ * @next_prod: The next product to be added.
+ * @next_len: The length of next_prod.
+ */
+
+/**
+ * main - Multiplies two positive numbers.
+ * @argv: The number of arguments passed to the program.
+ * @argc: An array of pointers to the arguments.
+ *
+ * Description: If the number of arguments is incorrect or one number
+ *              contains non-digits, the function exits with a status of 98.
+ * Return: Always 0.
+ */
+"
+101-natural.c,"/**
+*main - prints count of multiples
+*of 3 or 5 below 1024
+*Return: return 0
+*/
+"
+101-print_comb4.c,"/**
+*main - Prints all combinations of three digits with,
+* and space followed by new line
+*
+*Return: returns 0
+*/
+"
+101-print_number.c,"/**
+* print_number - prints an integer
+*@n:integer to be printed
+*
+*/
+"
+101-quote.c,"/**
+* main - main function in the task
+*
+*
+*Return: return 1
+*/
+"
+101-strtow.c,"/**
+*strtow - splits a stirng into words
+*@str: string to be splitted
+*
+*Return: pointer to the array of splitted words
+*/
+
+
+/**
+* num_words - counts the number of words in str
+*@str: string to be used
+*
+*Return: number of words
+*/
+
+/**
+* len - returns length of str
+*@str: string to be counted
+*
+* Return: length of the string
+*/
+
+"
+101-wildcmp.c,"/**
+* wildcmp - compares two strings and returns 1 if identical
+* @s1: string to be checked
+* @s2: pattern to be used
+*
+* Return: 1 if identical, 0 otherwise
+*/
+
+"
+102-fibonacci.c,"/**
+*main - prints out first 50
+*fibonacci suit numbers
+*Return: return 0
+*/
+"
+102-interpolation.c,"/**
+ *interpolation_search - function that  searches
+ *for a value in a sorted array of integers
+ *@array: pointer to the first element of the array to search in
+ *@size: number of elements in array
+ *@value: the value to search for
+ *Return: first index where value is located
+ */
+
+"
+102-magic.c,"/*
+   * write your line of code here...
+   * Remember:
+   * - you are not allowed to use a
+   * - you are not allowed to modify p
+   * - only one statement
+   * - you are not allowed to code anything else than this line of code
+   */
+
+/* ...so that this prints 98\n */
+"
+102-print_comb5.c,"/**
+*main - Prints all combinations of two two digits with,
+* and space followed by new line
+*
+*Return: returns 0
+*/
+"
+103-exponential.c,"/**
+ * binary_search - searches for a value in a sorted array of integers
+ * using the binary search algorithm
+ * @array: array of integers
+ * @left: Left element
+ * @right: Right element
+ * @value: value to search for
+ * Return: index of value or -1 if not found
+ */
+
+
+/**
+ * exponential_search -  a function that searches for
+ *  a value in a sorted array of integers
+ * @array: pointer to the first element of the array
+ * @size: size of the array to search in
+ * @value: value to search for
+ *Return: the index of the searched element
+ */
+
+"
+103-fibonacci.c,"/**
+*main - prints sum of even fibonacci
+*suit elements
+*fibonacci suit numbers
+*Return: return 0
+*/
+"
+103-infinite_add.c,"/**
+* infinite_add - C function that adds two numbers stored
+*in strings to a buffer.
+*Assumes that strings are never empty and
+*that numbers will always be positive, or 0.
+*Assumes there are only digits stored in the number strings.
+*If result can be stored in the buffer,
+*returns a pointer to the result.
+*If result cannot be stored in the buffer, returns `0`.
+*@n1:first number to be added
+*@n2:second number to be added
+*@r: store result
+*@size_r: size of buffer
+*Return:returns pointer to result
+*/
+
+
+/**
+* add_strings - Adds the numbers stored in two strings.
+* @n1: The string containing the first number to be added.
+* @n2: The string containing the second number to be added.
+* @r: The buffer to store the result.
+* @r_index: The current index of the buffer.
+*
+* Return: If r can store the sum - a pointer to the result.
+*         If r cannot store the sum - 0.
+*/
+
+"
+103-keygen.c,
+104-advanced_binary.c,"/**
+  * advanced_binary_recursive - Searches recursively for a value in a sorted
+  *                             array of integers using binary search.
+  * @array: A pointer to the first element of the [sub]array to search.
+  * @left: The starting index of the [sub]array to search.
+  * @right: The ending index of the [sub]array to search.
+  * @value: The value to search for.
+  *
+  * Return: If the value is not present, -1.
+  *         Otherwise, the index where the value is located.
+  *
+  * Description: Prints the [sub]array being searched after each change.
+  */
+
+/**
+ *advanced_binary -  a function that searches for a
+ * value in a sorted array of integers.
+ *
+ * @array: pointer to the first element in the array
+ * @size: Size of the array to search in
+ * @value: Element to be searched
+ * Return: return index of searched element
+ */
+
+"
+104-fibonacci.c,"/**
+*main - prints out first 98
+*fibonacci suit numbers
+*Return: return 0
+*/
+"
+104-print_buffer.c,"/**
+*print_buffer -  C function that prints the content of an
+*  inputted number of bytes from a buffer.
+* Prints 10 bytes per line.
+* Starts with the position of the first byte in hexadecimal (8 chars),
+* starting with `0`.
+* Each line shows the hexadecimal content (2 chars) of the buffer,
+* 2 bytes at a time, separated by a space.
+* Each line shows the content of the buffer.
+* Prints the byte if it is printable; if not, prints `.`.
+* Each line ends with a new line `\n`.
+* If the inputted byte size is 0 or less, the function only prints a new line.
+*@b: number of bytes
+*@size: size of the byte
+*/
+"
+105-jump_list.c,"/**
+ * jump_list - Searches for an algorithm in a sorted singly
+ *             linked list of integers using jump search.
+ * @list: A pointer to the  head of the linked list to search.
+ * @size: The number of nodes in the list.
+ * @value: The value to search for.
+ *
+ * Return: If the value is not present or the head of the list is NULL, NULL.
+ *         Otherwise, a pointer to the first node where the value is located.
+ *
+ * Description: Prints a value every time it is compared in the list.
+ *              Uses the square root of the list size as the jump step.
+ */
+"
+106-linear_skip.c,"/**
+ * linear_skip - Searches for an algorithm in a sorted singly
+ *               linked list of integers using linear skip.
+ * @list: A pointer to the  head of the linked list to search.
+ * @value: The value to search for.
+ *
+ * Return: If the value is not present or the head of the list is NULL, NULL.
+ *         Otherwise, a pointer to the first node where the value is located.
+ *
+ * Description: Prints a value every time it is compared in the list.
+ *              Uses the square root of the list size as the jump step.
+ */
+"
+11-print_to_98.c,"/**
+*print_to_98 - prints natural
+*numbers from n to 98
+*@n:integer to start by
+*return: returns nothing
+*/
+"
+2-add_dnodeint.c,"/**
+ * add_dnodeint - adds a new node at the beginning of a dlistint_t list.
+ * @head: double pointer to the head of the list
+ * @n: data to be added
+ *
+ * Return: he address of the new element, or NULL if it failed
+ */
+
+"
+2-add_node.c,"/**
+ * add_node - adds a new node at the beginning of a list
+ *@head: pointer to the head of the list
+ *@str: string to be added
+ *
+ * Return: returns the address to the new element or NULL
+ * if failed
+*/
+
+"
+2-add_nodeint.c,"/**
+ *add_nodeint - Adds a new node at the beginning
+ *of a listint_t list
+ *@head: A pointer to the address of the head of the listint_t list
+ *@n: the integer for the new node to contain
+ *
+ *Return: NULL if function fails
+ *Or address of element
+ */
+
+"
+2-append_text_to_file.c,"/**
+ *append_text_to_file - appends text at the end of a file
+ *@filename: A pointer to the name of the file.
+ *@text_content: The string to add to the end of the file.
+ *
+ *Return: If the function fails or filename is NULL -1
+ *	if the file does not exist the user lacks write permissions -1
+ *	otherwise 1
+ */
+
+"
+2-args.c,"/**
+* main - prints all arguments it received
+*@argc: argument count
+*@argv: argument vector
+*Return: returns 0
+*/
+
+"
+2-calloc.c,"/**
+* _calloc - allocate memory using malloc and initialize it to zero
+*@nmemb: number of elements
+*@size: size of the memory block to be allocated
+*
+*Return: poiner to the address of the memory block
+*/
+"
+2-get_bit.c,"/**
+*get_bit - get the value of a bit at the given index
+*@n: the number
+*@index: index starting from 0 of the bit required
+*
+*Return: The converted value
+*/
+
+"
+2-int_index.c,"/**
+*int_index - searches for an integer
+*@array: Array containing elements
+*@size: number of elements in array
+*@cmp: function which compare values
+*
+*Return: returns -1 if no element match
+* or when size is less than zero
+*return pointer to the first corresponding element
+*
+*/
+
+"
+2-key_index.c,"/**
+ * key_index - Get the index at which a key/value pair should
+ *             be stored in array of a hash table.
+ * @key: The key to get the index of.
+ * @size: The size of the array of the hash table.
+ *
+ * Return: The index of the key.
+ *
+ * Description: Uses the djb2 algorithm.
+ */
+"
+2-largest_number.c,"/**
+ * largest_number - returns the largest of 3 numbers
+ * @a: first integer
+ * @b: second integer
+ * @c: third integer
+ * Return: largest number
+ */
+
+"
+2-main.c,"/**
+*main - prints the name of
+*the file it was compiled from
+*
+*Return: nothing to be returned
+*/
+
+"
+2-mul.c,"/**
+*mul - function that multipliestwo numbers
+*@a: first number
+*@b: second number
+*Return: returns result
+*/
+
+"
+2-print_alphabet.c,"/**
+*main - Program to print alphabet letter followed by new line
+*
+*Return: return 0
+*/
+"
+2-print_alphabet_x10.c,"/**
+*print_alphabet_x10 - prints alphabet letters
+* ten times
+*desc: The function uses loop to operate
+*Return: no return
+*/
+"
+2-print_dog.c,"/**
+* print_dog - prints a struct dog
+*@d: dog identification
+*
+*/
+
+"
+2-print_strings.c,"/**
+* print_strings - prints strings
+*@separator: separator
+*@n: number of strings
+*
+*Return: nothing
+*/
+"
+2-strchr.c,"/**
+*_strchr - Returns a pointer to the first occurrence
+*of the character c in the string s, or NULL if the
+*character is not found
+*
+*@s:string targeted
+*@c:character targeted
+*
+*Return: returns pointer to first occcurence of c
+*/
+"
+2-strlen.c,"/**
+ *_strlen - returns the length of a string
+ * @s: string
+ *Return: returns lenght;
+ */
+"
+2-strlen_recursion.c,"/**
+* _strlen_recursion - gives length of a string
+* @s: string to be measured
+*Return: length of the string
+*/
+
+"
+2-strncpy.c,"/**
+*  _strncpy - C function that copies a string, including the
+*  terminating null byte, using at most an inputted number of bytes.
+*  If the length of the source string is less than the maximum byte number,
+*  the remainder of the destination string is filled with null bytes.
+*  Works identically to the standard library function `strncpy`.
+*@dest: buffer storing the string copy
+*@src:the source string
+*@n:max nummber of byte copied
+*Return: returns
+*/
+
+"
+2-str_concat.c,"/**
+* str_concat - a function that concatenates two strings.
+*@s1:First string
+*@s2:Second string
+*
+*Return: NULL in case of failure , but pointer to new string in
+*case of success
+*/
+
+"
+3-add_dnodeint_end.c,"/**
+ *  add_dnodeint_end -  adds a new node at the end of a dlistint_t list.
+ * @head: double pointer to the head of the list
+ * @n: integer to add to the new node
+ *
+ * Return:  the address of the new element, or NULL if it failed
+ */
+
+"
+3-add_nodeint_end.c,"/**
+ *add_nodeint_end - adds a node to the end of a linked list
+ *@head: pointer to the head of the list
+ *@n: number to be used as content
+ *
+ *
+ *Return: address of the newly added node
+ */
+
+"
+3-add_node_end.c,"/**
+ * add_node_end - Adds a new node at the end of a list
+ *@head: pointer to the head of the list
+ *@str: string to be added to the list
+ *
+ *Return: NULL in case of failure
+ *or address or the element
+*/
+
+"
+3-alloc_grid.c,"/**
+* alloc_grid - returns a pointer to a
+*2 dimensional array of integers.
+*@width: width oàf array
+*@height: height of array
+*
+*Return: pointer to the array
+*/
+
+"
+3-array_range.c,"/**
+* array_range - creates an array of integers
+* @min: smallest number in the array
+* @max: lagrest value in the array
+*
+* Return: pointer to the address of the memory block
+*/
+
+"
+3-cp.c,"/**
+ * create_buffer - Allocates 1024 bytes for a buffer.
+ * @file: The name of the file buffer is storing chars for.
+ *
+ * Return: A pointer to the newly-allocated buffer.
+ */
+
+/**
+ * close_file - Closes file descriptors.
+ * @fd: The file descriptor to be closed.
+ */
+
+/**
+ * main - Copies the contents of a file to another file.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
+ *
+ * Return: 0 on success.
+ *
+ * Description: If the argument count is incorrect - exit code 97.
+ *              If file_from does not exist or cannot be read - exit code 98.
+ *              If file_to cannot be created or written to - exit code 99.
+ *              If file_to or file_from cannot be closed - exit code 100.
+ */
+"
+3-factorial.c,"/**
+* factorial - searchs for the factorial of a number
+* @n: the number to find the factorial of
+*
+* Return: the factorial of the number
+*/
+
+"
+3-get_op_func.c,"/**
+*get_op_func - selects the correct function to perform
+*the operation asked by the user. You’re not allowed
+*to declare any other function.
+*@s: operator passed as argument
+*
+*Return: A pointer to the function corresponding to
+*the operator given in parameter
+*/
+"
+3-hash_table_set.c,"/**
+ * hash_table_set - Add or update an element in a hash table.
+ * @ht: A pointer to the hash table.
+ * @key: The key to add - cannot be an empty string.
+ * @value: The value associated with key.
+ *
+ * Return: Upon failure - 0.
+ *         Otherwise - 1.
+ */
+"
+3-islower.c,"/**
+*_islower - controls if a character is in lowercase
+*@c: character to be verified
+*Return: return 0 or 1
+*/
+"
+3-main.c,"/**
+* main - Prints the result of simple operations.
+* @argc: The number of arguments supplied to the program.
+* @argv: An array of pointers to the arguments.
+*
+* Return: Always 0.
+*/
+
+"
+3-mul.c,"/**
+* main - prints multiplication
+*of two numbers
+*@argc: number of arguments
+*@argv: array of arguments
+*Return: returns 0
+*/
+
+"
+3-op_functions.c,"/**
+*op_add - Returns the sum of two numbers
+*@a:the first number
+*@b:the second number
+*
+*Return:The sum of a and b
+*/
+
+
+/**
+*op_sub - Returns the substraction of two numbers
+*@a:The first number
+*@b:The second number
+*
+*Return: The Difference of a and b
+*/
+
+/**
+*op_mul - Returns the multiplication of two numbers
+*@a:The first number
+*@b: The second number
+*
+*Return: The multiplication of a and b
+*/
+
+/**
+*op_div - Returns the division of two numbers.
+*@a: The first number.
+*@b: The second number.
+*
+*Return: The quotient of a and b.
+*/
+
+/**
+*op_mod - Returns the remainder of the division of two numbers.
+*@a: The first number.
+*@b: The second number.
+*
+*Return: The remainder of the division of a by b.
+*/
+"
+3-print_all.c,"/**
+* print_char - Prints a char.
+* @arg: A list of arguments pointing to
+* the character to be printed.
+*/
+
+/**
+* print_int - Prints an int.
+* @arg: A list of arguments pointing to
+* the integer to be printed.
+*/
+
+/**
+* print_float - Prints a float.
+* @arg: A list of arguments pointing to
+* the float to be printed.
+*/
+
+/**
+* print_string - Prints a string.
+* @arg: A list of arguments pointing to
+* the string to be printed.
+*/
+
+/**
+*print_all - prints anything
+*@format: format of input
+*
+*Return: nothing
+*/
+"
+3-print_alphabets.c,"/**
+*main - Program to print alphabet letters in all cases followed by new line
+*
+*Return: return 0
+*/
+"
+3-print_numbers.c,"/**
+*print_numbers - function that print all numbers from
+*0 to 9
+*
+*Return: returns nothing
+*/
+"
+3-print_remaining_days.c,"/**
+* print_remaining_days - takes a date and prints how many days are
+* left in the year, taking leap years into account
+* @month: month in number format
+* @day: day of month
+* @year: year
+* Return: void
+*/
+
+"
+3-puts.c,"/**
+ *_puts - prints a string
+ * @str: string to print
+ *
+ * Description: prints a string
+ * On success: return the number of characters printed
+ */
+
+"
+3-set_bit.c,"/**
+*set_bit - sets a bit at position to 1
+*@n: number to be used
+*@index: index to be set
+*
+*Return: 1 on success, -1 on failure
+*/
+
+"
+3-strcmp.c,"/**
+*  _strcmp - Function which compare two strings and
+*@s1: first string
+*@s2:second string
+*Return:
+*		returns zero if s1 == s2
+*		returns negative number if s1 < s2
+*		returns positive number if s1 > s2
+*/
+
+"
+3-strspn.c,"/**
+*_strspn - search the number of bytes in the initial
+* segment of s which consist only of bytes from accept
+*@s:segment targeted
+*@accept:reference bytes container
+*
+*Return:returns the number of bytes in the initial
+* segment of s which consist only of bytes from accept
+*/
+"
+4-add.c,"/**
+*main - adds positive numbers
+*@argc: number of arguments
+*@argv: array of arguments
+*Return: 0 on success, 1 on failure
+*/
+
+"
+4-clear_bit.c,"/**
+*clear_bit - sets a bit at a position to 0
+*@n: number to be used
+*@index: position to be cleared
+*
+*Return: 1 on success, -1 on fail
+*/
+
+"
+4-free_dlistint.c,"/**
+ * free_dlistint - frees a dlistint_t list.
+ * @head: pointer to the head of the list.
+ *
+ *
+ */
+
+"
+4-free_grid.c,"/**
+* free_grid - frees a 2d array
+*@grid:memory block to be freed
+*@height:height of the array
+*Return:returns void
+*/
+
+"
+4-free_list.c,"/**
+ *free_list - Frees a list
+ *@head: A pointer to the list head
+ *
+ */
+
+"
+4-free_listint.c,"/**
+*free_listint - frees a linked list
+*@head: head of the list
+*
+*Return: void
+*/
+
+"
+4-hash_table_get.c,"/**
+ * hash_table_get - Retrieve the value associated with
+ *                  a key in a hash table.
+ * @ht: A pointer to the hash table.
+ * @key: The key to get the value of.
+ *
+ * Return: If the key cannot be matched - NULL.
+ *         Otherwise - the value associated with key in ht.
+ */
+"
+4-isalpha.c,"/**
+*_isalpha - controls if a character is alphabetical
+*@c: character to be verified
+*Return: return 0 or 1
+*/
+"
+4-new_dog.c,"/**
+*_strlen - returns length of
+*a string
+*@str: string to be counted
+*Return: returns length of string
+*/
+
+/**
+*_strcopy - copy string pointed by src
+*into dest variable
+*@dest:buffer storing string copy
+*@src: buffer storing string to copy
+*Return:returns copied string
+*/
+
+/**
+*new_dog - creates a new dog
+*@name: name of new dog
+*@age: age of new dog
+*@owner: owner of new dog
+*Return: returns NULL in case
+*of failure
+*/
+"
+4-pow_recursion.c,"/**
+* _pow_recursion - function that returns the
+* value of x raised to the power of y
+*@x: the base
+*@y: the exponent
+*Return: the value of x raised to the power of y
+*/
+"
+4-print_alphabt.c,"/**
+*main - Program to print alphabet letters except q and e followed by new line
+*
+*Return: return 0
+*/
+"
+4-print_most_numbers.c,"/**
+*print_most_numbers - prints numbers except 2 and 4
+*
+*Return: returns nothing
+*/
+"
+4-print_rev.c,"/**
+* print_rev - prints a string in reverse
+* @s: string to print
+*/
+
+
+/**
+ *_strlen - returns the length of a string
+ * @s: string
+ *Return: returns lenght;
+ */
+"
+4-puts.c,"/**
+*main - Main function of my project
+*
+*
+*Return: return 0 everytime
+*/
+"
+4-rev_array.c,"/**
+*  reverse_array - function that reverse content of array
+*  @a: array
+*  @n: number of elements
+*/
+
+"
+4-strpbrk.c,"/**
+*_strpbrk - The _strpbrk() function locates the first
+* occurrence in the string s of any of the bytes in
+*the string accept
+*
+*@s: string where search is made
+*@accept: string where searched bytes are located
+*
+*Return:Returns a pointer to the byte in s that matches
+* one of the bytes in accept, or NULL if no such byte is found
+*/
+
+"
+5-flip_bits.c,"/**
+*flip_bits - gets the number of bits to flip to get from n to m
+*@n: initial number
+*@m: final number
+*
+*Return: the number of flipped bits
+*/
+
+"
+5-free_dog.c,"/**
+*free_dog - Frees dog
+*@d: dog to be freed
+*
+*/
+"
+5-free_listint2.c,"/**
+*free_listint2 - frees a linked list
+*@head: pointer to the head of the list
+*
+*Return: void
+*/
+
+"
+5-get_dnodeint.c,"/**
+ * get_dnodeint_at_index - eturns the nth node of a dlistint_t linked list.
+ * @head: double pointer to the head of the list
+ * @index: index of the node to return
+ *
+ * Return: if the node does not exist, return NULL
+ *          where index is the index of the node, starting from 0
+ */
+
+"
+5-hash_table_print.c,"/**
+ * hash_table_print - Prints a hash table.
+ * @ht: A pointer to the hash table to print.
+ *
+ * Description: Key/value pairs are printed in the order
+ *              they appear in the array of the hash table.
+ */
+"
+5-more_numbers.c,"/**
+*more_numbers - prints numbers to 14
+*
+*Return: returns nothing
+*/
+"
+5-printf.c,"/**
+*main - Main function
+*
+*
+*Return: return 0 everytime
+*/
+"
+5-print_numbers.c,"/**
+*main - Prints all single digits of base 10 followed by new line
+*
+*Return: returns 0
+*/
+"
+5-rev_string.c,"/**
+*rev_string - Reverse a string
+*@s: String to reverse
+*Return: Nothing
+*/
+
+/**
+ *_strlen - returns the length of a string
+ * @s: string
+ *Return: returns lenght;
+ */
+
+/**
+*swap_char - swap two characters
+*@a: first character
+*@b: second character
+*Return: nothing
+*/
+
+"
+5-sign.c,"/**
+*print_sign-prints sign of a number
+*@n: character to be verified
+*Return: return 0 or 1
+*/
+"
+5-sqrt_recursion.c,"/**
+* _sqrt_recursion - returns the natural square root of a number
+* @n: number to be used
+*
+* Return: the square root of n
+*/
+
+
+/**
+ * _sqrt - returns the square root of a number
+ * @n: test number
+ * @x: squared number
+ *
+ * Return: the square root of n
+ */
+
+"
+5-string_toupper.c,"/**
+*string_toupper - changes all lowercases letters of a string to uppercase
+*@str: parameter
+*Return: returns a character
+*/
+
+"
+5-strstr.c,"/**
+*_strstr - The _strstr() function finds the first occurrence
+* of the substring needle in the string haystack.
+* The terminating null bytes (\0) are not compared
+*@haystack: string where the search is made
+*@needle: string whose occurence is searched in haystack
+*Return:Returns a pointer to the beginning of the located
+* substring, or NULL if the substring is not found.
+*/
+
+"
+6-abs.c,"/**
+* _abs - prints the absolute value of a number
+*@i: number targeted
+*Return: returns 0
+*/
+"
+6-cap_string.c,"/**
+*cap_string - function that capitalize first character of a word
+*@str: string to capitalize
+*Return:returns the capitalized string
+*/
+"
+6-hash_table_delete.c,"/**
+ * hash_table_delete - Deletes a hash table.
+ * @ht: A pointer to a hash table.
+ */
+"
+6-is_prime_number.c,"/**
+* is_prime_number - returns true if the number is prime
+*@n: the number to check
+*
+*Return: true if the number is prime
+*/
+
+/**
+* is_prime - returns the 1 if n is prime
+* @n: number to be checked
+* @start: number to start checking from
+*
+* Return: 1 if n is prime, 0 otherwise
+*/
+
+"
+6-pop_listint.c,"/**
+*pop_listint - deletes the head node of a linked list
+*@head: head of the list
+*
+*Return: the deleted node data
+*/
+
+"
+6-print_line.c,"/**
+*print_line - prints a straight line
+*@n:parameter
+*Return:returns nothing
+*/
+"
+6-print_numberz.c,"/**
+*main - Prints all single digits of base 10 followed by new line
+*
+*Return: returns 0
+*/
+"
+6-puts2.c,"/**
+ * puts2 - prints part of a string
+ * @str: string to be printed
+ *
+ * Return: void
+ **/
+"
+6-size.c,"/**
+*main - main function
+*
+*
+*Return: return 0
+*/
+"
+6-sum_dlistint.c,"/**
+ *  sum_dlistint - returns the sum of all
+ * the data (n) of a dlistint_t linked list.
+ * @head: double pointer to the head of the list
+ *
+ * Return: if the list is empty, return 0
+ */
+
+"
+7-get_nodeint.c,"/**
+*get_nodeint_at_index - return the nth node of a linked list
+*@head: pointer to the head of the list
+*@index: index of the node required
+*
+*Return: the address of the node
+*/
+
+"
+7-insert_dnodeint.c,"/**
+ * insert_dnodeint_at_index - inserts a new node at a given position
+ * @h: pointer to head of list
+ * @idx: index of the list where the new node should be added
+ * @n: data of the new node
+ * 
+ * Return:  the address of the new node, or NULL if it failed
+ */
+
+"
+7-leet.c,"/**
+* leet - function that encode a string
+*@str:string that will be encoded
+*Return:returns encoded string
+*/
+
+"
+7-print_chessboard.c,"/**
+*print_chessboard - a function that prints the chessboard.
+*@a: array containing board elements
+*returns nothing
+*/
+
+"
+7-print_diagonal.c,"/**
+*print_diagonal - prints a diagonal
+*@n:parameter
+*Return:returns nothing
+*/
+"
+7-print_last_digit.c,"/**
+*print_last_digit - function that print last digit of a number
+*@n: number to be targeted
+*Return: returns 0
+*/
+"
+7-print_tebahpla.c,"/**
+*main - Program to print alphabet letters in reverse followed by new line
+*
+*Return: return 0
+*/
+"
+7-puts_half.c,"/**
+*puts_half - puts half of a string
+*@str: string
+*Return:void
+*/
+
+/**
+ *_strlen - returns the length of a string
+ * @s: string
+ *Return: returns lenght;
+ */
+"
+8-24_hours.c,"/**
+*jack_bauer - prints each minute of the day
+*
+*Return:returns 0
+*/
+"
+8-delete_dnodeint.c,
+8-print_array.c,"/**
+*print_array - print n element of array
+*@a: array
+*@n: number of elements
+*Return: nothing
+*/
+"
+8-print_base16.c,"/**
+*main - Prints all single digits of base 16 followed by new line
+*
+*Return: returns 0
+*/
+"
+8-print_diagsums.c,"/**
+*print_diagsums -  a function that prints the sum of
+* the two diagonals of a square matrix of integers.
+*@a:matrix to be summed
+*@size:size of the matrix
+*/
+"
+8-print_square.c,"/**
+*print_square - prints squares
+*@size: parameter
+*Return:returns nothing
+*/
+"
+8-sum_listint.c,"/**
+ *sum_listint - sums up all the data in a linked list
+ *@head: head of the list
+ *
+ *Return: sum of the number
+ */
+
+"
+9-fizz_buzz.c,"/**
+*main - program that prints either number
+*or fizz or buzz or fizzBuzz
+*
+*
+*Return: returns 0
+*/
+"
+9-insert_nodeint.c,"/**
+ * insert_nodeint_at_index - returns the nth node of a linked list
+ * @head: pointer to the head of the list
+ * @idx: index of the node to be added
+ * @n: content of the new node
+ *
+ * Return: the address of the node
+ */
+
+/**
+ * listint_len - counts the number of nodes in a linked list
+ * @h: head of the list
+ *
+ * Return: the number of elements
+ */
+"
+9-print_comb.c,"/**
+*main - Prints all single digits with , and space followed by new line
+*
+*Return: returns 0
+*/
+"
+9-strcpy.c,"/**
+* _strcpy - Copy paste string
+*@dest: destination
+*@src: source
+*Return: dest
+*/
+"
+9-times_table.c,"/**
+*times_table - prints the 9 times table
+*
+*Return: returns nothing
+*/
+"
+_putchar.c,"/**
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+"

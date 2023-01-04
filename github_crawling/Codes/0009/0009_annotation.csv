@@ -1,0 +1,3835 @@
+api.py,"# Ensure content is sorted
+
+# Purge files consumed by 'load_spec'
+
+# A massive JSON containing everything
+
+# A simple list of keyboard targets
+
+# A list of historical keyboard names and their new name
+
+# All the data configurator/via needs for initialization
+
+# Metadata for available constants
+
+# A mapping of USB VID/PID -> keyboard target
+
+
+# Filter down when required
+
+# Generate and write keyboard specific JSON files
+
+# Generate data for the global files
+
+# Feature specific handling
+
+# Write the global JSON files
+""""""This script automates the generation of the QMK API data.
+""""""
+
+""""""Produce a map of available constants
+    """"""
+
+""""""To make it easier for consumers, publish pre-merged spec files
+    """"""
+
+""""""Perform basic filtering of list_keyboards
+    """"""
+
+""""""Generates the QMK API data.
+    """"""
+"
+attrdict.py,"""""""A dictionary that can be accessed by attributes.
+
+    This should only be used to mock objects for unit testing. Please do not use this outside of qmk.tests.
+    """"""
+"
+audio_generate_dac_lut.py,"#!/usr/bin/env python3
+
+#
+
+# Copyright 2020 JohSchneider
+
+#
+
+# This program is free software: you can redistribute it and/or modify
+
+# it under the terms of the GNU General Public License as published by
+
+# the Free Software Foundation, either version 2 of the License, or
+
+# (at your option) any later version.
+
+#
+
+# This program is distributed in the hope that it will be useful,
+
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+# GNU General Public License for more details.
+
+#
+
+# You should have received a copy of the GNU General Public License
+
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#
+
+
+#compromise between square and triangle wave,
+
+#slope/inclination
+
+#sampleSine()
+
+#print(samples)
+"
+autocorrect_data.py,"# Copyright 2021 Google LLC
+
+#
+
+# Licensed under the Apache License, Version 2.0 (the ""License"");
+
+# you may not use this file except in compliance with the License.
+
+# You may obtain a copy of the License at
+
+#
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+#
+
+# Unless required by applicable law or agreed to in writing, software
+
+# distributed under the License is distributed on an ""AS IS"" BASIS,
+
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+# See the License for the specific language governing permissions and
+
+# limitations under the License.
+
+#' are ignored.
+
+# ""Word break"" character.
+
+# Characters a-z.
+
+
+
+#' are ignored. The
+
+# Use a minimal word list as a fallback.
+
+# Check that `typo` is valid.
+
+#':
+
+# Parse syntax ""typo -> correction"", using strip to ignore indenting.
+
+# Force typos to lowercase.
+
+# Traverse trie in depth first order.
+
+# Handle a leaf trie node.
+
+# Make the autocorrection data for this entry and serialize it.
+
+# Handle trie node with a single child.
+
+# It's common for a trie to have long chains of single-child nodes. We
+
+# find the whole chain so that we can serialize it more efficiently.
+
+# Handle trie node with multiple children.
+
+# Handle a leaf table entry.
+
+# Handle a chain table entry.
+
+# + encode_link(e['links'][0]))
+
+# Handle a branch table entry.
+
+# To encode links, first compute byte offset of each entry.
+
+# Serialize final table.
+
+
+
+#define AUTOCORRECT_MIN_LENGTH {len(min_typo)}  // ""{min_typo}""\n', f'#define AUTOCORRECT_MAX_LENGTH {len(max_typo)}  // ""{max_typo}""\n\n', f'#define DICTIONARY_SIZE {len(data)}\n\n',
+
+# Environment processing
+""""""Python program to make autocorrect_data.h.
+This program reads from a prepared dictionary file and generates a C source file
+""autocorrect_data.h"" with a serialized trie embedded as an array. Run this
+program and pass it as the first argument like:
+$ qmk generate-autocorrect-data autocorrect_dict.txt
+Each line of the dict file defines one typo and its correction with the syntax
+""typo -> correction"". Blank lines or lines starting with '#' are ignored.
+Example:
+  :thier        -> their
+  fitler        -> filter
+  lenght        -> length
+  ouput         -> output
+  widht         -> width
+For full documentation, see QMK Docs
+""""""
+
+
+""""""Parses autocorrections dictionary file.
+  Each line of the file defines one typo and its correction with the syntax
+  ""typo -> correction"". Blank lines or lines starting with '#' are ignored. The
+  function validates that typos only have characters a-z and that typos are not
+  substrings of other typos, otherwise the longer typo would never trigger.
+  Args:
+    file_name: String, path of the autocorrections dictionary.
+  Returns:
+    List of (typo, correction) tuples.
+  """"""
+
+
+""""""Makes a trie from the the typos, writing in reverse.
+  Args:
+    autocorrections: List of (typo, correction) tuples.
+  Returns:
+    Dict of dict, representing the trie.
+  """"""
+
+""""""Parses lines read from `file_name` into typo-correction pairs.""""""
+
+
+""""""Checks `typo` against English dictionary words.""""""
+
+
+""""""Serializes trie and correction data in a form readable by the C code.
+  Args:
+    autocorrections: List of (typo, correction) tuples.
+    trie: Dict of dicts.
+  Returns:
+    List of ints in the range 0-255.
+  """"""
+
+""""""Encodes a node link as two bytes.""""""
+
+""""""Writes autocorrection data as generated C code to `file_name`.
+  Args:
+    autocorrections: List of (typo, correction) tuples.
+    data: List of ints in 0-255, the serialized trie.
+    file_name: String, path of the output C file.
+  """"""
+"
+bux.py,"#####BE2~   x###g_     `S###q  n##}  -j#Bl.   vBBBBBBBBBBBBBBBBBBBB@@
+
+#@#]-   `!t@@&. 7@@B@#^   _Q@Q@@R  y@@l:P@#1'                   `!!_   B@
+
+#@z""@@R  y@@&@@Q-                    l@@@D   B@
+
+#@B                 ^#@#x-   I@B@@&' 7@@i ""B@Q@@r _@@R  y@@l.k#@W:                  `:@@D   B@
+
+#####B0N#d. v##x  'ckk:  -##A  u##i  `lB#I_                  @@D   B@
+
+#d`c#1 f#\BQ&v      B@
+
+#   ,c       vUWNWWPsfsssN9WyccnckAfUfWb0DR0&R5RRRddq2_  `@D`jr@2U@#c3@1@Qc-      B@
+
+###E7  W#g. :#Q n####~   R###8k ;#&  `##.7#8-`R#z                 t@H  B@
+
+#:!@@ 2@&!:`   8@1=@@!*@B  `@@- v@#8@y                   @H  B@
+
+#}@@ 2@@@#    8@@#@Q.*@B  `@@-  y@@N                    @H  B@
+
+#] `N#B l####v   D###BA. vg@@#0~ i#&' 5#K   RBBBBBBBBBBBBBBBBBB@@
+
+# noqa: Do not care about the ASCII art
+""""""QMK Bux
+
+World domination secret weapon.
+""""""
+
+""""""QMK bux
+    """"""
+
+""""""
+@@BBBBBBBBBBBBBBBBBBBBK    `vP8#####BE2~   x###g_     `S###q  n##}  -j#Bl.   vBBBBBBBBBBBBBBBBBBBB@@
+@B   `:!:                 ^#@#]-   `!t@@&. 7@@B@#^   _Q@Q@@R  y@@l:P@#1'                   `!!_   B@
+@B  r@@@B                 g@@|      ` N@@u 7@@iv@@u *#@z""@@R  y@@&@@Q-                    l@@@D   B@
+@B   !#@B                 ^#@#x-   I@B@@&' 7@@i ""B@Q@@r _@@R  y@@l.k#@W:                  `:@@D   B@
+@B    B@B                  `v3g#####B0N#d. v##x  'ckk:  -##A  u##i  `lB#I_                  @@D   B@
+@B    B@B                                                                                   @@D   B@
+@B    B@B                                    `._"":!!!=~^*|)r^~:'                            @@D   B@
+@B    ~*~                             `,=)]}y2tjIIfKfKfaPsffsWsUyx~.                        **!   B@
+@B          .*r***r=              _*]yzKsqKUfz22IAA3HzzUjtktzHWsHsIz].                            B@
+@B         )v`  ,  !1-         -rysHHUzUzo2jzoI22ztzkyykt2zjzUzIa3qPsl'        !r*****`           B@
+@B        :}    @`  .j       `xzqdAfzKWsj2kkcycczqAsk2zHbg&ER5q55SNN5U~   !RBB#d`c#1 f#\BQ&v      B@
+@B        _y   ]#   ,c       vUWNWWPsfsssN9WyccnckAfUfWb0DR0&R5RRRddq2_  `@D`jr@2U@#c3@1@Qc-      B@
+@B         !7!    .r]`       }AE0RdRqNd9dNR9fUIzzosPqqAddNNdER9EE9dPy!    BQ!zy@iU@.Q@@y@8x-      B@
+@B           :****>.         '7adddDdR&gRNdRbd&dNNbbRdNdd5NdRRD0RSf}-     .k0&EW`xR .8Q=NRRx      B@
+@B        =**-rx*r}r~}""        ;n2jkzsf3N3zsKsP5dddRddddRddNNqPzy\""            '~****""            B@
+@B        :!!~!;=~r>:*_         `:^vxikylulKfHkyjzzozoIoklix|^!-`                                 B@
+@B                                    ```'-_""""::::!:_-.``                                         B@
+@B   `-                                                                                       .`  B@
+@B   r@=                                  In source we trust                                  @H  B@
+@B   r@=                                                                                      @H  B@
+@B  -g@=                `}&###E7  W#g. :#Q n####~   R###8k ;#&  `##.7#8-`R#z                 t@H  B@
+@B   r@=                8@R=-=R@g R@@#:!@@ 2@&!:`   8@1=@@!*@B  `@@- v@#8@y                   @H  B@
+@B   r@=               :@@-   _@@_R@fB#}@@ 2@@@#    8@@#@Q.*@B  `@@-  y@@N                    @H  B@
+@B   `.                 g@9=_~D@g R@}`&@@@ 2@&__`   8@u_Q@2!@@^-x@@` Y@QD@z                   .`  B@
+@@BBBBBBBBBBBBBBBBBBB_  `c8@@@81` S#] `N#B l####v   D###BA. vg@@#0~ i#&' 5#K   RBBBBBBBBBBBBBBBBBB@@
+"""""""
+c.py,"# Determine which version of clang-format to use
+
+# The following statement checks each file to see if the file path is
+
+# - in the core directories
+
+# - not in the ignored directories
+
+# Find the list of files to format
+
+# Sanity check
+
+# Run clang-format on the files we've found
+""""""Format C code according to QMK's style.
+""""""
+
+""""""Provide similar behavior to PurePath.is_relative_to in Python > 3.9
+    """"""
+
+""""""Returns the path to clang-format.
+    """"""
+
+""""""Run clang-format and diff it against a file.
+    """"""
+
+""""""Spawn clang-format subprocess with proper arguments
+    """"""
+
+""""""Yield only files to be formatted and skip the rest
+    """"""
+
+""""""Format C code according to QMK's style.
+    """"""
+"
+c2json.py,"# Error checking
+
+# Environment processing
+
+# Parse the keymap.c
+
+# Generate the keymap.json
+""""""Generate a keymap.json from a keymap.c file.
+""""""
+
+""""""Generate a keymap.json from a keymap.c file.
+
+    This command uses the `qmk.keymap` module to generate a keymap.json from a keymap.c file. The generated keymap is written to stdout, or to a file if -o is provided.
+    """"""
+"
+cd.py,"# Only do anything if the user is not under qmk_firmware already
+
+# in order to reduce the possibility of starting multiple shells
+
+# For Linux/Mac/etc
+
+# Check the user's login shell from 'passwd'
+
+# alternatively fall back to $SHELL env var
+
+# and finally to '/bin/bash'.
+
+# Start the new subshell
+
+# For Windows
+
+# Check the $SHELL env var
+
+# and fall back to '/usr/bin/bash'.
+
+# Set the prompt for the new shell
+
+# Start the new subshell
+""""""Open a shell in the QMK Home directory
+""""""
+
+""""""Go to QMK Home
+    """"""
+"
+cformat.py,"# For reasons I don't understand "".exe"" is stripped from the script name on windows.
+""""""Point people to the new command name.
+""""""
+
+""""""Pointer to the new command name: qmk format-c.
+    """"""
+"
+check.py,"# Right now all known arm versions are ok
+
+
+
+# Make sure the command is in the path.
+
+# Make sure the command can be executed
+
+# Older versions of dfu-programmer exit 1
+""""""Check for specific programs.
+""""""
+
+""""""Returns True if the arm-none-eabi-gcc version is not known to cause problems.
+    """"""
+
+""""""Returns True if the avr-gcc version is not known to cause problems.
+    """"""
+
+""""""Iterates through ESSENTIAL_BINARIES and tests them.
+    """"""
+
+""""""Check the versions of ESSENTIAL_BINARIES
+    """"""
+
+""""""Iterates through all submodules to make sure they're cloned and up to date.
+    """"""
+
+""""""Returns True if command exists and can be executed.
+    """"""
+"
+chord.py,"# Parse the string tracking whether the current character is within
+
+# parentheses.
+
+# Capture last part
+
+#"":
+
+# if ""= {"" + KEYCODES_HASH + "", "" + PSEUDOLAYER in output_buffer:
+
+#     KEYCODES_HASH = re.sub('H_', '', KEYCODES_HASH)
+
+#     raise Exception(""You are trying to register a chord that you already registered ("" + KEYCODES_HASH + "", "" + PSEUDOLAYER + "")"")
+""""""
+    Split `s` by top-level commas only. Commas within parentheses are ignored.
+    """"""
+"
+clean.py,"""""""Clean the QMK firmware folder of build artifacts.
+""""""
+
+""""""Runs `make clean` (or `make distclean` if --all is passed)
+    """"""
+"
+commands.py,"# 0 or -1 means -j without argument (unlimited jobs)
+
+# If more than 1 job is used, synchronize parallel output by target
+
+# In case the user passes a keymap.json from a keymap directory directly to the CLI.
+
+# e.g.: qmk compile - < keyboards/clueboard/california/keymaps/default/keymap.json
+
+# begin with making the deepest folder in the tree
+
+# Compare minified to ensure consistent comparison
+
+# Write the keymap.json file if different
+
+# Return a command that can be run to make the keymap and flash if given
+
+# Validate against the jsonschema
+""""""Helper functions for commands.
+""""""
+
+""""""Returns the correct make command for this environment.
+    """"""
+
+""""""Create a make command
+
+    Args:
+
+        target
+            Usually a make rule, such as 'clean' or 'all'.
+
+        dry_run
+            make -n -- don't actually build
+
+        parallel
+            The number of make jobs to run in parallel
+
+        **env_vars
+            Environment variables to be passed to make.
+
+    Returns:
+
+        A command that can be run to make the specified keyboard and keymap
+    """"""
+
+""""""Create a make compile command
+
+    Args:
+
+        keyboard
+            The path of the keyboard, for example 'plank'
+
+        keymap
+            The name of the keymap, for example 'algernon'
+
+        target
+            Usually a bootloader.
+
+        dry_run
+            make -n -- don't actually build
+
+        parallel
+            The number of make jobs to run in parallel
+
+        **env_vars
+            Environment variables to be passed to make.
+
+    Returns:
+
+        A command that can be run to make the specified keyboard and keymap
+    """"""
+
+""""""Returns the arguments for running the specified number of parallel jobs.
+    """"""
+
+""""""Convert a configurator export JSON file into a C file and then compile it.
+
+    Args:
+
+        user_keymap
+            A deserialized keymap export
+
+        bootloader
+            A bootloader to flash
+
+        parallel
+            The number of make jobs to run in parallel
+
+    Returns:
+
+        A command to run to compile and flash the C file.
+    """"""
+
+""""""Open and parse a configurator json export
+    """"""
+
+""""""Common processing for cli.args.env
+    """"""
+
+""""""Check if running inside a virtualenv.
+    Based on https://stackoverflow.com/a/1883251
+    """"""
+
+""""""Handle dumping to stdout or file
+    Creates parent folders if required
+    """"""
+"
+comment_remover.py,"""""""Removes C/C++ style comments from text.
+
+Gratefully adapted from https://stackoverflow.com/a/241506
+""""""
+
+""""""Removes C/C++ style comments from a regex match.
+    """"""
+
+""""""Remove C/C++ style comments from text.
+    """"""
+"
+compilation_database.py,"# Actually query xxxxxx-gcc to find its include paths.
+
+# (TODO): Remove 'stdin' once 'input' no longer causes issues under MSYS
+
+# we have a hit!
+
+# check both config domains: the magic decorator fills in `generate_compilation_database` but the user is
+
+# more likely to have set `compile` in their config file.
+
+# Generate the make command for a specific keyboard/keymap.
+
+# remove any environment variable overrides which could trip us up
+
+# re-use same executable as the main make invocation (might be gmake)
+""""""Creates a compilation database for the given keyboard build.
+""""""
+
+
+""""""Find the system include directory that the given build tool uses.
+    """"""
+
+""""""parse the output of `make -n <target>`
+
+    This function makes many assumptions about the format of your build log.
+    This happens to work right now for qmk.
+    """"""
+
+
+""""""Creates a compilation database for the given keyboard build.
+
+    Does a make clean, then a make -n for this target and uses the dry-run output to create
+    a compilation database (compile_commands.json). This file can help some IDEs and
+    IDE-like editors work better. For more information about this:
+
+        https://clang.llvm.org/docs/JSONCompilationDatabase.html
+    """"""
+"
+compile.py,"# Build the environment vars
+
+# Determine the compile command
+
+# If a configurator JSON was provided generate a keymap and compile it
+
+# Generate the make command for a specific keyboard/keymap.
+""""""Compile a QMK Firmware.
+
+You can compile a keymap already in the repo or using a QMK Configurator export.
+""""""
+
+""""""Compile a QMK Firmware.
+
+    If a Configurator export is supplied this command will create a new keymap, overwriting an existing keymap if one exists.
+
+    If a keyboard and keymap are provided this command will build a firmware based on that.
+    """"""
+"
+compile_keymap.py,"#!/usr/bin/env python
+
+# -*- coding: utf-8 -*-
+
+# These map positions in the parsed layout to
+
+# positions in the KEYMAP MATRIX
+
+# Compact Layout
+
+# Wide Layout
+
+#       Markdown Parsing
+
+
+# comment must be at the start of the line
+
+# arbitrary whitespace
+
+# start of the comment
+
+# the comment
+
+# until the end of line
+
+# anythig that might end a expression
+
+# comment must be preceded by whitespace
+
+# start of the comment
+
+# and succeded by whitespace
+
+# the comment (except things which might be json)
+
+# until the end of line
+
+# the comma
+
+# arbitrary whitespace
+
+# only works if the trailing comma is followed by newline
+
+# arbitrary whitespace
+
+# end of an array or object
+
+# ""):
+
+## ""):
+
+#""):
+
+# TODO: maybe parse description
+
+#       header file parsing
+
+
+#if 0
+
+#endif
+
+#define
+
+# the prefixes
+
+# the key name
+
+# capture group end
+
+# the enum content
+
+# capture group end
+
+# the prefixes
+
+# the key name
+
+# capture group end
+
+#       Keymap Parsing
+
+
+
+# we keep track of the row mostly for layout purposes
+
+# TODO: line numbers for invalid codes
+
+# print(repr(raw_code), repr(code), macro_id, uc_hex)
+
+# TODO: maybe validate key_indexes
+
+
+#       keymap.c output
+
+
+#define UC_MODE_WIN 0
+
+#define UC_MODE_LINUX 1
+
+#define UC_MODE_OSX 2
+
+
+# first pass, figure out the column widths
+
+# second pass, yield the cell values
+
+# This will be yielded on the next iteration when
+
+# we know that we're not at the end of a line.
+
+# includes
+
+#include ""{}""\n'.format(include_path)
+
+
+# definitions
+
+#define {} {}\n"".format(macro_id, i)
+
+
+#define L{0:<3} {0:<5}  // {1}\n'.format(i, layer_name)
+
+
+# keymaps
+
+# comment
+
+# keymap codes
+
+# macros
+
+# TODO: dynamically create blinking lights
+""""""Compiler for keymap.c files
+
+This scrip will generate a keymap.c file from a simple
+markdown file with a specific layout.
+
+Usage:
+    python compile_keymap.py INPUT_PATH [OUTPUT_PATH]
+""""""
+
+""""""
+.------------------------------------.------------------------------------.
+|     |    |    |    |    |    |     |     |    |    |    |    |    |     |
+!-----+----+----+----+----+----------!-----+----+----+----+----+----+-----!
+|     |    |    |    |    |    |     |     |    |    |    |    |    |     |
+!-----+----+----+----x----x----!     !     !----x----x----+----+----+-----!
+|     |    |    |    |    |    |-----!-----!    |    |    |    |    |     |
+!-----+----+----+----x----x----!     !     !----x----x----+----+----+-----!
+|     |    |    |    |    |    |     |     |    |    |    |    |    |     |
+'-----+----+----+----+----+----------'----------+----+----+----+----+-----'
+ |    |    |    |    |    |                     !    |    |    |    |    |
+ '------------------------'                     '------------------------'
+                        .-----------. .-----------.
+                        |     |     | !     |     |
+                  .-----+-----+-----! !-----+-----+-----.
+                  !     !     |     | !     |     !     !
+                  !     !     !-----! !-----!     !     !
+                  |     |     |     | !     |     |     |
+                  '-----------------' '-----------------'
+""""""
+""""""
+.---------------------------------------------. .---------------------------------------------.
+|       |     |     |     |     |     |       | !       |     |     |     |     |     |       |
+!-------+-----+-----+-----+-----+-------------! !-------+-----+-----+-----+-----+-----+-------!
+|       |     |     |     |     |     |       | !       |     |     |     |     |     |       |
+!-------+-----+-----+-----x-----x-----!       ! !       !-----x-----x-----+-----+-----+-------!
+|       |     |     |     |     |     |-------! !-------!     |     |     |     |     |       |
+!-------+-----+-----+-----x-----x-----!       ! !       !-----x-----x-----+-----+-----+-------!
+|       |     |     |     |     |     |       | !       |     |     |     |     |     |       |
+'-------+-----+-----+-----+-----+-------------' '-------------+-----+-----+-----+-----+-------'
+ |      |     |     |     |     |                             !     |     |     |     |      |
+ '------------------------------'                             '------------------------------'
+                              .---------------. .---------------.
+                              |       |       | !       |       |
+                      .-------+-------+-------! !-------+-------+-------.
+                      !       !       |       | !       |       !       !
+                      !       !       !-------! !-------!       !       !
+                      |       |       |       | !       |       |       |
+                      '-----------------------' '-----------------------'
+""""""
+""""""
+    ^                       # comment must be at the start of the line
+    \s*                     # arbitrary whitespace
+    //                      # start of the comment
+    (.*)                    # the comment
+    $                       # until the end of line
+""""""
+""""""
+    ([\,\""\[\]\{\}\d])      # anythig that might end a expression
+    \s+                     # comment must be preceded by whitespace
+    //                      # start of the comment
+    \s                      # and succeded by whitespace
+    (?:[^\""\]\}\{\[]*)      # the comment (except things which might be json)
+    $                       # until the end of line
+""""""
+""""""
+    ,                       # the comma
+    (?:\s*)                 # arbitrary whitespace
+    $                       # only works if the trailing comma is followed by newline
+    (\s*)                   # arbitrary whitespace
+    ([\]\}])                # end of an array or object
+""""""
+""""""
+    ^
+    #if 0
+    $.*?
+    #endif
+""""""
+""""""
+    /\*
+    .*?
+    \*/""
+""""""
+""""""
+    #define
+    \s
+    (
+        (?:{})          # the prefixes
+        (?:\w+)         # the key name
+    )                   # capture group end
+""""""
+""""""
+    (
+        enum
+        \s\w+\s
+        \{
+        .*?             # the enum content
+        \}
+        ;
+    )                   # capture group end
+""""""
+""""""
+    (
+        {}              # the prefixes
+        \w+             # the key name
+    )                   # capture group end
+""""""
+""""""
+    (DF|TG|MO)\(\d+\)
+""""""
+""""""
+    M\(\w+\)
+""""""
+""""""
+    U[0-9A-F]{4}
+""""""
+""""""
+    ^[^A-Z0-9_]$
+""""""
+""""""
+// Runs just one time when the keyboard initializes.
+void matrix_init_user(void) {
+
+};
+
+// Runs constantly in the background, in a loop.
+void matrix_scan_user(void) {
+    uint8_t layer = get_highest_layer(layer_state);
+
+    ergodox_board_led_off();
+    ergodox_right_led_1_off();
+    ergodox_right_led_2_off();
+    ergodox_right_led_3_off();
+    switch (layer) {
+        case L1:
+            ergodox_right_led_1_on();
+            break;
+        case L2:
+            ergodox_right_led_2_on();
+            break;
+        case L3:
+            ergodox_right_led_3_on();
+            break;
+        case L4:
+            ergodox_right_led_1_on();
+            ergodox_right_led_2_on();
+            break;
+        case L5:
+            ergodox_right_led_1_on();
+            ergodox_right_led_3_on();
+            break;
+        // case L6:
+        //     ergodox_right_led_2_on();
+        //     ergodox_right_led_3_on();
+        //     break;
+        // case L7:
+        //     ergodox_right_led_1_on();
+        //     ergodox_right_led_2_on();
+        //     ergodox_right_led_3_on();
+        //     break;
+        default:
+            ergodox_board_led_off();
+            break;
+    }
+};
+""""""
+
+
+""""""
+#define UC_MODE_WIN 0
+#define UC_MODE_LINUX 1
+#define UC_MODE_OSX 2
+
+// TODO: allow default mode to be configured
+static uint16_t unicode_mode = UC_MODE_WIN;
+
+uint16_t hextokeycode(uint8_t hex) {{
+    if (hex == 0x0) {{
+        return KC_P0;
+    }}
+    if (hex < 0xA) {{
+        return KC_P1 + (hex - 0x1);
+    }}
+    return KC_A + (hex - 0xA);
+}}
+
+void unicode_action_function(uint16_t hi, uint16_t lo) {{
+    switch (unicode_mode) {{
+    case UC_MODE_WIN:
+        register_code(KC_LALT);
+
+        register_code(KC_PPLS);
+        unregister_code(KC_PPLS);
+
+        register_code(hextokeycode((hi & 0xF0) >> 4));
+        unregister_code(hextokeycode((hi & 0xF0) >> 4));
+        register_code(hextokeycode((hi & 0x0F)));
+        unregister_code(hextokeycode((hi & 0x0F)));
+        register_code(hextokeycode((lo & 0xF0) >> 4));
+        unregister_code(hextokeycode((lo & 0xF0) >> 4));
+        register_code(hextokeycode((lo & 0x0F)));
+        unregister_code(hextokeycode((lo & 0x0F)));
+
+        unregister_code(KC_LALT);
+        break;
+    case UC_MODE_LINUX:
+        register_code(KC_LCTL);
+        register_code(KC_LSFT);
+
+        register_code(KC_U);
+        unregister_code(KC_U);
+
+        register_code(hextokeycode((hi & 0xF0) >> 4));
+        unregister_code(hextokeycode((hi & 0xF0) >> 4));
+        register_code(hextokeycode((hi & 0x0F)));
+        unregister_code(hextokeycode((hi & 0x0F)));
+        register_code(hextokeycode((lo & 0xF0) >> 4));
+        unregister_code(hextokeycode((lo & 0xF0) >> 4));
+        register_code(hextokeycode((lo & 0x0F)));
+        unregister_code(hextokeycode((lo & 0x0F)));
+
+        unregister_code(KC_LCTL);
+        unregister_code(KC_LSFT);
+        break;
+    case UC_MODE_OSX:
+        break;
+    }}
+}}
+
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {{
+    if (!record->event.pressed) {{
+        return MACRO_NONE;
+    }}
+    // MACRODOWN only works in this function
+    switch(id) {{
+        case UM:
+            unicode_mode = (unicode_mode + 1) % 2;
+            break;
+{macro_cases}
+{unicode_macro_cases}
+        default:
+            break;
+    }}
+    return MACRO_NONE;
+}};
+""""""
+
+
+""""""
+case {macro_id}:
+    unicode_action_function(0x{hi:02x}, 0x{lo:02x});
+    break;
+"""""""
+config_h.py,"#ifndef {define}
+
+#    define {define}{value}
+
+#endif // {define}""""""
+
+
+
+#ifndef MASTER_LEFT')
+
+#    ifndef MASTER_RIGHT')
+
+#        define MASTER_LEFT')
+
+#        define MASTER_RIGHT')
+
+#    endif // MASTER_RIGHT')
+
+#endif // MASTER_LEFT')
+
+# Determine our keyboard/keymap
+
+# Build the info_config.h file.
+
+#pragma once']
+
+
+# Show the results
+""""""Used by the make system to generate info_config.h from info.json.
+""""""
+
+""""""
+#ifndef {define}
+#    define {define}{value}
+#endif // {define}""""""
+
+
+
+""""""Return the config.h lines that set the direct pins.
+    """"""
+
+""""""Return the config.h lines that set a pin array.
+    """"""
+
+""""""Add the matrix config to the config.h.
+    """"""
+
+""""""Add the matrix size to the config.h.
+    """"""
+
+""""""Iterate through the info_config map to generate basic config values.
+    """"""
+
+""""""Generate the config.h lines for encoders.""""""
+
+""""""Generate the config.h lines for split boards.""""""
+
+""""""Generates the info_config.h file.
+    """"""
+"
+confmigrate.py,"#pragma once
+
+#\s*define\s+(?:.*\\\r?\n)*.*$', re.MULTILINE)
+
+#\s*define\s+(?P<name>[a-zA-Z0-9_]+(\([^\)]*\))?)\s*(?P<value>.*)', re.DOTALL)
+
+#define %s %s"" % (override[0], override[1]), file=outfile)
+
+#include_next <chconf.h>\n"", file=outfile)
+
+
+
+#define %s %s"" % (override[0], override[1]), file=outfile)
+
+#include_next <halconf.h>\n"", file=outfile)
+
+
+
+#include_next <mcuconf.h>\n"", file=outfile)
+
+
+#undef %s"" % (override[0]), file=outfile)
+
+#define %s %s"" % (override[0], override[1]), file=outfile)
+""""""This script automates the copying of the default keymap into your own keymap.
+""""""
+
+""""""\
+/* Copyright 2020 QMK
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/*
+ * This file was auto-generated by:
+ *    `qmk chibios-confmigrate -i {0} -r {1}`
+ */
+
+#pragma once
+""""""
+
+
+
+""""""Generates a usable ChibiOS replacement configuration file, based on a fully-defined conf and a reference config.
+    """"""
+
+"
+constants.py,"# The root of the qmk_firmware tree.
+
+# Upstream repo url
+
+# This is the number of directories under `qmk_firmware/keyboards` that will be traversed. This is currently a limitation of our make system.
+
+# Supported processor types
+
+# Bootloaders of the supported processors
+
+# Map of legacy keycodes that can be automatically updated
+
+# Comment here is to force multiline formatting
+
+# Map VID:PID values to bootloaders
+
+# ATmega16U2
+
+# ATmega32U2
+
+# ATmega16U4
+
+# ATmega32U4
+
+# AT90USB64
+
+# AT90USB162
+
+# AT90USB128
+
+# STM32duino
+
+# STM32 DFU
+
+# pid.codes shared PID
+
+# Keyboardio Atreus 2 Bootloader
+
+# Spark Fun Electronics
+
+# Pro Micro 3V3/8MHz
+
+# Pro Micro 5V/16MHz
+
+# LilyPad 3V3/8MHz (and some Pro Micro clones)
+
+# Pololu Electronics
+
+# A-Star 32U4
+
+# Arduino SA
+
+# Leonardo
+
+# Micro
+
+# Adafruit Industries LLC
+
+# Feather 32U4
+
+# ItsyBitsy 32U4 3V3/8MHz
+
+# ItsyBitsy 32U4 5V/16MHz
+
+# dog hunter AG
+
+# Leonardo
+
+# Micro
+
+# QMK HID
+
+# PJRC halfkay
+
+# Common format strings
+
+# Used when generating matrix locations
+
+# Constants that should match their counterparts in make
+
+# Headers for generated files
+
+# Copyright {date.today().year} QMK
+
+# SPDX-License-Identifier: GPL-2.0-or-later
+
+################################################################################
+
+#
+
+# 88888888888 888      d8b                .d888 d8b 888               d8b
+
+#     888     888      Y8P               d88P""  Y8P 888               Y8P
+
+#     888     888                        888        888
+
+#     888     88888b.  888 .d8888b       888888 888 888  .d88b.       888 .d8888b
+
+#     888     888 ""88b 888 88K           888    888 888 d8P  Y8b      888 88K
+
+#     888     888  888 888 ""Y8888b.      888    888 888 88888888      888 ""Y8888b.
+
+#     888     888  888 888      X88      888    888 888 Y8b.          888      X88
+
+#     888     888  888 888  88888P'      888    888 888  ""Y8888       888  88888P'
+
+#
+
+#                                                       888                 888
+
+#                                                       888                 888
+
+#                                                       888                 888
+
+#    .d88b.   .d88b.  88888b.   .d88b.  888d888 8888b.  888888 .d88b.   .d88888
+
+#   d88P""88b d8P  Y8b 888 ""88b d8P  Y8b 888P""      ""88b 888   d8P  Y8b d88"" 888
+
+#   888  888 88888888 888  888 88888888 888    .d888888 888   88888888 888  888
+
+#   Y88b 888 Y8b.     888  888 Y8b.     888    888  888 Y88b. Y8b.     Y88b 888
+
+#    ""Y88888  ""Y8888  888  888  ""Y8888  888    ""Y888888  ""Y888 ""Y8888   ""Y88888
+
+#        888
+
+#   Y8b d88P
+
+#    ""Y88P""
+
+#
+
+################################################################################
+'''\
+// Copyright {date.today().year} QMK
+// SPDX-License-Identifier: GPL-2.0-or-later
+'''
+
+
+'''\
+# Copyright {date.today().year} QMK
+# SPDX-License-Identifier: GPL-2.0-or-later
+'''
+
+
+'''\
+/*******************************************************************************
+  88888888888 888      d8b                .d888 d8b 888               d8b
+      888     888      Y8P               d88P""  Y8P 888               Y8P
+      888     888                        888        888
+      888     88888b.  888 .d8888b       888888 888 888  .d88b.       888 .d8888b
+      888     888 ""88b 888 88K           888    888 888 d8P  Y8b      888 88K
+      888     888  888 888 ""Y8888b.      888    888 888 88888888      888 ""Y8888b.
+      888     888  888 888      X88      888    888 888 Y8b.          888      X88
+      888     888  888 888  88888P'      888    888 888  ""Y8888       888  88888P'
+                                                        888                 888
+                                                        888                 888
+                                                        888                 888
+     .d88b.   .d88b.  88888b.   .d88b.  888d888 8888b.  888888 .d88b.   .d88888
+    d88P""88b d8P  Y8b 888 ""88b d8P  Y8b 888P""      ""88b 888   d8P  Y8b d88"" 888
+    888  888 88888888 888  888 88888888 888    .d888888 888   88888888 888  888
+    Y88b 888 Y8b.     888  888 Y8b.     888    888  888 Y88b. Y8b.     Y88b 888
+     ""Y88888  ""Y8888  888  888  ""Y8888  888    ""Y888888  ""Y888 ""Y8888   ""Y88888
+         888
+    Y8b d88P
+     ""Y88P""
+*******************************************************************************/
+'''
+
+
+'''\
+################################################################################
+#
+# 88888888888 888      d8b                .d888 d8b 888               d8b
+#     888     888      Y8P               d88P""  Y8P 888               Y8P
+#     888     888                        888        888
+#     888     88888b.  888 .d8888b       888888 888 888  .d88b.       888 .d8888b
+#     888     888 ""88b 888 88K           888    888 888 d8P  Y8b      888 88K
+#     888     888  888 888 ""Y8888b.      888    888 888 88888888      888 ""Y8888b.
+#     888     888  888 888      X88      888    888 888 Y8b.          888      X88
+#     888     888  888 888  88888P'      888    888 888  ""Y8888       888  88888P'
+#
+#                                                       888                 888
+#                                                       888                 888
+#                                                       888                 888
+#    .d88b.   .d88b.  88888b.   .d88b.  888d888 8888b.  888888 .d88b.   .d88888
+#   d88P""88b d8P  Y8b 888 ""88b d8P  Y8b 888P""      ""88b 888   d8P  Y8b d88"" 888
+#   888  888 88888888 888  888 88888888 888    .d888888 888   88888888 888  888
+#   Y88b 888 Y8b.     888  888 Y8b.     888    888  888 Y88b. Y8b.     Y88b 888
+#    ""Y88888  ""Y8888  888  888  ""Y8888  888    ""Y888888  ""Y888 ""Y8888   ""Y88888
+#        888
+#   Y8b d88P
+#    ""Y88P""
+#
+################################################################################
+'''
+""""""Information that should be available to the python library.
+""""""
+"
+converter.py,"""""""Functions to convert to and from QMK formats
+""""""
+
+""""""Convert a KLE layout to QMK's layout format.
+    """"""
+"
+convert_graphics.py,"# Work out the input file
+
+# Error checking
+
+# Work out the output directory
+
+# Ensure we have a valid format
+
+# Work out the encoding parameters
+
+# Load the input image
+
+# Convert the image to QGF using PIL
+
+# Work out the text substitutions for rendering the output data
+
+# Render the license
+
+# Render and write the header file
+
+# Render and write the source file
+""""""This script tests QGF functionality.
+""""""
+
+""""""Converts an image file to a format that Quantum Painter understands.
+
+    This command uses the `qmk.painter` module to generate a Quantum Painter image defintion from an image. The generated definitions are written to a files next to the input -- `INPUT.c` and `INPUT.h`.
+    """"""
+"
+c_parse.py,"#\s*define')
+
+
+
+# Populated with all `#define`s that aren't functions
+
+# Search the file for LAYOUT macros and aliases
+
+# We've found a LAYOUT macro
+
+# Reject bad macro names
+
+# Parse the matrix data
+
+# Parse the layout entries into a basic structure
+
+# Set to -1 so _default_key(key) will increment it to 0
+
+#define' in line:
+
+# Attempt to extract a new layout alias
+
+#define':
+
+#define! On or around line %s' % (config_h_file, linenum))
+
+#undef':
+
+#undef! On or around line %s' % (config_h_file, linenum))
+
+
+#define', '')
+
+# TODO: Improve crude parsing/validation
+
+# Assume g_led_config..stuff..;
+
+# Assume bracket count hints to section of config we are within
+
+# Assume any non whitespace value here is important enough to stash
+
+# TODO: Promote to error
+
+# Slightly better intrim format
+
+# If we have not found anything - bail with no error
+
+# Throw any validation errors
+
+# Expand collected content
+
+# Align to output format
+""""""Functions for working with config.h files.
+""""""
+
+""""""Break down a collection into smaller parts
+    """"""
+
+""""""Load file and strip comments
+    """"""
+
+""""""Removes comments from a single line string.
+    """"""
+
+""""""Removes comments from a single line string.
+    """"""
+
+""""""Returns a list of all *.c, *.h, and *.cpp files for a given list of directories
+
+    Args:
+
+        dir_names
+            List of directories relative to `qmk_firmware`.
+    """"""
+
+""""""Returns list of parsed LAYOUT preprocessor macros found in the supplied include file.
+    """"""
+
+""""""Extract defines from a config.h file.
+    """"""
+
+""""""Increment x and return a copy of the default_key_entry.
+    """"""
+
+""""""Split the LAYOUT macro into its constituent parts
+    """"""
+
+""""""Parse raw matrix data into a dictionary keyed by the LAYOUT identifier.
+    """"""
+
+"""""" Convert token to valid info.json content
+    """"""
+
+""""""Return any 'raw' led/rgb matrix config
+    """"""
+
+""""""Search file for led/rgb matrix config
+    """"""
+"
+datetime.py,"""""""Functions to work with dates and times in a uniform way.
+
+The results of these functions are cached for 5 seconds to provide uniform time strings across short running processes. Long running processes that need more precise timekeeping should not use these functions.
+""""""
+
+""""""Returns the current time in UTZ as a formatted string.
+    """"""
+
+""""""Returns the current time in UTZ as a formatted string.
+    """"""
+
+""""""Returns the current time in UTZ as a formatted string.
+    """"""
+"
+decorators.py,"# Ensure that `--keyboard` was not passed and CWD is under `qmk_firmware/keyboards`
+
+# Ensure that `--keymap` was not passed and that we're under `qmk_firmware`
+""""""Helpful decorators that subcommands can use.
+""""""
+
+""""""Sets `cli.config.<subcommand>.keyboard` based on environment.
+
+    This will rewrite cli.config.<subcommand>.keyboard if the user did not pass `--keyboard` and the directory they are currently in is a keyboard or keymap directory.
+    """"""
+
+""""""Sets `cli.config.<subcommand>.keymap` based on environment.
+
+    This will rewrite cli.config.<subcommand>.keymap if the user did not pass `--keymap` and the directory they are currently in is a keymap, layout, or user directory.
+    """"""
+
+""""""Least Recently Used Cache- cache the result of a function.
+
+    Args:
+
+        timeout
+            How many seconds to cache results for.
+
+        maxsize
+            The maximum size of the cache in bytes
+
+        typed
+            When `True` argument types will be taken into consideration, for example `3` and `3.0` will be treated as different keys.
+    """"""
+"
+develop_pr_list.py,"#{pr_num}')
+
+# These dependencies are manually handled because people complain. Fun.
+
+#(?P<pr>[0-9]+)\)$')
+
+#{pr_num}](https://github.com/qmk/qmk_firmware/pull/{pr_num}))')
+
+""""""Export the initial list of PRs associated with a `develop` merge to `master`.
+""""""
+
+""""""Retrieves information from GitHub regarding the list of PRs associated
+    with a merge of `develop` branch into `master`.
+
+    Requires environment variable GITHUB_TOKEN to be set.
+    """"""
+
+"
+dfu_header.py,"# Determine our keyboard(s)
+
+# Build the Keyboard.h file.
+
+#pragma once']
+
+#define MANUFACTURER ""{kb_info_json[""manufacturer""]}""')
+
+#define PRODUCT ""{kb_info_json[""keyboard_name""]} Bootloader""')
+
+
+# Optional
+
+#define QMK_ESC_OUTPUT {kb_info_json[""qmk_lufa_bootloader.esc_output""]}')
+
+#define QMK_ESC_INPUT {kb_info_json[""qmk_lufa_bootloader.esc_input""]}')
+
+#define QMK_LED {kb_info_json[""qmk_lufa_bootloader.led""]}')
+
+#define QMK_SPEAKER {kb_info_json[""qmk_lufa_bootloader.speaker""]}')
+
+
+# Show the results
+""""""Used by the make system to generate LUFA Keyboard.h from info.json
+""""""
+
+""""""Generates the Keyboard.h file.
+    """"""
+"
+docs.py,"# When not verbose we want to hide all output
+
+# Generate internal docs
+""""""Build QMK documentation locally
+""""""
+
+""""""Invoke the docs generation process
+
+    TODO(unclaimed):
+        * [ ] Add a real build step... something static docs
+    """"""
+
+"
+errors.py,"""""""Raised when we can't find a keyboard/keymap directory.
+    """"""
+
+""""""Raised when 'cpp' cannot process a file.
+    """"""
+"
+fileformat.py,"# For reasons I don't understand "".exe"" is stripped from the script name on windows.
+""""""Point people to the new command name.
+""""""
+
+""""""Pointer to the new command name: qmk format-text.
+    """"""
+"
+flash.py,"#/flashing')
+
+
+
+# Try to flash binary firmware
+
+# Provide usage and list bootloaders
+
+# Build the environment vars
+
+# Determine the compile command
+
+# If a configurator JSON was provided generate a keymap and compile it
+
+# Generate the make command for a specific keyboard/keymap.
+""""""Compile and flash QMK Firmware
+
+You can compile a keymap already in the repo or using a QMK Configurator export.
+A bootloader must be specified.
+""""""
+
+""""""Prints the available bootloaders listed in docs.qmk.fm.
+    """"""
+
+""""""Compile and or flash QMK Firmware or keyboard/layout
+
+    If a binary firmware is supplied, try to flash that.
+
+    If a Configurator JSON export is supplied this command will create a new keymap. Keymap and Keyboard arguments
+    will be ignored.
+
+    If no file is supplied, keymap and keyboard are expected.
+
+    If bootloader is omitted the make system will use the configured bootloader for that keyboard.
+    """"""
+"
+flashers.py,"# yapf: disable
+
+# yapf: enable
+
+
+
+# Custom interrupt handler to delay the processing of Ctrl-C
+
+# https://stackoverflow.com/a/21919644
+
+# TODO: Make this more generic, so cli/doctor/check.py and flashers.py can share the code
+
+# Return True if version is higher than 0.7.0: supports '--force'
+
+# To avoid running forever in the background, only look for bootloaders for 10min
+
+# PyUSB does not like to be interrupted by Ctrl-C
+
+# therefore we catch the interrupt with a custom handler
+
+# and only process it once pyusb finished
+
+# Caterina times out after 8 seconds
+
+# Wait until the port becomes writable before returning
+
+# Use 'hid_bootloader_cli' for QMK HID and as a fallback for HalfKay
+
+# STM32duino
+
+# kiibohd
+
+# STM32, APM32, or GD32V DFU
+
+# Check if the provide mcu has an avrdude-specific name, otherwise pass on what the user provided
+
+# Add a small sleep to avoid race conditions
+"
+generate_c.py,"## {0}
+
+## Current Configuration\n\n' + '\n\n'.join(c_layout(i, l, README_MD) for i, l in enumerate(d['layers']))
+
+## Current Configuration.*', re.DOTALL)
+""""""/* {0}
+{1}
+*/
+[{2}] = {3}(
+    {4})
+""""""
+
+
+""""""## {0}
+```
+{1}
+```
+""""""
+
+"
+generate_km.py,"#!/usr/bin/env python3
+
+# -*- coding: utf-8 -*-
+
+
+# Fn, works from F0 to F99
+
+# DFn, works from DF0 to DF99
+
+# MOn, works from MO0 to MO99
+
+# OSLn, works from OSL0 to OSL99
+
+# TGn, works from TG0 to TG99
+
+# Tn, works from TO0 to TO99
+
+# Tn, works from TT0 to TT99
+
+# f_keymap.write(str(layout.uc_dict))
+"
+git.py,"# Workaround for Git pre-2.22
+""""""Functions for working with the QMK repo.
+""""""
+
+""""""Returns the current git version for a repo, or None.
+    """"""
+
+""""""Retrieves user's username from Git config, if set.
+    """"""
+
+""""""Returns the current branch for a repo, or None.
+    """"""
+
+""""""Returns the current tag for a repo, or None.
+    """"""
+
+""""""Retrieves the last log entry for the branch being worked on.
+    """"""
+
+""""""Retrieves the common ancestor between for the two supplied branches.
+    """"""
+
+""""""Returns the current remotes for a repo.
+    """"""
+
+""""""Returns 1 if repo is dirty, or 0 if clean
+    """"""
+
+""""""Checks that the .git directory exists inside QMK_HOME.
+
+    This is a decent enough indicator that the qmk_firmware directory is a
+    proper Git repository, rather than a .zip download from GitHub.
+    """"""
+
+""""""Return True if branch has custom commits
+    """"""
+
+""""""Return a list of files that would be captured by the current .gitignore
+    """"""
+"
+hello.py,"""""""QMK Python Hello World
+
+This is an example QMK CLI script.
+""""""
+
+""""""Log a friendly greeting.
+    """"""
+"
+importers.py,"# Pick the first layout macro and just dump in KC_NOs or something?
+
+# Validate to ensure we don't have to deal with bad data - handles stdin/file
+
+# This is the deepest folder in the expected tree
+
+# Dump out all those lovely files
+
+# Validate to ensure we don't have to deal with bad data - handles stdin/file
+
+# And validate some more as everything is optional
+
+# bail
+
+# TODO: if supports community then grab that instead
+
+# begin with making the deepest folder in the tree
+
+# Comment here is to force multiline formatting
+
+# Dump out all those lovely files
+
+# convert to d/d info.json
+
+# delegate as if it were a regular keyboard import
+""""""Replaces the given placeholders in each template file.
+    """"""
+"
+info.py,"# Resolve alias names
+
+
+# Avoid passing dirty data to cli.echo()
+
+
+
+# Build our label list
+
+# Print the header
+
+# Determine our keyboard(s)
+
+# default keymap stored in config file should be ignored
+
+# Build the info.json file
+
+# Output in the requested format
+
+# Output requested extras
+""""""Keyboard information script.
+
+Compile an info.json for a particular keyboard and pretty-print it.
+""""""
+
+""""""Render the keymap in ascii art.
+    """"""
+
+""""""Render the layouts with info.json labels.
+    """"""
+
+""""""Render the layout with matrix labels in ascii art.
+    """"""
+
+""""""Print the info.json in a friendly text format.
+    """"""
+
+""""""Print the info.json in a plain text format.
+    """"""
+
+""""""Print the info.json in a plain text format with dot-joined keys.
+    """"""
+
+""""""Compile an info.json for a particular keyboard and pretty-print it.
+    """"""
+"
+info_json.py,"# Determine our keyboard(s)
+
+# Build the info.json file
+
+# Write to a file
+
+# Display the results
+""""""Keyboard information script.
+
+Compile an info.json for a particular keyboard and pretty-print it.
+""""""
+
+""""""Extends Draft202012Validator to remove properties that aren't specified in the schema.
+    """"""
+
+""""""Remove the API-only properties from the info.json.
+    """"""
+
+""""""Generate an info.json file for a keyboard
+    """"""
+"
+json.py,"# This should be impossible
+
+# Attempt to format the keycodes.
+
+# Display the results
+""""""JSON Formatting Script
+
+Spits out a JSON file formatted with one of QMK's formatters.
+""""""
+
+""""""Format a json file.
+    """"""
+"
+json2c.py,"# Parse the configurator from json file (or stdin)
+
+# Environment processing
+
+# Generate the keymap
+""""""Generate a keymap.c from a configurator export.
+""""""
+
+""""""Generate a keymap.c from a configurator export.
+
+    This command uses the `qmk.keymap` module to generate a keymap.c from a configurator export. The generated keymap is written to stdout, or to a file if -o is provided.
+    """"""
+
+"
+json2crab.py,"#!/usr/bin/env python3
+
+"
+json_encoders.py,"# I can't believe Decimal objects don't have .is_integer()
+
+# These are part of a layout/led_config, put them on a single line.
+
+# We have a list of keycodes
+
+# We have a macro
+
+
+# TODO: Add proper support for nicely formatting keymap.json macros
+""""""Class that pretty-prints QMK info.json files.
+""""""
+
+""""""Base class for all QMK JSON encoders.
+    """"""
+
+""""""Encode a decimal object.
+        """"""
+
+""""""Encode a list-like object.
+        """"""
+
+""""""Encode keymap.json objects for QMK.
+        """"""
+
+""""""Returns true if the object doesn't have any container type objects (list, tuple, dict).
+        """"""
+
+""""""Custom encoder to make info.json's a little nicer to work with.
+    """"""
+
+""""""Encode info.json dictionaries.
+        """"""
+
+""""""Forces layout to the back of the sort order.
+        """"""
+
+""""""Custom encoder to make keymap.json's a little nicer to work with.
+    """"""
+
+""""""Encode dictionary objects for keymap.json.
+        """"""
+
+""""""Encode a list-like object.
+        """"""
+
+""""""Sorts the hashes in a nice way.
+        """"""
+"
+json_schema.py,"# Get the IO Stream for Path objects
+
+# Not necessary if the data is provided via stdin
+""""""Functions that help us generate and use info.json files.
+""""""
+
+""""""Reject duplicate keys.""""""
+
+""""""Load a json file from disk.
+
+    Note: file must be a Path object.
+    """"""
+
+""""""Read a jsonschema file from disk.
+    """"""
+
+""""""Compile all our schemas into a schema store.
+    """"""
+
+""""""Creates a validator for the given schema id.
+    """"""
+
+""""""Validates data against a schema.
+    """"""
+
+""""""Update a dictionary in place, recursing to do a depth-first deep copy.
+    """"""
+"
+kbfirmware.py,
+keyboard.py,"# defaults
+
+# merge community with template
+
+# avoid assumptions on macro name by using the first available
+
+# guess at width and height now its optional
+
+# assume a 1:1 mapping on matrix to electrical
+
+# finally write out the updated info.json
+
+# TODO: Remove this once milc.questions.question handles reprompt messages
+
+
+#/hardware_keyboard_guidelines?id=naming-your-keyboardproject
+
+
+# avoid overwhelming user - remove some?
+
+#/compatible_microcontrollers
+
+
+# remove any options strictly used for compatibility
+
+# Preprocess any development_board presets
+
+# Comment here is to force multiline formatting
+
+# TODO: detach community layout and rename to just ""LAYOUT""
+
+# begin with making the deepest folder in the tree
+
+# copy in keymap.c or keymap.json
+
+# process template files
+
+# merge in infos
+""""""This script automates the creation of new keyboard directories using a starter template.
+""""""
+
+""""""Callable for argparse validation.
+    """"""
+
+""""""Callable for argparse validation.
+    """"""
+
+""""""Callable for argparse validation.
+    """"""
+
+""""""Returns True if the given keyboard name contains only lowercase a-z, 0-9 and underscore characters.
+    """"""
+
+""""""Provide sane defaults for bootloader
+    """"""
+
+""""""Replaces the given placeholders in each template file.
+    """"""
+
+""""""Splice in any additional data into info.json
+    """"""
+
+""""""Ugly workaround until 'milc' learns to display a repromt msg
+    """"""
+
+""""""{fg_yellow}Name Your Keyboard Project{style_reset_all}
+For more infomation, see:
+https://docs.qmk.fm/#/hardware_keyboard_guidelines?id=naming-your-keyboardproject
+
+Keyboard Name? """"""
+
+
+""""""
+{fg_yellow}Attribution{style_reset_all}
+Used for maintainer, copyright, etc
+
+Your GitHub Username? """"""
+
+""""""
+{fg_yellow}More Attribution{style_reset_all}
+Used for maintainer, copyright, etc
+
+Your Real Name? """"""
+
+""""""
+{fg_yellow}Pick Base Layout{style_reset_all}
+As a starting point, one of the common layouts can be used to bootstrap the process
+
+Default Layout? """"""
+
+""""""
+{fg_yellow}What Powers Your Project{style_reset_all}
+For more infomation, see:
+https://docs.qmk.fm/#/compatible_microcontrollers
+
+MCU? """"""
+
+""""""Creates a new keyboard.
+    """"""
+"
+keyboards.py,"""""""List the keyboards currently defined within QMK
+""""""
+
+""""""List the keyboards currently defined within QMK
+    """"""
+"
+keyboard_c.py,"#ifdef RGB_MATRIX_ENABLE')
+
+#include ""rgb_matrix.h""')
+
+#ifdef LED_MATRIX_ENABLE')
+
+#include ""led_matrix.h""')
+
+
+#endif')
+
+
+# Build the layouts.h file.
+
+#include QMK_KEYBOARD_H', '']
+
+
+# Show the results
+""""""Used by the make system to generate keyboard.c from info.json.
+""""""
+
+""""""Convert info.json content to g_led_config
+    """"""
+
+""""""Generates the keyboard.h file.
+    """"""
+"
+keyboard_h.py,"# Build the info.json file
+
+#define %s(%s) {\\' % (layout_name, ', '.join(layout_keys)))
+
+
+#ifndef {alias}')
+
+#   define {alias} {target}')
+
+#endif')
+
+
+# Build the layouts.h file.
+
+#pragma once', '#include ""quantum.h""']
+
+
+#include ""{Path(keyboard_h).name}""')
+
+
+# Protect against poorly configured keyboards
+
+#error(""<keyboard>.h is required unless your keyboard uses data-driven configuration. Please rename your keyboard\'s header file to <keyboard>.h"")')
+
+
+# Show the results
+""""""Used by the make system to generate keyboard.h from info.json.
+""""""
+
+""""""Generates the layouts.h file.
+    """"""
+
+""""""Generates the keyboard.h file.
+    """"""
+"
+keycodes.py,"#define IS_{define}(code) ((code) >= {define} && (code) <= {define + ""_MAX""})')
+
+
+# extract min/max
+
+#define IS_{ group.upper() }_KEYCODE(code) ((code) >= {lo} && (code) <= {hi})')
+
+
+
+# Build the keycodes.h file.
+
+#pragma once', '// clang-format off']
+
+
+# Show the results
+""""""Used by the make system to generate keycodes.h from keycodes_{version}.json
+""""""
+
+""""""Generates the keycodes.h file.
+    """"""
+
+"
+keymap.py,"# ask for user input if keyboard or keymap was not provided in the command line
+
+# generate keymap paths
+
+# check directories
+
+# create user directory with default keymap files
+
+# end message to user
+""""""This script automates the copying of the default keymap into your own keymap.
+""""""
+
+""""""Creates a new keymap for the keyboard of your choosing.
+    """"""
+"
+KeymapBeautifier.py,"#!/usr/bin/env python
+
+
+# left hand
+
+# left thumb
+
+# right hand
+
+# right thumb
+
+# left hand and right hand
+
+# left thumb and right thumb
+
+# each column is aligned within each group (tuples of row indexes are inclusive)
+
+#'LAYOUT_ergodox_pretty': [(0,5),(6,7)],
+
+#'LAYOUT_ergodox_pretty': [(0,3),(4,4),(5,7)],
+
+#'LAYOUT_ergodox_pretty': [(0,4),(5,7)],
+
+# determine the conversion map
+
+#if input_layout == self.output_layout:
+
+#    conversion_map = [i for i in range(len(self.INDEX_CONVERSTION_LAYOUT_ergodox_pretty_to_LAYOUT_ergodox))]
+
+#conversion_map = self.INDEX_CONVERSTION_LAYOUT_ergodox_pretty_to_LAYOUT_ergodox
+
+# to keep it simple for the parser, we only use the parser to parse the key definition part
+
+# re-order keys from input_layout to regular layout
+
+# strip trailing spaces from padding
+
+# calculate the max width for each column
+
+# pad each key symbol
+
+# look up column coordinate to determine number of spaces to pad
+
+# figure out which columns in this row needs padding; only pad empty columns to the right of an existing column
+
+# for rows with fewer columns that don't start with column 0, we need to insert leading spaces
+
+# left hand
+
+# left thumb
+
+# right hand
+
+# right thumb
+
+# rid of the trailing comma
+
+# helper functions for pycparser
+
+# remove comments since pycparser cannot deal with them
+
+# credit: https://stackoverflow.com/a/241506
+
+# note: a space and not an empty string
+""""""
+    /*
+     * ,--------------------------------------------------.    ,--------------------------------------------------.
+     * |    0   |   1  |   2  |   3  |   4  |   5  |  6   |    |  38  |  39  |  40  |  41  |  42  |  43  |   44   |
+     * |--------+------+------+------+------+------+------|    |------+------+------+------+------+------+--------|
+     * |    7   |   8  |   9  |  10  |  11  |  12  |  13  |    |  45  |  46  |  47  |  48  |  49  |  50  |   51   |
+     * |--------+------+------+------+------+------|      |    |      |------+------+------+------+------+--------|
+     * |   14   |  15  |  16  |  17  |  18  |  19  |------|    |------|  52  |  53  |  54  |  55  |  56  |   57   |
+     * |--------+------+------+------+------+------|  26  |    |  58  |------+------+------+------+------+--------|
+     * |   20   |  21  |  22  |  23  |  24  |  25  |      |    |      |  59  |  60  |  61  |  62  |  63  |   64   |
+     * `--------+------+------+------+------+-------------'    `-------------+------+------+------+------+--------'
+     *   |  27  |  28  |  29  |  30  |  31  |                                |  65  |  66  |  67  |  68  |  69  |
+     *   `----------------------------------'                                `----------------------------------'
+     *                                       ,-------------.  ,-------------.
+     *                                       |  32  |  33  |  |  70  |  71  |
+     *                                ,------+------+------|  |------+------+------.
+     *                                |      |      |  34  |  |  72  |      |      |
+     *                                |  35  |  36  |------|  |------|  74  |  75  |
+     *                                |      |      |  37  |  |  73  |      |      |
+     *                                `--------------------'  `--------------------'
+     */
+""""""
+
+""""""
+// left hand
+
+{}
+{}
+{}
+{}
+{}
+
+// left thumb
+
+{}
+{}
+{}
+
+// right hand
+
+{}
+{}
+{}
+{}
+{}
+
+// right thumb
+
+{}
+{}
+{}
+""""""
+""""""
+{}      {}
+{}      {}
+{}      {}
+{}      {}
+{}      {}
+
+{}      {}
+{}      {}
+{}      {}
+"""""""
+keymaps.py,"""""""List the keymaps for a specific keyboard
+""""""
+
+""""""List the keymaps for a specific keyboard
+    """"""
+"
+kle2json.py,"# If filename is a path
+
+# Otherwise assume it is a file name
+
+# Check for valid file_path for more graceful failure
+
+# Check if info.json exists, allow overwrite with force
+
+# Convert KLE raw to x/y coordinates (using kle2xy package from skullydazed)
+
+# Write our info.json
+""""""Convert raw KLE to JSON
+""""""
+
+""""""Convert a KLE layout to QMK's layout format.
+    """""""
+kle2xy.py,"# FIXME: Store more than just the keyboard name.
+
+# noqa  FIXME(skullydazed): flake8 says this has a complexity of 25, it should be refactored.
+
+# Wrap this in a dictionary so hjson will parse KLE raw data
+
+# Initialize our state machine
+
+# Process the current row
+
+# FIXME: ISO Key uses these params: {x:0.25,w:1.25,h:2,w2:1.5,h2:1,x2:-0.25}
+
+# FIXME: Need to do better validation, plus figure out how to support multiple colors
+
+#000000""
+
+# x,y (units mm) is the center of the key
+
+# Tend to our row/col count
+
+# Invert the y-axis if neccesary
+
+# Store this key
+
+# Move to the next row
+"""""" Original code from https://github.com/skullydazed/kle2xy
+""""""
+
+
+""""""Abstract interface for interacting with a KLE layout.
+    """"""
+
+""""""Returns the width of the keyboard plate.
+        """"""
+
+""""""Returns the height of the keyboard plate.
+        """"""
+
+""""""Returns the size of the keyboard plate.
+        """"""
+
+""""""Parse the keyboard properties dictionary.
+        """"""
+"
+layout.py,"# -*- coding: utf-8 -*-
+
+# yapf: disable
+
+
+# Add all used Unicode symbols to this list.
+
+# The key (e.g. ""SNEK"") is used in keymap.c for ""enum"", ""unicode_map"" and ""keymaps"", so it needs to be a valid C variable name.
+
+# The key is also used in this file to define the layout, so use recognizeable names.
+
+# The value (e.g. ""0x1f40d"") is used in keymap.c for ""unicode_map"" and to automatically generate the ""ASCII""-art comments.
+
+# When adding new Unicode names, use ""0x1f40d"" until you looked up the correct Unicode code point.
+
+## Error
+
+## qwertz
+
+## QWERTZ
+
+## numpad
+
+## NAV_TYPO
+
+## lang
+
+## LANG
+
+## greek
+
+# variants
+
+# non-standard
+
+## GREEK
+
+# variants
+
+# non-standard
+
+## symbol
+
+## SYMBOL
+
+## math
+
+## MATHSCRIPT
+
+## MATHEXT
+
+# Add all used Keycodes to this list.
+
+# The key (e.g. ""a"") is used in keymap.c to automatically generate the comments. The first 7 chars will show as a keycap legend.
+
+# test cases (These are handled in generate_km.py within toKC() and toLgd(), so these definitions will be ignored.
+
+# If you find ""BAD"" in your keymaps, then something went wrong.)
+
+# Basic Keycodes
+
+#"": ""S(KC_3)"", ""$"": ""S(KC_4)"", ""%"": ""S(KC_5)"",
+
+# Keypad keycodes missing
+
+# Command keycodes missing (Execute, Help, ..., Find)
+
+# Basic Keycodes missing from Print Screen onwards, included as fallback
+
+# random Keycodes
+
+# ""LShift("": ""LSFT_T(KC_9)"", ""RShift)"": ""RSFT_T(RSFT(KC_0))"",
+
+# Quantum Keycodes
+
+# Audio Keys missing
+
+# Backlighting
+
+# Bootmagic missing
+
+# Bluetooth
+
+# Layer Switching missing, Lx -> MO(x), Tx -> TG(x)
+
+# Mouse Keys
+
+# Modifiers missinng, add entry for each specific application
+
+# Mod-Tap Keys missing, add entry for each specific application
+
+# RGB Lighting missing
+
+# RGB Matrix Lighting missing
+
+# Thermal Printer missing
+
+# US ANSI Shifted Symbols done via S(), don't add KC_entries
+
+# One Shot Keys missing
+
+# Swap Hands
+
+# Unicode support (via X()) included implicitly
+
+# Switching Unicode Input Modes
+
+# custom keys
+
+# macros
+
+# custom layers
+
+# These keys are repeated in all layers.
+
+# Generate a keymap.c with the python script and refer to the ""ASCII""-art comments, to see which positions this concerns.
+
+# If you want to put different keycodes in these positions for different layers, you need to modify the python script by yourself.
+
+# mutex_layers = {""GREEK"": 8, ""GAME"": 10, ""MOUSE"": 11}
+
+# layer_graph = ...
+
+
+# 0
+
+# 1
+
+# 2
+
+# 3
+
+# 4
+
+# 5
+
+# 6
+"
+layouts.py,"""""""List the keymaps for a specific keyboard
+""""""
+
+""""""List the layouts for a specific keyboard
+    """"""
+"
+lint.py,"# Ignore keymaps when only globing keyboard files
+
+# Crude assumption that first line of license header is a comment
+
+# Check for errors in the json
+
+#' in line:
+
+#')]
+
+
+# Additional checks
+
+# Additional checks
+
+# Determine our keyboard list
+
+# Lint each keyboard
+
+# Determine keymaps to also check
+
+# Ensure that at least a 'default' keymap always exists
+
+# keyboard level checks
+
+# Keymap specific checks
+
+# Report status
+
+# Check and report the overall status
+""""""Command to look over a keyboard/keymap and check for common mistakes.
+""""""
+
+""""""Return default like keymaps for a given keyboard
+    """"""
+
+""""""Return potential keyboard/keymap code files
+    """"""
+
+""""""Check file has a license header
+    """"""
+
+""""""Convert any json errors into lint errors
+    """"""
+
+""""""Check the keyboard-level rules.mk to ensure it only has assignments.
+    """"""
+
+""""""Perform the keymap level checks.
+    """"""
+
+""""""Perform the keyboard level checks.
+    """"""
+
+""""""Check keyboard and keymap for common mistakes.
+    """"""
+"
+linux.py,"# These rules are no longer recommended, only use them to check for their presence.
+
+# Collect all rules from the config files
+
+#"") and len(line):
+
+# Check if the desired rules are among the currently present rules
+
+#/faq_build?id=linux-udev-rules offer better security with the same functionality."", bootloader)
+
+# For caterina, check if ModemManager is running
+
+# Don't bother with udev on WSL, for now
+
+# https://github.com/microsoft/WSL/issues/4197
+""""""OS-specific functions for: Linux
+""""""
+
+"""""" Helper function that return udev rules
+    """"""
+
+"""""" Helper function that return udev rules
+
+    Note: these are no longer the recommended rules, this is just used to check for them
+    """"""
+
+""""""Make sure the udev rules look good.
+    """"""
+
+""""""Check if it's a systemd system
+    """"""
+
+""""""Returns True if ModemManager is running.
+
+    """"""
+
+""""""(TODO): Add check for non-systemd systems
+        """"""
+
+""""""Run the Linux specific tests.
+    """"""
+"
+macos.py,"""""""Run the Mac specific tests.
+    """"""
+"
+main.py,"# Make sure our QMK home is a Git repo
+
+# Make sure the basic CLI tools we need are available and can be executed.
+
+# Make sure the tools are at the correct version
+
+# Check out the QMK submodules
+
+# Report a summary of our findings to the user
+
+#/faq_build) or join the QMK Discord (https://discord.gg/Uq7gcHh) for help.')
+""""""QMK Doctor
+
+Check out the user's QMK environment and make sure it's ready to compile.
+""""""
+
+""""""Determine our OS and run platform specific tests
+    """"""
+
+""""""Run Git-related checks
+    """"""
+
+""""""Prints out information related to the submodule status.
+    """"""
+
+""""""Basic QMK environment checks.
+
+    This is currently very simple, it just checks that all the expected binaries are on your system.
+
+    TODO(unclaimed):
+        * [ ] Compile a trivial program with each compiler
+    """"""
+"
+makefile.py,"# Filter out comments
+
+#""):
+
+# Strip in-line comments
+
+#' in line:
+
+#')].strip()
+
+
+# Append
+
+# Set if absent
+"""""" Functions for working with Makefiles
+""""""
+
+""""""Turn a rules.mk file into a dictionary.
+
+    Args:
+        file: path to the rules.mk file
+        rules_mk: already parsed rules.mk the new file should be merged with
+
+    Returns:
+        a dictionary with the file's content
+    """"""
+"
+make_autocorrection_data.py,"# Copyright 2021-2022 Google LLC
+
+#
+
+# Licensed under the Apache License, Version 2.0 (the ""License"");
+
+# you may not use this file except in compliance with the License.
+
+# You may obtain a copy of the License at
+
+#
+
+#     https://www.apache.org/licenses/LICENSE-2.0
+
+#
+
+# Unless required by applicable law or agreed to in writing, software
+
+# distributed under the License is distributed on an ""AS IS"" BASIS,
+
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+# See the License for the specific language governing permissions and
+
+# limitations under the License.
+
+
+#' are ignored.
+
+# Use a minimal word list as a fallback.
+
+# ""Word break"" character.
+
+# Characters a-z.
+
+#' are ignored. The
+
+# Check that `typo` is valid.
+
+#':
+
+# Parse syntax ""typo -> correction"", using strip to ignore indenting.
+
+# Force typos to lowercase.
+
+# Traverse trie in depth first order.
+
+# Handle a leaf trie node.
+
+# Make the autocorrection data for this entry and serialize it.
+
+# Handle trie node with a single child.
+
+# It's common for a trie to have long chains of single-child nodes. We
+
+# find the whole chain so that we can serialize it more efficiently.
+
+# Handle trie node with multiple children.
+
+# Handle a leaf table entry.
+
+# Handle a chain table entry.
+
+# Handle a branch table entry.
+
+# To encode links, first compute byte offset of each entry.
+
+# Serialize final table.
+
+
+
+#define AUTOCORRECTION_MIN_LENGTH {len(min_typo)}  // ""{min_typo}""\n',
+
+#define AUTOCORRECTION_MAX_LENGTH {len(max_typo)}  // ""{max_typo}""\n\n',
+""""""Python program to make autocorrection_data.h.
+
+This program reads ""autocorrection_dict.txt"" and generates a C source file
+""autocorrection_data.h"" with a serialized trie embedded as an array. Run this
+program without arguments like
+
+$ python3 make_autocorrection_data.py
+
+Or to read from a different typo dict file, pass it as the first argument like
+
+$ python3 make_autocorrection_data.py dict.txt
+
+Each line of the dict file defines one typo and its correction with the syntax
+""typo -> correction"". Blank lines or lines starting with '#' are ignored.
+Example:
+
+  :thier        -> their
+  dosen't       -> doesn't
+  fitler        -> filter
+  lenght        -> length
+  ouput         -> output
+  widht         -> width
+
+See autocorrection_dict_extra.txt for a larger example.
+
+For full documentation, see
+https://getreuer.info/posts/keyboards/autocorrection
+""""""
+
+
+""""""Parses autocorrections dictionary file.
+
+  Each line of the file defines one typo and its correction with the syntax
+  ""typo -> correction"". Blank lines or lines starting with '#' are ignored. The
+  function validates that typos only have characters in TYPO_CHARS, that
+  typos are not substrings of other typos, and checking that typos don't trigger
+  on CORRECT_WORDS.
+
+  Args:
+    file_name: String, path of the autocorrections dictionary.
+  Returns:
+    List of (typo, correction) tuples.
+  """"""
+
+
+""""""Makes a trie from the the typos, writing in reverse.
+
+  Args:
+    autocorrections: List of (typo, correction) tuples.
+  Returns:
+    Dict of dict, representing the trie.
+  """"""
+
+""""""Parses lines read from `file_name` into typo-correction pairs.""""""
+
+
+""""""Checks `typo` against English dictionary words.""""""
+
+
+""""""Serializes trie and correction data in a form readable by the C code.
+
+  Args:
+    autocorrections: List of (typo, correction) tuples.
+    trie: Dict of dicts.
+  Returns:
+    List of ints in the range 0-255.
+  """"""
+
+""""""Encodes a node link as two bytes.""""""
+
+""""""Writes autocorrection data as generated C code to `file_name`.
+
+  Args:
+    autocorrections: List of (typo, correction) tuples.
+    data: List of ints in 0-255, the serialized trie.
+    file_name: String, path of the output C file.
+  """"""
+"
+make_font.py,"# Create the font object
+
+# Read from the input file
+
+# Render out the data
+
+# Work out the format
+
+# Create the font object
+
+# Read from the input file
+
+# Work out the output directory
+
+# Render out the data
+
+# Work out the text substitutions for rendering the output data
+
+# Render the license
+
+# Render and write the header file
+
+# Render and write the source file
+""""""This script automates the conversion of font files into a format QMK firmware understands.
+""""""
+
+"
+math.py,"# supported operators
+
+# <number>
+
+# <left> <operator> <right>
+
+# <operator> <operand> e.g., -1
+""""""Parse arbitrary math equations in a safe way.
+
+Gratefully copied from https://stackoverflow.com/a/9558001
+""""""
+
+""""""Parse a mathematical expression and return the answer.
+
+    >>> compute('2^6')
+    4
+    >>> compute('2**6')
+    64
+    >>> compute('1 + 2*3**(4^5) / (6 + -7)')
+    -5.0
+    """"""
+"
+multibuild.py,"#]+)$')
+
+# yapf: disable
+
+# noqa
+
+# yapf: enable
+
+
+# yapf: disable
+
+# noqa
+
+# yapf: enable
+
+# Check for failures
+""""""Compile all keyboards.
+
+This will compile everything in parallel, for testing purposes.
+""""""
+
+""""""Compile QMK Firmware against all keyboards.
+    """"""
+
+
+""""""\
+all: {keyboard_safe}_binary
+{keyboard_safe}_binary:
+	@rm -f ""{QMK_FIRMWARE}/.build/failed.log.{keyboard_safe}"" || true
+	@echo ""Compiling QMK Firmware for target: '{keyboard_name}:{cli.args.keymap}'..."" >>""{QMK_FIRMWARE}/.build/build.log.{os.getpid()}.{keyboard_safe}""
+	+@$(MAKE) -C ""{QMK_FIRMWARE}"" -f ""{QMK_FIRMWARE}/builddefs/build_keyboard.mk"" KEYBOARD=""{keyboard_name}"" KEYMAP=""{cli.args.keymap}"" REQUIRE_PLATFORM_KEY= COLOR=true SILENT=false {' '.join(cli.args.env)} \\
+		>>""{QMK_FIRMWARE}/.build/build.log.{os.getpid()}.{keyboard_safe}"" 2>&1 \\
+		|| cp ""{QMK_FIRMWARE}/.build/build.log.{os.getpid()}.{keyboard_safe}"" ""{QMK_FIRMWARE}/.build/failed.log.{os.getpid()}.{keyboard_safe}""
+	@{{ grep '\[ERRORS\]' ""{QMK_FIRMWARE}/.build/build.log.{os.getpid()}.{keyboard_safe}"" >/dev/null 2>&1 && printf ""Build %-64s \e[1;31m[ERRORS]\e[0m\\n"" ""{keyboard_name}:{cli.args.keymap}"" ; }} \\
+		|| {{ grep '\[WARNINGS\]' ""{QMK_FIRMWARE}/.build/build.log.{os.getpid()}.{keyboard_safe}"" >/dev/null 2>&1 && printf ""Build %-64s \e[1;33m[WARNINGS]\e[0m\\n"" ""{keyboard_name}:{cli.args.keymap}"" ; }} \\
+		|| printf ""Build %-64s \e[1;32m[OK]\e[0m\\n"" ""{keyboard_name}:{cli.args.keymap}""
+	@rm -f ""{QMK_FIRMWARE}/.build/build.log.{os.getpid()}.{keyboard_safe}"" || true
+""""""
+""""""\
+	@rm -rf ""{QMK_FIRMWARE}/.build/{keyboard_safe}_{cli.args.keymap}.elf"" 2>/dev/null || true
+	@rm -rf ""{QMK_FIRMWARE}/.build/{keyboard_safe}_{cli.args.keymap}.map"" 2>/dev/null || true
+	@rm -rf ""{QMK_FIRMWARE}/.build/{keyboard_safe}_{cli.args.keymap}.hex"" 2>/dev/null || true
+	@rm -rf ""{QMK_FIRMWARE}/.build/{keyboard_safe}_{cli.args.keymap}.bin"" 2>/dev/null || true
+	@rm -rf ""{QMK_FIRMWARE}/.build/{keyboard_safe}_{cli.args.keymap}.uf2"" 2>/dev/null || true
+	@rm -rf ""{QMK_FIRMWARE}/.build/obj_{keyboard_safe}"" || true
+	@rm -rf ""{QMK_FIRMWARE}/.build/obj_{keyboard_safe}_{cli.args.keymap}"" || true
+"""""""
+painter.py,"# The list of valid formats Quantum Painter supports
+
+# see qp_internal_formats.h
+
+# see qp_internal_formats.h
+
+# see qp_internal_formats.h
+
+# see qp_internal_formats.h
+
+# see qp_internal_formats.h
+
+# see qp_internal_formats.h
+
+# see qp_internal_formats.h
+
+# see qp_internal_formats.h
+
+#pragma once
+
+
+#include <qp.h>
+
+
+#include <qp.h>
+
+
+# Work out the requested format
+
+# Ensure we have a valid number of colors for the palette
+
+# Work out where we're getting the bytes from
+
+# If mono, convert input to grayscale, then to RGB, then grab the raw bytes corresponding to the intensity of the red channel
+
+# If color, convert input to RGB, palettize based on the supplied number of colors, then get the raw palette bytes
+
+# Work out the requested format
+
+# Take the red channel
+
+# No palette
+
+# If mono, each input byte is a grayscale [0,255] pixel -- rescale to the range we want then pack together
+
+# Convert each pixel to the palette bytes
+
+# Export the palette
+
+# If color, each input byte is the index into the color palette -- pack them together
+""""""Functions that help us work with Quantum Painter's file formats.
+""""""
+
+""""""\
+// Copyright ${year} QMK -- generated source code only, ${generated_type} retains original copyright
+// SPDX-License-Identifier: GPL-2.0-or-later
+
+// This file was auto-generated by `${generator_command}`
+""""""
+
+
+
+""""""\
+${license}
+#pragma once
+
+#include <qp.h>
+
+extern const uint32_t ${var_prefix}_${sane_name}_length;
+extern const uint8_t  ${var_prefix}_${sane_name}[${byte_count}];
+""""""
+
+
+
+""""""\
+${license}
+#include <qp.h>
+
+const uint32_t ${var_prefix}_${sane_name}_length = ${byte_count};
+
+// clang-format off
+const uint8_t ${var_prefix}_${sane_name}[${byte_count}] = {
+${bytes_lines}
+};
+// clang-format on
+""""""
+
+
+
+""""""Rescales a byte value to the supplied range, i.e. [0,255] -> [0,maxval].
+    """"""
+
+""""""Convert an image to the requested format.
+    """"""
+
+
+""""""Convert the supplied image to the equivalent bytes required by the QMK firmware.
+    """"""
+
+"
+painter_qff.py,"# Copyright 2021 Nick Brassel (@tzarc)
+
+# SPDX-License-Identifier: GPL-2.0-or-later
+
+
+# Quantum Font File ""QFF"" Font File Format.
+
+# See https://docs.qmk.fm/#/quantum_painter_qff for more information.
+
+
+########################################################################################################################
+
+
+
+########################################################################################################################
+
+
+
+# TODO: Work out how to retrieve the transparent palette entry from the PIL gif loader
+
+
+# start off with empty bytes...
+
+# magic
+
+# version
+
+# file size
+
+# negated file size
+
+# line height
+
+# whether or not we have an ascii table present
+
+# number of unicode glyphs present
+
+# format
+
+# flags
+
+# compression
+
+# transparency index
+
+########################################################################################################################
+
+
+
+# We have 95 glyphs: [0x20...0x7E]
+
+
+# Each glyph is key=code_point, value=QFFGlyphInfo
+
+########################################################################################################################
+
+
+
+# Each glyph is key=code_point, value=QFFGlyphInfo
+
+########################################################################################################################
+
+
+
+########################################################################################################################
+
+
+
+# The set of glyphs that we want to generate images for
+
+# Add ascii charset if requested
+
+# does not include 0x7F!
+
+# Append any extra unicode glyphs
+
+# Work out how many bytes used for RLE vs. non-RLE
+
+# Clear out any existing font metadata
+
+# Each glyph is key=code_point, value={ x: ?, w: ? }
+
+# Work out the list of glyphs required
+
+# Work out the geometry
+
+# Work out the glyph offsets/widths
+
+# Run through the markers and work out where each glyph starts/stops
+
+# top left pixel is the marker color we're going to use to split each glyph
+
+# Make sure the number of glyphs we're attempting to generate matches the input image
+
+# Set up the required metadata for each glyph
+
+# Parsing was successful, keep the image in this instance
+
+# subtract the line with the markers
+
+
+# Load the font
+
+# Work out the max font size
+
+# Work out the list of glyphs required
+
+# Measure each glyph to determine the overall baseline offset required
+
+# Create the output image
+
+# Loop through each glyph...
+
+# Work out this glyph's bounding box
+
+# Draw each glyph to its own image so we don't get anti-aliasing applied to the final image when straddling edges
+
+# Place the glyph-specific image in the correct location overall
+
+# Set up the marker for start of each glyph
+
+# Increment for the next glyph's position
+
+# Add the ending marker so that the difference/crop works
+
+# Determine the usable font area
+
+# remove the unused end-marker
+
+
+# Crop and re-parse the resulting image to ensure we're generating the correct format
+
+# Drop out if there's no image loaded
+
+# Save the image to the supplied file
+
+# Load and parse the supplied image file
+
+# Drop out if there's no image loaded
+
+# Work out if we want to use RLE at all, skipping it if it's not any smaller (it's applied per-glyph)
+
+# For each glyph, work out which image data we want to use and append it to the image buffer, recording the byte-wise offset
+
+# Check if we have all the ASCII glyphs present
+
+# Helper for populating the blocks
+
+# Configure the font descriptor
+
+# Write a dummy font descriptor -- we'll have to come back and write it properly once we've rendered out everything else
+
+# Write out the ASCII table if required
+
+# Write out the unicode table if required
+
+# Write out the palette if required
+
+# Helper to convert from RGB888 to the QMK ""dialect"" of HSV888
+
+# Convert all palette entries to HSV888 and write to the output
+
+# Write out the image data
+
+# Now fix up the overall font descriptor, then write it in the correct location
+"
+painter_qgf.py,"# Copyright 2021 Nick Brassel (@tzarc)
+
+# SPDX-License-Identifier: GPL-2.0-or-later
+
+
+# Quantum Graphics File ""QGF"" Image File Format.
+
+# See https://docs.qmk.fm/#/quantum_painter_qgf for more information.
+
+
+########################################################################################################################
+
+
+
+# start off with empty bytes...
+
+# block type id
+
+# negated block type id
+
+# blob length
+
+########################################################################################################################
+
+
+
+# start off with empty bytes...
+
+# magic
+
+# version
+
+# file size
+
+# negated file size
+
+# width
+
+# height
+
+# frame count
+
+########################################################################################################################
+
+
+
+# start off with empty bytes...
+
+# offset
+
+########################################################################################################################
+
+
+
+# TODO: Work out how to retrieve the transparent palette entry from the PIL gif loader
+
+# Placeholder until it gets read from the animation
+
+
+# start off with empty bytes...
+
+# format
+
+# flags
+
+# compression
+
+# transparency index
+
+# delay
+
+########################################################################################################################
+
+
+
+# start off with empty bytes...
+
+# h
+
+# s
+
+# v
+
+########################################################################################################################
+
+
+
+# start off with empty bytes...
+
+# left
+
+# top
+
+# right
+
+# bottom
+
+########################################################################################################################
+
+
+
+########################################################################################################################
+
+
+
+########################################################################################################################
+
+
+
+# Work out from the parameters if we need to do anything special
+
+# Helper for inline verbose prints
+
+# Helper to iterate through all frames in the input image
+
+# Get number of of frames in this image
+
+# Collect all the frame sizes
+
+# Make sure all frames are the same size
+
+# Write out the initial graphics descriptor (and write a dummy value), so that we can come back and fill in the
+
+# correct values once we've written all the frames to the output
+
+# Work out the frame offset descriptor location (and write a dummy value), so that we can come back and fill in the
+
+# correct offsets once we've written all the frames to the output
+
+# Helper function to save each frame to the output file
+
+# If we replace the frame we're going to output with a delta, we can override it here
+
+# Work out the format we're going to use
+
+# Convert the original frame so we can do comparisons
+
+# Convert the raw data to RLE-encoded if requested
+
+# Work out if a delta frame is smaller than injecting it directly
+
+# If we want to use deltas, then find the difference
+
+# Get the bounding box of those differences
+
+# If we have a valid bounding box...
+
+# ...create the delta frame by cropping the original.
+
+# Convert the delta frame to the requested format
+
+# Work out how large the delta frame is going to be with compression etc.
+
+# If the size of the delta frame (plus delta descriptor) is smaller than the original, use that instead
+
+# This ensures that if a non-delta is overall smaller in size, we use that in preference due to flash
+
+# sizing constraints.
+
+# Copy across all the delta equivalents so that the rest of the processing acts on those
+
+# Write out the frame descriptor
+
+# See qp.h, painter_compression_t
+
+# If we're not an animation, just pretend we're delaying for 1000ms
+
+# Write out the palette if required
+
+# Helper to convert from RGB888 to the QMK ""dialect"" of HSV888
+
+# Convert all palette entries to HSV888 and write to the output
+
+# Write out the delta info if required
+
+# Set up the rendering location of where the delta frame should be situated
+
+# Write the delta frame to the output
+
+# Write out the data for this frame to the output
+
+# Iterate over each if the input frames, writing it to the output in the process
+
+# Go back and update the graphics descriptor now that we can determine the final file size
+
+# Go back and update the frame offsets now that they're written to the file
+
+########################################################################################################################
+
+
+# Register with PIL so that it knows about the QGF format
+""""""Helper method used by PIL to work out if it can parse an input file.
+
+    Currently unimplemented.
+    """"""
+
+""""""Helper method used by PIL to write to an output file.
+    """"""
+"
+parser.py,"#!/usr/bin/env python3
+
+
+#include QMK_KEYBOARD_H\n""
+
+#include ""' + dependecy + '""\n'
+
+#define CHORD_TIMEOUT "" + str(data[""parameters""][""chord_timeout""]) + ""\n""
+
+#define DANCE_TIMEOUT "" + str(data[""parameters""][""dance_timeout""]) + ""\n""
+
+#define LEADER_TIMEOUT "" + str(data[""parameters""][""leader_timeout""]) + ""\n""
+
+#define TAP_TIMEOUT "" + str(data[""parameters""][""tap_timeout""]) + ""\n""
+
+#define LONG_PRESS_MULTIPLIER "" + str(data[""parameters""][""long_press_multiplier""]) + ""\n""
+
+#define DYNAMIC_MACRO_MAX_LENGTH "" + str(data[""parameters""][""dynamic_macro_max_length""]) + ""\n""
+
+#define COMMAND_MAX_LENGTH "" + str(data[""parameters""][""command_max_length""]) + ""\n""
+
+#define STRING_MAX_LENGTH "" + str(data[""parameters""][""string_max_length""]) + ""\n""
+
+#define LEADER_MAX_LENGTH "" + str(data[""parameters""][""leader_max_length""]) + ""\n""
+
+#define HASH_TYPE "" + hash_type + ""\n""
+
+#define NUMBER_OF_KEYS "" + str(len(data[""keys""])) + ""\n""
+
+#define DEFAULT_PSEUDOLAYER "" + data[""parameters""][""default_pseudolayer""] + ""\n""
+
+#define H_"" + key + "" ((HASH_TYPE) 1 << "" + str(counter) + "")\n""
+
+# the engine expects ALWAYS_ON to exist
+
+#define NUMBER_OF_CHORDS "" + str(number_of_chords) + ""\n""
+
+#define NUMBER_OF_LEADER_COMBOS "" + str(len(data[""leader_sequences""]))
+"
+path.py,"# Use UTF8 by default for stdin
+""""""Functions that help us work with files and folders.
+""""""
+
+""""""Returns True if `keyboard_name` is a keyboard we can compile.
+    """"""
+
+""""""Returns a Path object representing the relative path under qmk_firmware, or None.
+    """"""
+
+""""""Returns the path to a keyboard's directory relative to the qmk root.
+    """"""
+
+""""""Locate the correct directory for storing a keymap.
+
+    Args:
+
+        keyboard_name
+            The name of the keyboard. Example: clueboard/66/rev3
+    """"""
+
+""""""Returns a `pathlib.Path()` object for a given path.
+
+    This will use the path to a file as seen from the directory the script was called from. You should use this to normalize filenames supplied from the command line.
+    """"""
+
+""""""normalize and check exists
+            otherwise magic strings like '-' for stdin resolve to bad paths
+        """"""
+"
+pyformat.py,"# For reasons I don't understand "".exe"" is stripped from the script name on windows.
+""""""Point people to the new command name.
+""""""
+
+""""""Pointer to the new command name: qmk format-python.
+    """"""
+"
+pytest.py,"#specifying-tests-to-run"")
+""""""QMK Python Unit Tests
+
+QMK script to run unit and integration tests against our python code.
+""""""
+
+""""""Run several linting/testing commands.
+    """"""
+"
+python.py,"# Find the list of files to format
+
+# Sanity check
+""""""Format python code according to QMK's style.
+""""""
+
+""""""Yield only files to be formatted and skip the rest
+    """"""
+
+""""""Format python code according to QMK's style.
+    """"""
+"
+rgb_breathe_table.py,"#if RGBLIGHT_BREATHE_TABLE_SIZE == {}\n'.format(256 >> s)
+
+
+#endif'
+
+#define RGBLIGHT_EFFECT_BREATHE_TABLE
+
+
+# Build the header file.
+
+#pragma once', '// clang-format off']
+
+
+# Show the results
+'''#define RGBLIGHT_EFFECT_BREATHE_TABLE
+
+// Breathing center: {0:.2f}
+// Breathing max:    {1:d}
+
+const uint8_t PROGMEM rgblight_effect_breathe_table[] = {{
+{2}
+}};
+
+static const int table_scale = 256 / sizeof(rgblight_effect_breathe_table);
+'''""""""Generate rgblight_breathe_table.h
+""""""
+
+""""""Generate a rgblight_breathe_table.h file containing a breathing LUT for RGB Lighting (Underglow) feature.
+    """"""
+
+"
+rules_mk.py,"# Determine our keyboard/keymap
+
+# Iterate through the info_rules map to generate basic rules
+
+# Iterate through features to enable/disable them
+
+# Set SPLIT_TRANSPORT, if needed
+
+# Set CUSTOM_MATRIX, if needed
+
+# Show the results
+""""""Used by the make system to generate a rules.mk
+""""""
+
+""""""Return the rules.mk line(s) for a mapping rule.
+    """"""
+
+""""""Generates a rules.mk file from info.json.
+    """"""
+"
+sample_parser.py,"#!/usr/bin/env python3
+
+#
+
+# Copyright 2019 Jack Humbert
+
+#
+
+# This program is free software: you can redistribute it and/or modify
+
+# it under the terms of the GNU General Public License as published by
+
+# the Free Software Foundation, either version 2 of the License, or
+
+# (at your option) any later version.
+
+#
+
+# This program is distributed in the hope that it will be useful,
+
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+# GNU General Public License for more details.
+
+#
+
+# You should have received a copy of the GNU General Public License
+
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#
+
+
+# print(str(waveFile.getparams()))
+
+# sys.exit()
+
+
+#define DAC_SAMPLE_CUSTOM_LENGTH "" + str(length) + ""\n\n""
+"
+stm32eeprom_parser.py,"#!/usr/bin/env python
+
+#
+
+# Copyright 2021 Don Kjer
+
+#
+
+# This program is free software: you can redistribute it and/or modify
+
+# it under the terms of the GNU General Public License as published by
+
+# the Free Software Foundation, either version 2 of the License, or
+
+# (at your option) any later version.
+
+#
+
+# This program is distributed in the hope that it will be useful,
+
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+# GNU General Public License for more details.
+
+#
+
+# You should have received a copy of the GNU General Public License
+
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#
+
+
+#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ '
+
+
+# Read compacted flash 
+
+# Read write log
+
+# Read next word as value
+
+# Reserved for future use
+
+# Sanity check
+
+# Decode magic
+
+# Decode layout options
+
+# Decode keycodes
+
+# Decode macros
+
+# Read the first few bytes to check magic signature
+"
+submodules.py,"# Update everything
+
+# Update only a single submodule
+
+# Update submodules in a list
+""""""Functions for working with QMK's submodules.
+""""""
+
+""""""Returns a dictionary of submodules.
+
+    Each entry is a dict of the form:
+
+        {
+            'name': 'submodule_name',
+            'status': None/False/True,
+            'githash': '<sha-1 hash for the submodule>'
+            'shorthash': '<short hash for the submodule>'
+            'describe': '<output of `git describe --tags`>'
+            'last_log_message': 'log message'
+            'last_log_timestamp': 'timestamp'
+        }
+
+    status is None when the submodule doesn't exist, False when it's out of date, and True when it's current
+    """"""
+
+""""""Update the submodules.
+
+        submodules
+            A string containing a single submodule or a list of submodules.
+    """"""
+"
+sysinfo.py,"###
+
+# M4cs Keymap for dekuNukem/duckyPad QMK firmware
+
+
+# Copyright (C) 2020 Max Bridgland
+
+
+# This program is free software: you can redistribute it and/or modify
+
+# it under the terms of the GNU General Public License as published by
+
+# the Free Software Foundation, either version 3 of the License, or
+
+# (at your option) any later version.
+
+
+# This program is distributed in the hope that it will be useful,
+
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+# GNU General Public License for more details.
+
+
+# You should have received a copy of the GNU General Public License
+
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+###
+
+
+"
+test_cli_commands.py,"# check to see if a known keyboard is returned
+
+# this will fail if handwired/pytest/basic is removed
+
+#include QMK_KEYBOARD_H\nconst uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\t[0] = LAYOUT_ortho_1x1(KC_A)};\n\n'
+
+
+
+#include QMK_KEYBOARD_H\nconst uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\t[0] = LAYOUT_ortho_1x1(KC_A)};\n\n'
+
+
+
+#    define DEVICE_VER 0x0001' in result.stdout
+
+#    define DIODE_DIRECTION COL2ROW' in result.stdout
+
+#    define MANUFACTURER ""none""' in result.stdout
+
+#    define PRODUCT ""pytest""' in result.stdout
+
+#    define PRODUCT_ID 0x6465' in result.stdout
+
+#    define VENDOR_ID 0xFEED' in result.stdout
+
+#    define MATRIX_COLS 1' in result.stdout
+
+#    define MATRIX_COL_PINS { F4 }' in result.stdout
+
+#    define MATRIX_ROWS 1' in result.stdout
+
+#    define MATRIX_ROW_PINS { F5 }' in result.stdout
+
+
+
+#define QMK_VERSION' in result.stdout
+
+
+""""""Pipe content of a file to a command and return output.
+    """"""
+
+""""""Print stdout if `result.returncode` does not match `expected`.
+    """"""
+"
+test_qmk_errors.py,
+test_qmk_keymap.py,"#include QMK_KEYBOARD_H\nconst uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {__KEYMAP_GOES_HERE__};\n'
+
+
+
+#include QMK_KEYBOARD_H\nconst uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {\t[0] = LAYOUT(KC_A)};\n'
+
+
+
+# FIXME(skullydazed): Add a test for qmk.keymap.write that mocks up an FD.
+"
+test_qmk_path.py,
+text.py,"# Find the list of files to format
+
+# Sanity check
+""""""Ensure text files have the proper line endings.
+""""""
+
+""""""Break down a collection into smaller parts
+    """"""
+
+""""""Spawn multiple dos2unix subprocess avoiding too long commands on formatting everything
+    """"""
+
+""""""Ensure text files have the proper line endings.
+    """"""
+"
+uf2conv.py,"#!/usr/bin/env python3
+
+# yapf: disable
+
+# ""UF2\n""
+
+# Randomly selected
+
+# Ditto
+
+
+# NO-flash flag set; skip block
+
+# The expectation is that the `uf2families.json` file is in the same
+
+# directory as this script. Make a path that works using `__file__`
+
+# which contains the full path to this script.
+"
+version_h.py,"# Build the version.h file.
+
+#pragma once']
+
+
+#define QMK_VERSION ""{git_version}""
+
+#define QMK_BUILDDATE ""{current_time}""
+
+#define CHIBIOS_VERSION ""{chibios_version}""
+
+#define CHIBIOS_CONTRIB_VERSION ""{chibios_contrib_version}""
+
+# Show the results
+""""""Used by the make system to generate version.h for use in code.
+""""""
+
+""""""Generates the version.h file.
+    """"""
+
+""""""
+#define QMK_VERSION ""{git_version}""
+#define QMK_BUILDDATE ""{current_time}""
+#define CHIBIOS_VERSION ""{chibios_version}""
+#define CHIBIOS_CONTRIB_VERSION ""{chibios_contrib_version}""
+"""""""
+via2json.py,"# Split VIA macro to its elements
+
+# Remove junk elements (None, '},' and ',{')
+
+# Found keycode(s)
+
+# Remove whitespaces and curly braces from around keycodes
+
+# Remove the KC prefix
+
+# Found text
+
+# Check if passed LAYOUT is correct
+
+# Find appropriate layout macro
+
+# Load the VIA backup json
+
+# Generate keyboard metadata
+
+# Get keycode array
+
+# Convert macros
+
+# Replace VIA macro keys with JSON keymap ones
+
+# Generate the keymap.json
+""""""Generate a keymap.c from a configurator export.
+""""""
+
+""""""Convert a VIA backup json to keymap.json format.
+
+    This command uses the `qmk.keymap` module to generate a keymap.json from a VIA backup json. The generated keymap is written to stdout, or to a file if -o is provided.
+    """"""
+"
+wavetable_parser.py,"#!/usr/bin/env python3
+
+#
+
+# Copyright 2019 Jack Humbert
+
+#
+
+# This program is free software: you can redistribute it and/or modify
+
+# it under the terms of the GNU General Public License as published by
+
+# the Free Software Foundation, either version 2 of the License, or
+
+# (at your option) any later version.
+
+#
+
+# This program is distributed in the hope that it will be useful,
+
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+
+# GNU General Public License for more details.
+
+#
+
+# You should have received a copy of the GNU General Public License
+
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#
+
+
+#define DAC_WAVETABLE_CUSTOM_LENGTH "" + str(int(length / 256)) + ""\n\n""
+"
+windows.py,"""""""Run the Windows specific tests.
+    """"""
+"
+__init__.py,

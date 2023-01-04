@@ -1,0 +1,1959 @@
+acksync.c,"/**
+ * Interrupt any `sc_acksync_wait()`
+ */
+// Acknowledgements must be monotonic
+"
+adb.c,"/* Convenience macro to expand:
+ *
+ *     const char *const argv[] =
+ *         SC_ADB_COMMAND(""shell"", ""echo"", ""hello"");
+ *
+ * to:
+ *
+ *     const char *const argv[] =
+ *         { sc_adb_get_executable(), ""shell"", ""echo"", ""hello"", NULL };
+ */
+// serialize argv to string ""[arg1], [arg2], [arg3]""
+
+// count space for ""[], ...\0""
+
+// not enough space, truncate
+
+// do nothing
+
+// Already interrupted
+
+// Always pass close=false, interrupting would be racy otherwise
+
+// Close separately
+
+// If the execution itself failed (not the command exit code), log the
+
+// error in all cases
+
+// tcp:PORT
+
+// localabstract:NAME
+
+// tcp:PORT
+
+// tcp:PORT
+
+// localabstract:NAME
+
+// localabstract:NAME
+
+// Windows will parse the string, so the paths must be quoted
+
+// (see sys/win/command.c)
+
+// Windows will parse the string, so the local name must be quoted
+
+// (see sys/win/command.c)
+
+// ""adb connect"" always returns successfully (with exit code 0), even in
+
+// case of failure. As a workaround, check if its output starts with
+
+// ""connected"".
+
+// ""adb connect"" also prints errors to stdout. Since we capture it,
+
+// re-print the error to stderr.
+
+// The implementation assumes that the output of ""adb devices -l"" fits
+
+// in the buffer in a single pass
+
+// It is parsed as a NUL-terminated string
+
+// List all devices to the output list directly
+
+// The device serial is an IP:port...
+
+// But the requested serial has no ':', so only consider
+
+// the IP part of the device serial. This allows to use
+
+// ""192.168.1.1"" to match any ""192.168.1.1:port"".
+
+// They are not equal, they don't even have the same
+
+// length
+
+// Both emulators and TCP/IP devices are selected via -e
+
+//github.com/Genymobile/scrcpy/blob/master/FAQ.md>"");
+
+// index of the single matching device if sel_count == 1
+
+// if count > 0 && sel_count == 0, then necessarily a selection is
+
+// requested
+
+// sel_idx is valid only if sel_count == 1
+
+// Move devics into out_device (do not destroy device)
+
+// ""adb shell ip route"" output should contain only a few lines
+
+// The implementation assumes that the output of ""ip route"" fits in the
+
+// buffer in a single pass
+
+// It is parsed as a NUL-terminated string
+"
+adb_device.c,"// Starts with ""emulator-""
+
+// If the serial contains a ':', then it is a TCP/IP device (it is
+
+// sufficient to distinguish an ip:port from a real USB serial)
+"
+adb_parser.c,"// One device line looks like:
+
+// ""0123456789abcdef	device usb:2-1 product:MyProduct model:MyModel ""
+
+//     ""device:MyDevice transport_id:1""
+
+
+// Garbage lines printed by adb daemon while starting start with a '*'
+
+// Ignore lines starting with ""adb server"":
+
+//   adb server version (41) doesn't match this client (39); killing...
+
+// cursor in the line
+
+
+// After the serial:
+
+//  - ""adb devices"" writes a single '\t'
+
+//  - ""adb devices -l"" writes multiple spaces
+
+// For flexibility, accept both.
+
+// empty serial
+
+// serial alone is unexpected
+
+// After the serial, there might be several spaces
+
+// consume all separators
+
+
+// empty state
+
+// Iterate over all properties ""key:value key:value ...""
+
+// We only need the model
+
+// model is optional, do not fail
+
+// The next line starts after the '\n' (replaced by `\0`)
+
+// The next line starts after the '\n'
+
+// Skip everything until the header, there might be garbage lines
+
+// related to daemon starting before
+
+// The line, but without any trailing '\r'
+
+// continue anyway
+
+// One line from ""ip route"" looks like:
+
+// ""192.168.1.0/24 dev wlan0  proto kernel  scope link  src 192.168.1.x""
+
+
+// Get the location of the device name (index of ""wlan0"" in the example)
+
+// Get the location of the ip address (column 8, but column 6 if we start
+
+// from column 2). Must be computed before truncating individual columns.
+
+// idx_ip is searched from &line[idx_dev_name]
+
+// Only consider lines where the device name starts with ""wlan""
+
+// The same, but without any trailing '\r'
+
+// Found
+
+// The next line starts after the '\n'
+"
+adb_tunnel.c,"// the command itself failed, it will fail on any port
+
+// At the application level, the device part is ""the server"" because it
+
+// serves video stream and control. However, at the network level, the
+
+// client listens and the server connects to the client. That way, the
+
+// client can listen before starting the server app, so there is no
+
+// need to try to connect until the server socket is listening on the
+
+// device.
+
+// success
+
+// Stop immediately
+
+// failure, disable tunnel and try another port
+
+// check before incrementing to avoid overflow on port 65535
+
+// success
+
+// Stop immediately
+
+// Attempt to use ""adb reverse""
+
+// if ""adb reverse"" does not work (e.g. over ""adb connect""), it
+
+// fallbacks to ""adb forward"", so the app socket is the client
+
+
+// server_socket is never used anymore
+
+// Consider tunnel disabled even if the command failed
+"
+aoa_hid.c,"/**
+     * If the HID descriptor is longer than the endpoint zero max packet size,
+     * the descriptor will be sent in multiple ACCESSORY_SET_HID_REPORT_DESC
+     * commands. The data for the descriptor must be sent sequentially
+     * if multiple packets are needed.
+     * <https://source.android.com/devices/accessories/aoa2.html#hid-support>
+     *
+     * libusb handles packet abstraction internally, so we don't need to care
+     * about bMaxPacketSize0 here.
+     *
+     * See <https://libusb.sourceforge.io/api-1.0/libusb_packetoverflow.html>
+     */
+// See <https://source.android.com/devices/accessories/aoa2#hid-support>.
+
+// HID Event: [00] FF FF FF FF...
+
+// Destroy remaining events
+
+// <https://source.android.com/devices/accessories/aoa2.html#hid-support>
+
+// value (arg0): accessory assigned ID for the HID device
+
+// index (arg1): total length of the HID report descriptor
+
+//source.android.com/devices/accessories/aoa2.html#hid-support>
+
+//libusb.sourceforge.io/api-1.0/libusb_packetoverflow.html>
+
+// value (arg0): accessory assigned ID for the HID device
+
+// index (arg1): offset of data (buffer) in descriptor
+
+// libusb_control_transfer expects a pointer to non-const
+
+// <https://source.android.com/devices/accessories/aoa2.html#hid-support>
+
+// value (arg0): accessory assigned ID for the HID device
+
+// index (arg1): 0 (unused)
+
+// <https://source.android.com/devices/accessories/aoa2.html#hid-support>
+
+// value (arg0): accessory assigned ID for the HID device
+
+// index (arg1): 0
+
+// Stop immediately, do not process further events
+
+// If some events have ack_to_wait set, then sc_aoa must have been
+
+// initialized with a non NULL acksync
+
+// Do not block the loop indefinitely if the ack never comes (it
+
+// should never happen)
+
+// stopped
+"
+cli.c,"// either shortopt or longopt_id is non-zero
+
+// no argument:       argdesc == NULL && !optional_arg
+
+// optional argument: argdesc != NULL && optional_arg
+
+// required argument: argdesc != NULL && !optional_arg
+
+// if NULL, the option does not appear in the help
+
+//d.android.com/reference/android/media/MediaFormat>"",
+
+//wiki.libsdl.org/SDL_HINT_RENDER_DRIVER>"",
+
+// deprecated
+
+// If there is an argument, add ':'
+
+// If the argument is optional, add another ':'
+
+// If longopt_id is set, then longopt must be set
+
+// The longopts array must only contain long options
+
+// Either shortopt or longopt_id is set, but not both
+
+// The array must be terminated by a NULL item
+
+// only used for assertions
+
+
+// sc_str_wrap_lines() requires indent < columns
+
+
+// Option not documented in help (for example because it is deprecated)
+
+// sc_str_wrap_lines() requires indent < columns
+
+// At least one shortcut
+
+// sc_str_wrap_lines() requires indent < columns
+
+// sc_str_wrap_lines() requires indent < columns
+
+// The text starts at 9: 4 ident spaces, 3 chars for numeric value, 2 spaces
+
+// Contains at least the initial identation
+
+
+// text + 9 to remove the initial indentation
+
+// Not a tty
+
+// Could not get the terminal size
+
+// Do not accept a too small value
+
+// Print shortcuts section
+
+// Print environment variables section
+
+// long may be 32 bits (it is the case on mingw), so do not use more than
+
+// 31 bits (long is signed)
+
+// Without argument, lock the initial orientation
+
+// special value for ""auto""
+
+// item is a list of mod keys separated by '+' (e.g. ""lctrl+lalt"")
+
+// returns a bitwise-or of SC_SHORTCUT_MOD_* constants (or 0 on error)
+
+// strchr() does not consider the ""len"" parameter, to it could find an
+
+// occurrence too far in the string (there is no strnchr())
+
+// LCtrl+LAlt or RCtrl or LCtrl+RSuper: ""lctrl+lalt,rctrl,lctrl+rsuper""
+
+
+// expose the function to unit-tests
+
+// reset to start from the first argument in tests
+
+
+// fall through
+
+// getopt prints the error message on stderr
+
+// If a TCP/IP address is provided, then tcpip must be enabled
+
+// V4L2 could not handle size change.
+
+// Do not log because downsizing on error is the default behavior,
+
+// not an explicit request from the user.
+
+// OTG mode is compatible with only very few options.
+
+// Only report obvious errors.
+"
+clock.c,"/* The first frames are typically received and decoded with more delay
+         * than the others, causing a wrong slope estimation on start. To
+         * compensate, assume an initial slope of 1, then progressively use the
+         * estimated slope. */
+// comment to debug
+
+
+// Estimate the affine function f(stream) = slope * stream + offset
+
+// two points are necessary
+
+
+// One point passes from the right sum to the left sum
+
+
+// Only for the first frames
+
+// The current point overwrites the previous value in the circular
+
+// array, update the left sum accordingly
+
+// Update estimation
+
+// sc_clock_update() must have been called
+"
+compat.c,
+controller.c,"// stop immediately, do not process further msgs
+"
+control_msg.c,"/**
+ * Map an enum value to a string based on an array, without crashing on an
+ * out-of-bounds index.
+ */
+// write length (4 bytes) + string (non null-terminated)
+
+// no additional data
+
+// string pointer id
+
+// numeric pointer id
+
+// do nothing
+"
+decoder.c,"/** Downcast packet_sink to decoder */
+// nothing to do
+
+// a frame was received
+
+// A frame lost should not make the whole pipeline fail. The error, if
+
+// any, is already logged.
+"
+demuxer.c,"// The video stream contains raw packets, without time information. When we
+
+// record, we retrieve the timestamps separately, from a ""meta"" header
+
+// added by the server before each raw packet.
+
+//
+
+// The ""meta"" header length is 12 bytes:
+
+// [. . . . . . . .|. . . .]. . . . . . . . . . . . . . . ...
+
+//  <-------------> <-----> <-----------------------------...
+
+//        PTS        packet        raw packet
+
+//                    size
+
+//
+
+// It is followed by <packet_size> bytes containing the packet/frame.
+
+//
+
+// The most significant bits of the PTS are used for packet flags:
+
+//
+
+//  byte 7   byte 6   byte 5   byte 4   byte 3   byte 2   byte 1   byte 0
+
+// CK...... ........ ........ ........ ........ ........ ........ ........
+
+// ^^<------------------------------------------------------------------->
+
+// ||                                PTS
+
+// | `- key frame
+
+//  `-- config packet
+
+
+// A config packet must not be decoded immediately (it contains no
+
+// frame); instead, it must be concatenated with the future data packet.
+
+// prepare the concat packet to send to the decoder
+
+// the pending packet must be discarded (consumed or error)
+
+// We must only pass complete frames to av_parser_parse2()!
+
+// It's more complicated, but this allows to reduce the latency by 1 frame!
+
+// end of stream
+
+// cannot process packet (error already logged)
+"
+device_msg.c,"// at least type + empty string length
+
+// not available
+
+// not available
+
+// error, we cannot recover
+"
+file.c,"// dirname() does not work correctly everywhere, so get the parent
+
+// directory manually.
+
+// See <https://github.com/Genymobile/scrcpy/issues/2619>
+
+// modify executable_path in place
+
+// +2: '/' and '\0'
+
+// namelen + 1 to copy the final '\0'
+"
+file_pusher.c,"// lazy initialization
+
+// start file_pusher if it's used for the first time
+
+// stop immediately, do not process further events
+"
+fps_counter.c,"// no need to initialize the other fields, they are unused until started
+
+
+// must be called with mutex locked
+
+// must be called with mutex locked
+
+// add a multiple of the interval
+
+// ignore the reason (timeout or signaled), we just loop anyway
+
+// counter->thread_started and counter->thread are always accessed from the
+
+// same thread, no need to lock
+
+// wake up blocking wait
+
+// interrupted must be set by the thread calling join(), so no need to
+
+// lock for the assertion
+"
+frame_buffer.c,"// there is initially no frame, so consider it has already been consumed
+
+// Use a temporary frame to preserve pending_frame in case of error.
+
+// tmp_frame is an empty frame, no need to call av_frame_unref() beforehand.
+
+// Now that av_frame_ref() succeeded, we can replace the previous
+
+// pending_frame
+
+// av_frame_move_ref() resets its source frame, so no need to call
+
+// av_frame_unref()
+
+"
+hid_keyboard.c,"/** Downcast key processor to hid_keyboard */
+
+/**
+ * For HID over AOAv2, only report descriptor is needed.
+ *
+ * The specification is available here:
+ * <https://www.usb.org/sites/default/files/hid1_11.pdf>
+ *
+ * In particular, read:
+ *  - 6.2.2 Report Descriptor
+ *  - Appendix B.1 Protocol 1 (Keyboard)
+ *  - Appendix C: Keyboard Implementation
+ *
+ * Normally a basic HID keyboard uses 8 bytes:
+ *     Modifier Reserved Key Key Key Key Key Key
+ *
+ * You can dump your device's report descriptor with:
+ *
+ *     sudo usbhid-dump -m vid:pid -e descriptor
+ *
+ * (change vid:pid' to your device's vendor ID and product ID).
+ */
+
+/**
+ * A keyboard HID event is 8 bytes long:
+ *
+ *  - byte 0: modifiers (1 flag per modifier key, 8 possible modifier keys)
+ *  - byte 1: reserved (always 0)
+ *  - bytes 2 to 7: pressed keys (6 at most)
+ *
+ *                   7 6 5 4 3 2 1 0
+ *                  +---------------+
+ *         byte 0:  |. . . . . . . .| modifiers
+ *                  +---------------+
+ *                   ^ ^ ^ ^ ^ ^ ^ ^
+ *                   | | | | | | | `- left Ctrl
+ *                   | | | | | | `--- left Shift
+ *                   | | | | | `----- left Alt
+ *                   | | | | `------- left Gui
+ *                   | | | `--------- right Ctrl
+ *                   | | `----------- right Shift
+ *                   | `------------- right Alt
+ *                   `--------------- right Gui
+ *
+ *                  +---------------+
+ *         byte 1:  |0 0 0 0 0 0 0 0| reserved
+ *                  +---------------+
+ *
+ *                  +---------------+
+ *   bytes 2 to 7:  |. . . . . . . .| scancode of 1st key pressed
+ *                  +---------------+
+ *                  |. . . . . . . .| scancode of 2nd key pressed
+ *                  +---------------+
+ *                  |. . . . . . . .| scancode of 3rd key pressed
+ *                  +---------------+
+ *                  |. . . . . . . .| scancode of 4th key pressed
+ *                  +---------------+
+ *                  |. . . . . . . .| scancode of 5th key pressed
+ *                  +---------------+
+ *                  |. . . . . . . .| scancode of 6th key pressed
+ *                  +---------------+
+ *
+ * If there are less than 6 keys pressed, the last items are set to 0.
+ * For example, if A and W are pressed:
+ *
+ *                  +---------------+
+ *   bytes 2 to 7:  |0 0 0 0 0 1 0 0| A is pressed (scancode = 4)
+ *                  +---------------+
+ *                  |0 0 0 1 1 0 1 0| W is pressed (scancode = 26)
+ *                  +---------------+
+ *                  |0 0 0 0 0 0 0 0| ^
+ *                  +---------------+ |  only 2 keys are pressed, the
+ *                  |0 0 0 0 0 0 0 0| |  remaining items are set to 0
+ *                  +---------------+ |
+ *                  |0 0 0 0 0 0 0 0| |
+ *                  +---------------+ |
+ *                  |0 0 0 0 0 0 0 0| v
+ *                  +---------------+
+ *
+ * Pressing more than 6 keys is not supported. If this happens (typically,
+ * never in practice), report a ""phantom state"":
+ *
+ *                  +---------------+
+ *   bytes 2 to 7:  |0 0 0 0 0 0 0 1| ^
+ *                  +---------------+ |
+ *                  |0 0 0 0 0 0 0 1| |  more than 6 keys pressed:
+ *                  +---------------+ |  the list is filled with a special
+ *                  |0 0 0 0 0 0 0 1| |  rollover error code (0x01)
+ *                  +---------------+ |
+ *                  |0 0 0 0 0 0 0 1| |
+ *                  +---------------+ |
+ *                  |0 0 0 0 0 0 0 1| |
+ *                  +---------------+ |
+ *                  |0 0 0 0 0 0 0 1| v
+ *                  +---------------+
+ */
+
+// USB HID protocol says 6 keys in an event is the requirement for BIOS
+
+// keyboard support, though OS could support more keys via modifying the report
+
+// desc. 6 should be enough for scrcpy.
+
+//www.usb.org/sites/default/files/hid1_11.pdf>
+
+// Usage Page (Generic Desktop)
+
+// Usage (Keyboard)
+
+// Collection (Application)
+
+// Usage Page (Key Codes)
+
+// Usage Minimum (224)
+
+// Usage Maximum (231)
+
+// Logical Minimum (0)
+
+// Logical Maximum (1)
+
+// Report Size (1)
+
+// Report Count (8)
+
+// Input (Data, Variable, Absolute): Modifier byte
+
+// Report Size (8)
+
+// Report Count (1)
+
+// Input (Constant): Reserved byte
+
+// Usage Page (LEDs)
+
+// Usage Minimum (1)
+
+// Usage Maximum (5)
+
+// Report Size (1)
+
+// Report Count (5)
+
+// Output (Data, Variable, Absolute): LED report
+
+// Report Size (3)
+
+// Report Count (1)
+
+// Output (Constant): LED report padding
+
+// Usage Page (Key Codes)
+
+// Usage Minimum (0)
+
+// Usage Maximum (101)
+
+// Logical Minimum (0)
+
+// Logical Maximum(101)
+
+// Report Size (8)
+
+// Report Count (6)
+
+// Input (Data, Array): Keys
+
+// End Collection
+
+// SDL also generates events when only modifiers are pressed, we cannot
+
+// ignore them totally, for example press 'a' first then press 'Control',
+
+// if we ignore 'Control' event, only 'a' is sent.
+
+// Scancode to ignore
+
+// Pressed is true and released is false
+
+// Re-calculate pressed keys every time
+
+// USB HID protocol says that if keys exceeds report count, a
+
+// phantom state should be reported
+
+// Phantom state:
+
+//  - Modifiers
+
+//  - Reserved
+
+//  - ErrorRollOver * HID_MAX_KEYS
+
+// Nothing to do
+
+// In USB HID protocol, key repeat is handled by the host (Android), so
+
+// just ignore key repeat here.
+
+// Not all keys are supported, just ignore unsupported keys
+
+// Inject CAPSLOCK and/or NUMLOCK if necessary to synchronize
+
+// keyboard state
+
+// Ctrl+v is pressed, so clipboard synchronization has been
+
+// requested. Wait until clipboard synchronization is acknowledged
+
+// by the server, otherwise it could paste the old clipboard
+
+// content.
+
+// Reset all states
+
+// Never forward text input via HID (all the keys are injected
+
+// separately)
+
+// Clipboard synchronization is requested over the control socket, while HID
+
+// events are sent over AOA, so it must wait for clipboard synchronization
+
+// to be acknowledged by the device before injecting Ctrl+v.
+
+// Unregister HID keyboard so the soft keyboard shows again on Android
+"
+hid_mouse.c,"/** Downcast mouse processor to hid_mouse */
+
+/**
+ * Mouse descriptor from the specification:
+ * <https://www.usb.org/sites/default/files/hid1_11.pdf>
+ *
+ * Appendix E (p71): §E.10 Report Descriptor (Mouse)
+ *
+ * The usage tags (like Wheel) are listed in ""HID Usage Tables"":
+ * <https://www.usb.org/sites/default/files/documents/hut1_12v2.pdf>
+ * §4 Generic Desktop Page (0x01) (p26)
+ */
+
+/**
+ * A mouse HID event is 3 bytes long:
+ *
+ *  - byte 0: buttons state
+ *  - byte 1: relative x motion (signed byte from -127 to 127)
+ *  - byte 2: relative y motion (signed byte from -127 to 127)
+ *
+ *                   7 6 5 4 3 2 1 0
+ *                  +---------------+
+ *         byte 0:  |0 0 0 . . . . .| buttons state
+ *                  +---------------+
+ *                         ^ ^ ^ ^ ^
+ *                         | | | | `- left button
+ *                         | | | `--- right button
+ *                         | | `----- middle button
+ *                         | `------- button 4
+ *                         `--------- button 5
+ *
+ *                  +---------------+
+ *         byte 1:  |. . . . . . . .| relative x motion
+ *                  +---------------+
+ *         byte 2:  |. . . . . . . .| relative y motion
+ *                  +---------------+
+ *         byte 3:  |. . . . . . . .| wheel motion (-1, 0 or 1)
+ *                  +---------------+
+ *
+ * As an example, here is the report for a motion of (x=5, y=-4) with left
+ * button pressed:
+ *
+ *                  +---------------+
+ *                  |0 0 0 0 0 0 0 1| left button pressed
+ *                  +---------------+
+ *                  |0 0 0 0 0 1 0 1| horizontal motion (x = 5)
+ *                  +---------------+
+ *                  |1 1 1 1 1 1 0 0| relative y motion (y = -4)
+ *                  +---------------+
+ *                  |0 0 0 0 0 0 0 0| wheel motion
+ *                  +---------------+
+ */
+
+// 1 byte for buttons + padding, 1 byte for X position, 1 byte for Y position
+
+//www.usb.org/sites/default/files/hid1_11.pdf>
+
+//www.usb.org/sites/default/files/documents/hut1_12v2.pdf>
+
+// Usage Page (Generic Desktop)
+
+// Usage (Mouse)
+
+// Collection (Application)
+
+// Usage (Pointer)
+
+// Collection (Physical)
+
+// Usage Page (Buttons)
+
+// Usage Minimum (1)
+
+// Usage Maximum (5)
+
+// Logical Minimum (0)
+
+// Logical Maximum (1)
+
+// Report Count (5)
+
+// Report Size (1)
+
+// Input (Data, Variable, Absolute): 5 buttons bits
+
+// Report Count (1)
+
+// Report Size (3)
+
+// Input (Constant): 3 bits padding
+
+// Usage Page (Generic Desktop)
+
+// Usage (X)
+
+// Usage (Y)
+
+// Usage (Wheel)
+
+// Local Minimum (-127)
+
+// Local Maximum (127)
+
+// Report Size (8)
+
+// Report Count (3)
+
+// Input (Data, Variable, Relative): 3 position bytes (X, Y, Wheel)
+
+// End Collection
+
+// End Collection
+
+// wheel coordinates only used for scrolling
+
+
+// no x motion
+
+// no y motion
+
+// wheel coordinates only used for scrolling
+
+
+// buttons state irrelevant (and unknown)
+
+// no x motion
+
+// no y motion
+
+// In practice, vscroll is always -1, 0 or 1, but in theory other values
+
+// are possible
+
+// Horizontal scrolling ignored
+
+
+// Touch events not supported (coordinates are not relative)
+"
+icon.c,"// if the envvar is set, use it
+
+// SDL_PixelFormatEnum has been introduced in SDL 2.0.10. Use int for older SDL
+
+// versions.
+
+// Initialize the SDL palette
+
+// The palette is transported in AVFrame.data[1], is 1024 bytes
+
+// long (256 4-byte entries) and is formatted the same as in
+
+// AV_PIX_FMT_RGB32 described above (i.e., it is also
+
+// endian-specific).
+
+// <https://ffmpeg.org/doxygen/4.1/pixfmt_8h.html#a9a8e335cf3be472042bc9f0cf80cd4c5>
+
+// frame owns the data
+
+"
+input_manager.c,"// keep only the relevant modifier keys
+
+// 0 is reserved for SC_SEQUENCE_INVALID
+
+// send DOWN event
+
+// turn the screen on if it was off, press BACK otherwise
+
+// If the screen is off, it is turned on only on ACTION_DOWN
+
+// the started state can only be written from the current thread, so there
+
+// is no ToCToU issue
+
+// Any error is already logged
+
+// empty text
+
+// The key processor does not support text input
+
+// A shortcut must never generate text events
+
+// controller is NULL if --no-control is requested
+
+// The shortcut modifier is pressed
+
+// fall-through
+
+// forward repeated events
+
+// forward repeated events
+
+// inject the text as input events
+
+// store the text in the device clipboard and paste,
+
+// without requesting an acknowledgment
+
+// inject the text as input events
+
+// Request an acknowledgement only if necessary
+
+// Synchronize the computer clipboard to the device clipboard before
+
+// sending Ctrl+v, to allow seamless copy-paste.
+
+// The key processor must wait for this ack before injecting Ctrl+v
+
+// Increment only when the request succeeded
+
+// simulated from touch events, so it's a duplicate
+
+// vfinger must never be used in relative mode
+
+// assert one more time
+
+// The mouse processor does not support touch events
+
+// SDL touch event coordinates are normalized in the range [0; 1]
+
+// simulated from touch events, so it's a duplicate
+
+// double-click on black borders resize to fit the device screen
+
+// otherwise, send the click event to the device
+
+// vfinger must not be used in relative mode
+
+// No pinch-to-zoom simulation
+
+// Pinch-to-zoom simulation.
+
+//
+
+// If Ctrl is hold when the left-click button is pressed, then
+
+// pinch-to-zoom mode is enabled: on every mouse event until the left-click
+
+// button is released, an additional ""virtual finger"" event is generated,
+
+// having a position inverted through the center of the screen.
+
+//
+
+// In other words, the center of the rotation/scaling is the center of the
+
+// screen.
+
+// The mouse processor does not support scroll events
+
+// mouse_x and mouse_y are expressed in pixels relative to the window
+
+// some key events do not interact with the device, so process the
+
+// event even if control is disabled
+
+// some mouse events do not interact with the device, so process
+
+// the event even if control is disabled
+"
+intmap.c,
+intr.c,"// No more than one component to interrupt
+"
+keyboard_inject.c,"/** Downcast key processor to sc_keyboard_inject */
+// Navigation keys and ENTER.
+
+// Used in all modes.
+
+// Numpad navigation keys.
+
+// Used in all modes, when NumLock and Shift are disabled.
+
+// Letters and space.
+
+// Used in non-text mode.
+
+// Numbers and punctuation keys.
+
+// Used in raw mode only.
+
+// Handle Numpad events when Num Lock is disabled
+
+// If SHIFT is pressed, a text event will be sent instead
+
+// do not forward alpha and space key events (unless Ctrl is pressed)
+
+// if ALT and META are not pressed, also handle letters and space
+
+// fill dependent flags
+
+// Windows key
+
+// Windows key
+
+// fill the dependent fields
+
+// The device clipboard synchronization and the key event messages are
+
+// serialized, there is nothing special to do to ensure that the clipboard
+
+// is set before injecting Ctrl+v.
+
+// Never inject text events
+
+// Letters and space are handled as raw key events
+
+// Key injection and clipboard synchronization are serialized
+"
+log.c,"// Note: message already contains a trailing '\n'
+"
+main.c,"// avoid link error on Linux Windows Subsystem
+
+// disable buffering, we want logs immediately
+
+// even line buffering (setvbuf() with mode _IOLBF) is not sufficient
+
+//github.com/Genymobile/scrcpy>\n"");
+
+
+// ignore failure
+
+"
+mouse_inject.c,"/** Downcast mouse processor to sc_mouse_inject */
+// Do not send motion events when no click is pressed
+"
+net.c,"// avoid unused-function warning
+
+// If SOCK_CLOEXEC does not exist, the flag must be set manually once the
+
+// socket is created
+
+// htonl() harmless on INADDR_ANY
+"
+net_intr.c,"// Already interrupted
+
+// Already interrupted
+
+// Already interrupted
+
+// Already interrupted
+
+// Already interrupted
+
+// Already interrupted
+
+// Already interrupted
+"
+opengl.c,"/* starts with ""OpenGL ES "" */
+
+/* skip the prefix */
+// optional
+
+// failed to parse the version
+"
+options.c,
+process.c,"// ignore exit code
+
+
+// Either no listener, or on_terminated() is defined
+"
+process_intr.c,"// Already interrupted
+
+// Already interrupted
+"
+receiver.c,"// an error occurred
+
+// shift the remaining data in the buffer
+"
+recorder.c,"/** Downcast packet_sink to recorder */
+// timestamps in us
+
+
+// until null or containing the requested name
+
+// copy the first packet to the extra data
+
+// ignore config packets
+
+// if stopped is set, continue to process the remaining events (to
+
+// finish the recording) before actually stopping
+
+
+// assign an arbitrary duration to the last packet
+
+// failing to write the last frame is not very serious, no
+
+// future frame may depend on it, so the resulting file
+
+// will still be valid
+
+// recorder->previous is only written from this thread, no need to lock
+
+// we just received the first packet
+
+// config packets have no PTS, we must ignore them
+
+// we now know the duration of the previous packet
+
+// discard pending packets
+
+// the recorded file is empty
+
+// contrary to the deprecated API (av_oformat_next()), av_muxer_iterate()
+
+// returns (on purpose) a pointer-to-const, but AVFormatContext.oformat
+
+// still expects a pointer-to-non-const (it has not be updated accordingly)
+
+// <https://github.com/FFmpeg/FFmpeg/commit/0694d8702421e7aff1340038559c438b61bb30dd>
+
+// ostream will be cleaned up during context cleaning
+
+// reject any new packet (this will stop the stream)
+"
+scrcpy.c,"// not needed here, but winsock2.h must never be included AFTER windows.h
+
+// sequence/ack helper to synchronize clipboard and Ctrl+v via HID
+
+// What could we do?
+
+// _WIN32
+
+
+// Linear filtering
+
+// Handle a click to gain focus as any other click
+
+// Disable synthetic mouse events from touch events
+
+// Touch events with id SDL_TOUCH_MOUSEID are ignored anyway, but it is
+
+// better not to generate them in the first place.
+
+// Disable compositor bypassing on X11
+
+// Do not minimize on focus loss
+
+// Clean up properly on Ctrl+C on Windows
+
+// _WIN32
+
+
+// Return true on success, false on error
+
+// do not forward others, which are too verbose
+
+// do not write the final '\0'
+
+// include '\0'
+
+// Do nothing, the disconnection will be handled by the ""stream stopped""
+
+// event
+
+// Minimal SDL initialization
+
+// Initialize SDL video in addition if display is enabled
+
+// Await for server without blocking Ctrl+C handling
+
+// This is not an error, user requested to quit
+
+// It is necessarily initialized here, since the device is connected
+
+// keyboard_input_mode may have been reset if HID mode failed
+
+// mouse_input_mode may have been reset if HID mode failed
+
+// There is a controller if and only if control is enabled
+
+// now we consumed the header values, the socket receives the video stream
+
+// start the demuxer
+
+// Close the window immediately on closing, because screen_destroy() may
+
+// only be called once the demuxer thread is joined (it may take time)
+
+// The demuxer is not stopped explicitly, because it will stop by itself on
+
+// end-of-stream
+
+// shutdown the sockets and kill the server
+
+// now that the sockets are shutdown, the demuxer and controller are
+
+// interrupted, we can join them
+
+// Destroy the screen only after the demuxer is guaranteed to be finished,
+
+// because otherwise the screen could receive new frames after destruction
+"
+scrcpy_otg.c,"// Minimal SDL initialization
+
+// On Windows, only one process could open a USB device
+
+// <https://github.com/Genymobile/scrcpy/issues/2773>
+
+// uninterruptible (intr == NULL), but in practice it's very quick
+
+// If neither --hid-keyboard or --hid-mouse is passed, enable both
+
+// usb_device not needed anymore
+"
+screen.c,"/* OpenGL 3.0+ */
+
+/* OpenGL ES 2.0+ */// get the window size in a struct sc_size
+
+// set the window size to be applied when fullscreen is disabled
+
+// get the preferred display bounds (i.e. the screen bounds with some margins)
+
+// The size is optimal if we can recompute one dimension of the current
+
+// size from the other
+
+// return the optimal size of the window, with the following constraints:
+
+//  - it attempts to keep at least one dimension of the current_size (i.e. it
+
+//    crops the black borders)
+
+//  - it keeps the aspect ratio
+
+//  - it scales down to make it fit in the display_size
+
+// avoid division by 0
+
+// do not constraint the size
+
+// remove black borders on top and bottom
+
+// remove black borders on left and right (or none at all if it already
+
+// fits)
+
+// initially, there is no current size, so use the frame size as current size
+
+// req_width and req_height, if not 0, are the sizes requested by the user
+
+// compute from the requested height
+
+// compute from the requested width
+
+// screen->im.mp may be NULL if --no-control
+
+// Workaround for SDL bug on macOS:
+
+// <https://github.com/libsdl-org/SDL/issues/5340>
+
+// The drawable size is the window size * the HiDPI scale
+
+// Enable trilinear filtering for downscaling
+
+// render the texture to the renderer
+
+//
+
+// Set the update_content_rect flag if the window or content size may have
+
+// changed, so that the content rectangle is recomputed
+
+// rotation in RenderCopyEx() is clockwise, while screen->rotation is
+
+// counterclockwise (to be consistent with --lock-video-orientation)
+
+// On Windows and MacOS, resizing blocks the event loop, so resizing events are
+
+// not triggered. On MacOS, as a workaround, handle them in an event handler
+
+// (it does not work for Windows unfortunately).
+
+//
+
+// <https://bugzilla.libsdl.org/show_bug.cgi?id=2077>
+
+// <https://stackoverflow.com/a/40693139/1987178>
+
+// In practice, it seems to always be called from the same thread in
+
+// that specific case. Anyway, it's just a workaround.
+
+// nothing to do, the screen is already open on the main thread
+
+// nothing to do, the screen lifecycle is not managed by the frame producer
+
+// event_failed implies previous_skipped (the previous frame may not have
+
+// been consumed if the event was not sent)
+
+// The EVENT_NEW_FRAME triggered for the previous frame will consume
+
+// this new frame instead, unless the previous event failed
+
+// Post the event on the UI thread
+
+// The window will be positioned and sized on first video frame
+
+// starts with ""opengl""
+
+// Store the windowed size to be able to compute the optimal size once
+
+// fullscreen and maximized are disabled
+
+// recreate the texture and resize the window if the frame size has changed
+
+// frame dimension changed, destroy texture
+
+// write the frame into the texture
+
+// this is the very first frame, show the window
+
+// Capture mouse on start
+
+// Center the window related to the device screen
+
+// Do nothing
+
+// On Windows, in maximized+fullscreen, disabling
+
+// fullscreen mode unexpectedly triggers the ""restored""
+
+// then ""maximized"" events, leaving the window in a
+
+// weird state (maximized according to the events, but
+
+// not maximized visually).
+
+// Another mouse capture key has been pressed, cancel
+
+// mouse (un)capture
+
+// Mouse capture keys are never forwarded to the device
+
+// A mouse capture key has been pressed then released:
+
+// toggle the capture mouse mode
+
+// Mouse capture keys are never forwarded to the device
+
+// Do not forward to input manager, the mouse will be captured
+
+// on SDL_MOUSEBUTTONUP
+
+// Touch events are not compatible with relative mode
+
+// (coordinates are not relative)
+
+// rotate
+
+// take the HiDPI scaling (dw/ww and dh/wh) into account
+
+// scale for HiDPI (64 bits for intermediate multiplications)
+"
+screen_otg.c,"// Workaround for SDL bug on macOS:
+
+// <https://github.com/libsdl-org/SDL/issues/5340>
+
+// don't fail
+
+// Capture mouse on start
+
+// .position not used for HID events
+
+// .position not used for HID events
+
+// .position not used for HID events
+
+// Another mouse capture key has been pressed, cancel
+
+// mouse (un)capture
+
+// Mouse capture keys are never forwarded to the device
+
+// A mouse capture key has been pressed then released:
+
+// toggle the capture mouse mode
+
+// Mouse capture keys are never forwarded to the device
+"
+server.c,"/* Android 9 and above */
+
+/* Android 8 and below */
+// if the envvar is set, use it
+
+// The server stores a copy of the params provided by the user
+
+// The params reference user-allocated memory, so we must copy them to
+
+// handle them from another thread
+
+
+// unused
+
+// from there, the strings are allocated
+
+// By default, control is true
+
+// By default, clipboard_autosync is true
+
+// By default, downsize_on_error is true
+
+// By default, cleanup is true
+
+// By default, power_on is true
+
+// From the computer, run
+
+//     adb forward tcp:5005 tcp:5005
+
+// Then, from Android Studio: Run > Debug > Edit configurations...
+
+// On the left, click on '+', ""Remote"", with:
+
+//     Host: localhost
+
+//     Port: 5005
+
+// Then click on ""Debug""
+
+// Inherit both stdout and stderr (all server logs are printed to stdout)
+
+// the connection may succeed even if the server behind the ""adb tunnel""
+
+// is not listening, so read one byte to detect a working connection
+
+// the server is not listening yet behind the adb tunnel
+
+// it worked!
+
+// Stop immediately
+
+// in case the client sends garbage
+
+// we know that the device is listening, we don't need several
+
+// attempts
+
+// we don't need the adb tunnel anymore
+
+// The sockets will be closed on stop if device_read_info() fails
+
+// Always leave this function with tunnel disabled
+
+// If the server process dies before connecting to the server socket,
+
+// then the client will be stuck forever on accept(). To avoid the problem,
+
+// wake up the accept() call (or any other) when the server dies, like on
+
+// stop() (it is safe to call interrupt() twice).
+
+// Only print this log if TCP/IP is not enabled
+
+// Error expected if not connected, do not report any error
+
+// Append "":5555"" if no port is present
+
+// Nothing to do
+
+// Execute ""adb start-server"" before ""adb devices"" so that daemon starting
+
+// output/errors is correctly printed in the console (""adb devices"" output
+
+// is parsed, so it is not output)
+
+// params->tcpip_dst implies params->tcpip
+
+// If tcpip_dst parameter is given, then it must connect to this address.
+
+// Therefore, the device is unknown, so serial is meaningless at this point.
+
+// A device must be selected via a serial in all cases except when --tcpip=
+
+// is called with a parameter (in that case, the device may initially not
+
+// exist, and scrcpy will execute ""adb connect"").
+
+// At most one of the 3 following parameters may be set
+
+// No explicit selection, check $ANDROID_SERIAL
+
+// ""move"" the device.serial without copy
+
+// the serial must not be freed by the destructor
+
+// server will connect to our server socket
+
+// ignore exit code
+
+// The tunnel is always closed by server_connect_to()
+
+// ignore exit code
+
+// Now connected
+
+// Wait for server_stop()
+
+// Interrupt sockets to wake up socket blocking calls on the server
+
+// There is no control_socket if --no-control is set
+
+// Give some delay for the server to terminate properly
+
+// After this delay, kill the server if it's not dead already.
+
+// On some devices, closing the sockets is not sufficient to wake up the
+
+// blocking calls while the device is asleep.
+
+// The process may have terminated since the check, but it is not
+
+// reaped (closed) yet, so its PID is still valid, and it is ok to call
+
+// sc_process_terminate() even in that case.
+"
+str.c,"// max items already reached, could not accept a new item
+
+// parse the next token during the next iteration
+
+// see UTF-8 encoding <https://en.wikipedia.org/wiki/UTF-8#Description>
+
+// the next byte is not the start of a new UTF-8 codepoint
+
+// so if we would cut there, the character would be truncated
+
+// The output string should not be much longer than the input string (just
+
+// a few '\n' added), so this initial capacity should hopefully almost
+
+// always avoid internal realloc() in string buffer
+
+// The last separator encountered, it must be inserted only conditionally,
+
+// depending on the next token
+
+// col tracks the current column in the current line
+
+// The pending space counts
+
+// Skip the separator
+
+// Not found
+
+// At least one
+"
+strbuf.c,"// +1 for '\0'
+
+// +1 for '\0'
+
+// Leave the old buf->s
+
+// +1 for '\0'
+
+// decreasing the size may not fail
+"
+term.c,
+test_adb_parser.c,
+test_binary.c,
+test_cbuf.c,"// the queue is empty
+
+// fill the queue
+
+// the queue if full
+
+"
+test_cli.c,"// optional arguments require '='
+
+// ""--no-control"" is not compatible with ""--turn-screen-off""
+
+// ""--no-display"" is not compatible with ""--fulscreen""
+
+// cannot enable --no-display without recording
+"
+test_clock.c,"// The values before the last SC_CLOCK_RANGE points in clock1 should have
+
+// no impact
+"
+test_control_msg_serialize.c,"// AKEY_EVENT_ACTION_UP
+
+// AKEYCODE_ENTER
+
+// repeat
+
+// AMETA_SHIFT_ON | AMETA_SHIFT_LEFT_ON
+
+// text length
+
+// text
+
+// text length (32 bits)
+
+// AKEY_EVENT_ACTION_DOWN
+
+// pointer id
+
+// 100 200
+
+// 1080 1920
+
+// pressure
+
+// AMOTION_EVENT_BUTTON_PRIMARY
+
+// 260 1026
+
+// 1080 1920
+
+// 1 (float encoded as i16)
+
+// -1 (float encoded as i16)
+
+// 1
+
+// AKEY_EVENT_ACTION_UP
+
+// sequence
+
+// paste
+
+// text length
+
+// text
+
+// sequence
+
+// paste
+
+// text length
+
+// SC_SCREEN_POWER_MODE_NORMAL
+"
+test_device_msg_deserialize.c,"// text length
+
+// ""ABC""
+
+// sequence
+"
+test_queue.c,
+test_str.c,"// returns strlen of copied string
+
+// is nul-terminated
+
+// does not write useless bytes
+
+// copies the content as expected
+
+// returns strlen of copied string
+
+// is nul-terminated
+
+// copies the content as expected
+
+// returns 'n' (sizeof(s))
+
+// is nul-terminated
+
+// copies the content as expected
+
+// returns strlen of concatenation
+
+// is nul-terminated
+
+// does not write useless bytes
+
+// copies the content as expected
+
+// returns strlen of concatenation
+
+// is nul-terminated
+
+// copies the content as expected
+
+// returns 'n' (sizeof(s))
+
+// is nul-terminated
+
+// copies the content as expected
+
+// returns 'n' (sizeof(s))
+
+// is nul-terminated
+
+// copies the content as expected
+
+// returns 'n' (sizeof(s))
+
+// is nul-terminated
+
+// copies the content as expected
+
+// add '""' at the beginning and the end
+
+// É and Ô are 2 bytes-wide
+
+
+// É is 2 bytes-wide
+
+
+// Ô is 2 bytes-wide
+
+
+// no more chars
+
+// out-of-range
+
+// max_items == 1
+
+
+// max_items == 3
+
+
+// invalid
+
+
+// invalid
+
+
+// invalid, even when max_items == 1
+
+
+// invalid
+
+// out-of-range
+
+
+//                     |----      1    1    2  2|
+
+//                     |0    5    0    5    0  3| <-- 24 columns
+"
+test_strbuf.c,
+test_vector.c,"/* append */
+
+/* insert in the middle */
+
+/* prepend */
+
+/* remove from the middle */
+
+
+/* remove from the head */
+
+
+/* remove from the tail */
+
+
+/* Test speciically for an expected growth factor of 1.5. In practice, the
+     * result is even lower (19) due to the first alloc of size 10 */
+
+/* ln(10000) / ln(1.5) ~= 23 */
+
+
+/* same expectations for removals */
+
+/* sc_vector_remove() must autoshrink */
+
+
+/* no realloc */
+
+/* move item at 1 so that its new position is 4 */
+
+/* move slice {2, 3, 4, 5} so that its new position is 5 */
+
+/* move slice {5, 6, 7} so that its new position is 2 */
+"
+thread.c,"// The thread name length is limited on some systems. Never use a name
+
+// longer than 16 bytes (including the final '\0')
+
+// SDL mutexes are recursive, but we don't want to use recursive mutexes
+
+// timeout
+
+// Round up to the next millisecond to guarantee that the deadline is
+
+// reached when returning due to timeout
+
+// The deadline is reached on timeout
+"
+tick.c,"// Maximum sc_tick precision (microsecond)
+
+// On systems that run Windows XP or later, the function will always
+
+// succeed and will thus never return zero.
+
+// <https://docs.microsoft.com/en-us/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter>
+
+// <https://docs.microsoft.com/en-us/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency>
+
+
+// Initialize on first call
+
+// Expected case (typically frequency = 10000000, i.e. 100ns precision)
+
+// Split the division to avoid overflow
+"
+usb.c,"// When non-negative, 'result' contains the number of bytes written
+
+// Do not log any USB error in this function, it is expected that many USB
+
+// devices available on the computer have permission restrictions
+
+
+// Log at debug level because it is expected that some non-Android USB
+
+// devices present on the computer require special permissions
+
+// continue anyway
+
+// Convert uint16_t to unsigned because PRIx16 may not exist on Windows
+
+// index of the single matching device if sel_count == 1
+
+// if count > 0 && sel_count == 0, then necessarily a serial is provided
+
+// sel_idx is valid only if sel_count == 1
+
+// Move device into out_device (do not destroy device)
+
+// Not the connected device
+
+// Do not automatically deregister the callback by returning 1. Instead,
+
+// manually deregister to interrupt libusb_handle_events() from the libusb
+
+// event thread: <https://stackoverflow.com/a/60119225/1987178>
+
+// Interrupted by events or by libusb_hotplug_deregister_callback()
+
+// If cbs is set, then cbs->on_disconnected must be set
+
+// Create a thread to process libusb events, so that device
+
+// disconnection could be detected immediately
+"
+v4l2_sink.c,"/** Downcast frame_sink to sc_v4l2_sink */
+// timestamps in us
+
+
+// until null or containing the requested name
+
+// copy the first packet to the extra data
+
+// Failing to write the last frame is not very serious, no future frame may
+
+// depend on it, so the resulting file will still be valid
+
+// A packet was received
+
+
+// Alternative name
+
+// contrary to the deprecated API (av_oformat_next()), av_muxer_iterate()
+
+// returns (on purpose) a pointer-to-const, but AVFormatContext.oformat
+
+// still expects a pointer-to-non-const (it has not be updated accordingly)
+
+// <https://github.com/FFmpeg/FFmpeg/commit/0694d8702421e7aff1340038559c438b61bb30dd>
+
+// ostream will be cleaned up during context cleaning
+"
+version.c,"// The compiled version may not be known
+"
+video_buffer.c,"// comment to debug
+
+
+// PTS (written by the server) are expressed in microseconds
+
+// Flush queue
+
+// No buffering
+
+// First frame, offer it immediately, for two reasons:
+
+//  - not to delay the opening of the scrcpy window
+
+//  - the buffering estimation needs at least two clock points, so it
+
+//  could not handle the first frame
+"

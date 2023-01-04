@@ -1,0 +1,2816 @@
+bench.c,
+bench_ecdh.c,"/**********************************************************************
+ * Copyright (c) 2015 Pieter Wuille, Andrew Poelstra                  *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+
+/* create a context with no capabilities */
+//www.opensource.org/licenses/mit-license.php.*
+"
+bench_internal.c,"/**********************************************************************
+ * Copyright (c) 2014-2015 Pieter Wuille                              *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+//www.opensource.org/licenses/mit-license.php.*
+"
+bench_recover.c,"/**********************************************************************
+ * Copyright (c) 2014-2015 Pieter Wuille                              *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+
+/* Move former message to S. */
+
+/* Move former R to message. */
+
+/* Move recovered pubkey X coordinate to R (which must be a valid X coordinate). */
+//www.opensource.org/licenses/mit-license.php.*
+"
+bench_sign.c,"/**********************************************************************
+ * Copyright (c) 2014 Pieter Wuille                                   *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+//www.opensource.org/licenses/mit-license.php.*
+"
+bench_verify.c,"/**********************************************************************
+ * Copyright (c) 2014 Pieter Wuille                                   *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+//www.opensource.org/licenses/mit-license.php.*
+"
+blake.c,"/* $Id: blake.c 252 2011-06-07 17:55:14Z tp $ */
+
+/*
+ * BLAKE implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+ 14 10  4  8  9 15 13  6  1 12  0  2 11  7  5  3
+ 11  8 12  0  5  2 15 13 10 14  3  6  7  1  9  4
+  7  9  3  1 13 12 11 14  2  6  5 10  4  0 15  8
+  9  0  5  7  2  4 10 15 14  1 11 12  6  8  3 13
+  2 12  6 10  0 11  8  3  4 13  7  5 15 14  1  9
+ 12  5  1 15 14 13  4 10  0  7  6  3  9  2  8 11
+ 13 11  7 14 12  1  3  9  5  0 15  4  8  6  2 10
+  6 15 14  9 11  3  0  8 12  2 13  7  1  4 10  5
+ 10  2  8  4  7  6  1  5 15 11  9 14  3 12 13  0
+*/
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+"
+bmw.c,"/* $Id: bmw.c 227 2010-06-16 17:28:38Z tp $ */
+
+/*
+ * BMW implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+"
+ctaes.c,"/*********************************************************************
+ * Copyright (c) 2016 Pieter Wuille                                   *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+
+/* Constant time, unoptimized, concise, plain C, AES implementation
+ * Based On:
+ *   Emilia Kasper and Peter Schwabe, Faster and Timing-Attack Resistant AES-GCM
+ *   http://www.iacr.org/archive/ches2009/57470001/57470001.pdf
+ * But using 8 16-bit integers representing a single AES state rather than 8 128-bit
+ * integers representing 8 AES states.
+ */
+
+
+/* Slice variable slice_i contains the i'th bit of the 16 state variables in this order:
+ *  0  1  2  3
+ *  4  5  6  7
+ *  8  9 10 11
+ * 12 13 14 15
+ */
+
+
+/** Convert a byte to sliced form, storing it corresponding to given row and column in s */
+
+/** Load 16 bytes of data into 8 sliced integers */
+
+/** Convert 8 sliced integers into 16 bytes of data */
+
+/* S-box implementation based on the gate logic from:
+ *   Joan Boyar and Rene Peralta, A depth-16 circuit for the AES S-box.
+ *   https://eprint.iacr.org/2011/332.pdf
+*/
+
+/* Load the bit slices */
+
+/* Undo linear postprocessing */
+
+/* Linear preprocessing. */
+
+/* Non-linear transformation (shared between the forward and backward case) */
+
+/* Undo linear preprocessing */
+
+/* Linear postprocessing */
+
+/* The MixColumns transform treats the bytes of the columns of the state as
+     * coefficients of a 3rd degree polynomial over GF(2^8) and multiplies them
+     * by the fixed polynomial a(x) = {03}x^3 + {01}x^2 + {01}x + {02}, modulo
+     * x^4 + {01}.
+     *
+     * In the inverse transform, we multiply by the inverse of a(x),
+     * a^-1(x) = {0b}x^3 + {0d}x^2 + {09}x + {0e}. This is equal to
+     * a(x) * ({04}x^2 + {05}), so we can reuse the forward transform's code
+     * (found in OpenSSL's bsaes-x86_64.pl, attributed to Jussi Kivilinna)
+     *
+     * In the bitsliced representation, a multiplication of every column by x
+     * mod x^4 + 1 is simply a right rotation.
+     */
+
+
+/* Shared for both directions is a multiplication by a(x), which can be
+     * rewritten as (x^3 + x^2 + x) + {02}*(x^3 + {01}).
+     *
+     * First compute s into the s? variables, (x^3 + {01}) * s into the s?_01
+     * variables and (x^3 + x^2 + x)*s into the s?_123 variables.
+     */
+
+/* Now compute s = s?_123 + {02} * s?_01. */
+
+/* In the reverse direction, we further need to multiply by
+         * {04}x^2 + {05}, which can be written as {04} * (x^2 + {01}) + {01}.
+         *
+         * First compute (x^2 + {01}) * s into the t?_02 variables: */
+
+/* And then update s += {04} * t?_02 */
+
+/** column_0(s) = column_c(a) */
+
+/** column_c1(r) |= (column_0(s) ^= column_c2(a)) */
+
+/** Rotate the rows in s one position upwards, and xor in r */
+
+/* Multiply the cells in s by x, as polynomials over GF(2) mod x^8 + x^4 + x^3 + x + 1 */
+
+/** Expand the cipher key into the key schedule.
+ *
+ *  state must be a pointer to an array of size nrounds + 1.
+ *  key must be a pointer to 4 * nkeywords bytes.
+ *
+ *  AES128 uses nkeywords = 4, nrounds = 10
+ *  AES192 uses nkeywords = 6, nrounds = 12
+ *  AES256 uses nkeywords = 8, nrounds = 14
+ */
+
+/* The one-byte round constant */
+
+/* The number of the word being generated, modulo nkeywords */
+
+/* The column representing the word currently being processed */
+
+/* The first nkeywords round columns are just taken from the key directly. */
+
+/* Transform column */
+
+/* Most AES decryption implementations use the alternate scheme
+     * (the Equivalent Inverse Cipher), which allows for more code reuse between
+     * the encryption and decryption code, but requires separate setup for both.
+     */
+//www.opensource.org/licenses/mit-license.php.*
+
+//www.iacr.org/archive/ches2009/57470001/57470001.pdf
+
+//eprint.iacr.org/2011/332.pdf
+"
+cubehash.c,"/* $Id: cubehash.c 227 2010-06-16 17:28:38Z tp $ */
+
+/*
+ * CubeHash implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * Some tests were conducted on an Intel Core2 Q6600 (32-bit and 64-bit
+ * mode), a PowerPC G3, and a MIPS-compatible CPU (Broadcom BCM3302).
+ * It appears that the optimal settings are:
+ *  -- full unroll, no state copy on the ""big"" systems (x86, PowerPC)
+ *  -- unroll to 4 or 8, state copy on the ""small"" system (MIPS)
+ */
+
+
+/*
+ * There is no need to unroll all 16 rounds. The word-swapping permutation
+ * is an involution, so we need to unroll an even number of rounds. On
+ * ""big"" systems, unrolling 4 rounds yields about 97% of the speed
+ * achieved with full unrolling; and it keeps the code more compact
+ * for small architectures.
+ */
+
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+"
+c_test.c,"/* Copyright (c) 2011 The LevelDB Authors. All rights reserved.
+   Use of this source code is governed by a BSD-style license that can be
+   found in the LICENSE file. See the AUTHORS file for names of contributors. */
+
+// ok
+
+// ok
+
+// Callback from leveldb_writebatch_iterate()
+
+// Callback from leveldb_writebatch_iterate()
+
+// Custom filter policy
+
+// First run uses custom filter, second run uses bloom filter
+
+// Create new database
+
+// Must not find value when custom filter returns false
+"
+gen_context.c,"/**********************************************************************
+ * Copyright (c) 2013, 2014, 2015 Thomas Daede, Cory Fields           *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+//www.opensource.org/licenses/mit-license.php.*
+"
+groestl.c,"/* $Id: groestl.c 260 2011-07-21 01:02:38Z tp $ */
+
+/*
+ * Groestl implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * Apparently, the 32-bit-only version is not faster than the 64-bit
+ * version unless using the ""small footprint"" code on a 32-bit machine.
+ */
+
+/*
+ * The internal representation may use either big-endian or
+ * little-endian. Using the platform default representation speeds up
+ * encoding and decoding between bytes and the matrix columns.
+ */
+
+
+/*
+ * Apparently, unrolling more than that confuses GCC, resulting in
+ * lower performance, even though L1 cache would be no problem.
+ */
+
+/* obsolete
+#if SPH_SMALL_FOOTPRINT_GROESTL
+
+#define COMPRESS_BIG   do { \
+		sph_u64 g[16], m[16], *ya; \
+		const sph_u64 *yc; \
+		size_t u; \
+		int i; \
+		for (u = 0; u < 16; u ++) { \
+			m[u] = dec64e_aligned(buf + (u << 3)); \
+			g[u] = m[u] ^ H[u]; \
+		} \
+		ya = g; \
+		yc = CP; \
+		for (i = 0; i < 2; i ++) { \
+			PERM_BIG(ya, yc); \
+			ya = m; \
+			yc = CQ; \
+		} \
+		for (u = 0; u < 16; u ++) { \
+			H[u] ^= g[u] ^ m[u]; \
+		} \
+	} while (0)
+
+#else
+*/
+
+
+/* obsolete
+#endif
+*/
+
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+"
+keccak.c,"/* $Id: keccak.c 259 2011-07-19 22:11:27Z tp $ */
+
+/*
+ * Keccak implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * Parameters:
+ *
+ *  SPH_KECCAK_64          use a 64-bit type
+ *  SPH_KECCAK_UNROLL      number of loops to unroll (0/undef for full unroll)
+ *  SPH_KECCAK_INTERLEAVE  use bit-interleaving (32-bit type only)
+ *  SPH_KECCAK_NOCOPY      do not copy the state into local variables
+ * 
+ * If there is no usable 64-bit type, the code automatically switches
+ * back to the 32-bit implementation.
+ *
+ * Some tests on an Intel Core2 Q6600 (both 64-bit and 32-bit, 32 kB L1
+ * code cache), a PowerPC (G3, 32 kB L1 code cache), an ARM920T core
+ * (16 kB L1 code cache), and a small MIPS-compatible CPU (Broadcom BCM3302,
+ * 8 kB L1 code cache), seem to show that the following are optimal:
+ *
+ * -- x86, 64-bit: use the 64-bit implementation, unroll 8 rounds,
+ * do not copy the state; unrolling 2, 6 or all rounds also provides
+ * near-optimal performance.
+ * -- x86, 32-bit: use the 32-bit implementation, unroll 6 rounds,
+ * interleave, do not copy the state. Unrolling 1, 2, 4 or 8 rounds
+ * also provides near-optimal performance.
+ * -- PowerPC: use the 64-bit implementation, unroll 8 rounds,
+ * copy the state. Unrolling 4 or 6 rounds is near-optimal.
+ * -- ARM: use the 64-bit implementation, unroll 2 or 4 rounds,
+ * copy the state.
+ * -- MIPS: use the 64-bit implementation, unroll 2 rounds, copy
+ * the state. Unrolling only 1 round is also near-optimal.
+ *
+ * Also, interleaving does not always yield actual improvements when
+ * using a 32-bit implementation; in particular when the architecture
+ * does not offer a native rotation opcode (interleaving replaces one
+ * 64-bit rotation with two 32-bit rotations, which is a gain only if
+ * there is a native 32-bit rotation opcode and not a native 64-bit
+ * rotation opcode; also, interleaving implies a small overhead when
+ * processing input words).
+ *
+ * To sum up:
+ * -- when possible, use the 64-bit code
+ * -- exception: on 32-bit x86, use 32-bit code
+ * -- when using 32-bit code, use interleaving
+ * -- copy the state, except on x86
+ * -- unroll 8 rounds on ""big"" machine, 2 rounds on ""small"" machines
+ */
+
+
+/*
+ * By default, we select the 64-bit implementation if a 64-bit type
+ * is available, unless a 32-bit x86 is detected.
+ */
+
+/*
+ * If using a 32-bit implementation, we prefer to interleave.
+ */
+
+/*
+ * Unroll 8 rounds on big systems, 2 rounds on small systems.
+ */
+
+/*
+ * We do not want to copy the state to local variables on x86 (32-bit
+ * and 64-bit alike).
+ */
+
+/* ROL64(b00, b00,  0); */
+/*
+ * The KHI macro integrates the ""lane complement"" optimization. On input,
+ * some words are complemented:
+ *    a00 a01 a02 a04 a13 a20 a21 a22 a30 a33 a34 a43
+ * On output, the following words are complemented:
+ *    a04 a10 a20 a22 a23 a31
+ *
+ * The (implicit) permutation and the theta expansion will bring back
+ * the input mask for the next round.
+ */
+
+
+/*
+	 * Initialization for the ""lane complement"".
+	 */
+
+/*
+	 * Initialization for the ""lane complement"".
+	 * Note: since we set to all-one full 64-bit words,
+	 * interleaving (if applicable) is a no-op.
+	 */
+
+/* for alignment */
+/* Finalize the ""lane complement"" */
+/* for alignment */
+/* Finalize the ""lane complement"" */
+/* un-interleave */
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+"
+lax_der_parsing.c,"/**********************************************************************
+ * Copyright (c) 2015 Pieter Wuille                                   *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+
+/* Hack to initialize sig with a correctly-parsed but invalid signature. */
+
+/* Sequence tag byte */
+
+/* Sequence length bytes */
+
+/* Integer tag byte for R */
+
+/* Integer length for R */
+
+/* Integer tag byte for S */
+
+/* Integer length for S */
+
+/* Ignore leading zeroes in R */
+
+/* Copy R value */
+
+/* Ignore leading zeroes in S */
+
+/* Copy S value */
+//www.opensource.org/licenses/mit-license.php.*
+"
+lax_der_privatekey_parsing.c,"/**********************************************************************
+ * Copyright (c) 2014, 2015 Pieter Wuille                             *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+
+/* sequence header */
+
+/* sequence length constructor */
+
+/* sequence length */
+
+/* sequence element 0: version number (=1) */
+
+/* sequence element 1: octet string, up to 32 bytes */
+//www.opensource.org/licenses/mit-license.php.*
+"
+Lyra2.c,"/**
+ * Implementation of the Lyra2 Password Hashing Scheme (PHS).
+ *
+ * Author: The Lyra PHC team (http://www.lyra-kdf.net/) -- 2014.
+ *
+ * This software is hereby placed in the public domain.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHORS ''AS IS'' AND ANY EXPRESS
+ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/**
+ * Executes Lyra2 based on the G function from Blake2b. This version supports salts and passwords
+ * whose combined length is smaller than the size of the memory matrix, (i.e., (nRows x nCols x b) bits,
+ * where ""b"" is the underlying sponge's bitrate). In this implementation, the ""basil"" is composed by all
+ * integer parameters (treated as type ""unsigned int"") in the order they are provided, plus the value
+ * of nCols, (i.e., basil = kLen || pwdlen || saltlen || timeCost || nRows || nCols).
+ *
+ * @param K The derived key to be output by the algorithm
+ * @param kLen Desired key length
+ * @param pwd User password
+ * @param pwdlen Password length
+ * @param salt Salt
+ * @param saltlen Salt length
+ * @param timeCost Parameter to determine the processing time (T)
+ * @param nRows Number or rows of the memory matrix (R)
+ * @param nCols Number of columns of the memory matrix (C)
+ *
+ * @return 0 if the key is generated correctly; -1 if there is an error (usually due to lack of memory for allocation)
+ */
+//www.lyra-kdf.net/) -- 2014.
+
+//============================= Basic variables ============================//
+
+//index of row to be processed
+
+//index of prev (last row ever computed/modified)
+
+//index of row* (a previous row, deterministically picked during Setup and randomly picked while Wandering)
+
+//Time Loop iterator
+
+//Visitation step (used during Setup and Wandering phases)
+
+//Visitation window (used to define which rows can be revisited during Setup)
+
+//Modifier to the step, assuming the values 1 or -1
+
+//auxiliary iteration counter
+
+//==========================================================================/
+
+
+//========== Initializing the Memory Matrix and pointers to it =============//
+
+//Tries to allocate enough space for the whole memory matrix
+
+
+
+//Allocates pointers to each row of the matrix
+
+//Places the pointers in the correct positions
+
+//==========================================================================/
+
+
+//============= Getting the password + salt + basil padded with 10*1 ===============//
+
+//OBS.:The memory matrix will temporarily hold the password: not for saving memory,
+
+//but this ensures that the password copied locally will be overwritten as soon as possible
+
+
+//First, we clean enough blocks for the password, salt, basil and padding
+
+//Prepends the password
+
+//Concatenates the salt
+
+//Concatenates the basil: every integer passed as parameter, in the order they are provided by the interface
+
+//Now comes the padding
+
+//first byte of padding: right after the password
+
+//resets the pointer to the start of the memory matrix
+
+//sets the pointer to the correct position: end of incomplete block
+
+//last byte of padding: at the end of the last incomplete block
+
+//==========================================================================/
+
+
+//======================= Initializing the Sponge State ====================//
+
+//Sponge state: 16 uint64_t, BLOCK_LEN_INT64 words of them for the bitrate (b) and the remainder for the capacity (c)
+
+//==========================================================================/
+
+
+//================================ Setup Phase =============================//
+
+//Absorbing salt, password and basil: this is the only place in which the block length is hard-coded to 512 bits
+
+//absorbs each block of pad(pwd || salt || basil)
+
+//goes to next block of pad(pwd || salt || basil)
+
+//Initializes M[0] and M[1]
+
+//The locally copied password is most likely overwritten here
+
+//M[row] = rand; //M[row*] = M[row*] XOR rotW(rand)
+
+//updates the value of row* (deterministically picked during Setup))
+
+//update prev: it now points to the last row ever computed
+
+//updates row: goes to the next row to be computed
+
+//Checks if all rows in the window where visited.
+
+//changes the step: approximately doubles its value
+
+//doubles the size of the re-visitation window
+
+//inverts the modifier to the step
+
+//==========================================================================/
+
+
+//============================ Wandering Phase =============================//
+
+//Resets the visitation to the first row of the memory matrix
+
+//Step is approximately half the number of all rows of the memory matrix for an odd tau; otherwise, it is -1
+
+//Selects a pseudorandom index row*
+
+//------------------------------------------------------------------------------------------
+
+//rowa = ((unsigned int)state[0]) & (nRows-1);	//(USE THIS IF nRows IS A POWER OF 2)
+
+//(USE THIS FOR THE ""GENERIC"" CASE)
+
+//------------------------------------------------------------------------------------------
+
+
+//Performs a reduced-round duplexing operation over M[row*] XOR M[prev], updating both M[row*] and M[row]
+
+//update prev: it now points to the last row ever computed
+
+//updates row: goes to the next row to be computed
+
+//------------------------------------------------------------------------------------------
+
+//row = (row + step) & (nRows-1);	//(USE THIS IF nRows IS A POWER OF 2)
+
+//(USE THIS FOR THE ""GENERIC"" CASE)
+
+//------------------------------------------------------------------------------------------
+
+
+//==========================================================================/
+
+
+//============================ Wrap-up Phase ===============================//
+
+//Absorbs the last block of the memory matrix
+
+//Squeezes the key
+
+//==========================================================================/
+
+
+//========================= Freeing the memory =============================//
+
+//Wiping out the sponge's internal state before freeing it
+
+//==========================================================================/
+
+
+//============================= Basic variables ============================//
+
+//index of row to be processed
+
+//index of prev (last row ever computed/modified)
+
+//index of row* (a previous row, deterministically picked during Setup and randomly picked while Wandering)
+
+//Time Loop iterator
+
+//Visitation step (used during Setup and Wandering phases)
+
+//Visitation window (used to define which rows can be revisited during Setup)
+
+//Modifier to the step, assuming the values 1 or -1
+
+//auxiliary iteration counter
+
+//==========================================================================/
+
+
+//========== Initializing the Memory Matrix and pointers to it =============//
+
+//Tries to allocate enough space for the whole memory matrix
+
+
+
+//Allocates pointers to each row of the matrix
+
+//Places the pointers in the correct positions
+
+//==========================================================================/
+
+
+//============= Getting the password + salt + basil padded with 10*1 ===============//
+
+//OBS.:The memory matrix will temporarily hold the password: not for saving memory,
+
+//but this ensures that the password copied locally will be overwritten as soon as possible
+
+
+//First, we clean enough blocks for the password, salt, basil and padding
+
+//Prepends the password
+
+//Concatenates the salt
+
+//Concatenates the basil: every integer passed as parameter, in the order they are provided by the interface
+
+//Now comes the padding
+
+//first byte of padding: right after the password
+
+//resets the pointer to the start of the memory matrix
+
+//sets the pointer to the correct position: end of incomplete block
+
+//last byte of padding: at the end of the last incomplete block
+
+//==========================================================================/
+
+
+//======================= Initializing the Sponge State ====================//
+
+//Sponge state: 16 uint64_t, BLOCK_LEN_INT64 words of them for the bitrate (b) and the remainder for the capacity (c)
+
+//==========================================================================/
+
+
+//================================ Setup Phase =============================//
+
+//Absorbing salt, password and basil: this is the only place in which the block length is hard-coded to 512 bits
+
+//absorbs each block of pad(pwd || salt || basil)
+
+//goes to next block of pad(pwd || salt || basil)
+
+//Initializes M[0] and M[1]
+
+//The locally copied password is most likely overwritten here
+
+//M[row] = rand; //M[row*] = M[row*] XOR rotW(rand)
+
+//updates the value of row* (deterministically picked during Setup))
+
+//update prev: it now points to the last row ever computed
+
+//updates row: goes to the next row to be computed
+
+//Checks if all rows in the window where visited.
+
+//changes the step: approximately doubles its value
+
+//doubles the size of the re-visitation window
+
+//inverts the modifier to the step
+
+//==========================================================================/
+
+
+//============================ Wandering Phase =============================//
+
+//Resets the visitation to the first row of the memory matrix
+
+//Step is approximately half the number of all rows of the memory matrix for an odd tau; otherwise, it is -1
+
+//Selects a pseudorandom index row*
+
+//------------------------------------------------------------------------------------------
+
+//rowa = ((unsigned int)state[0]) & (nRows-1);	//(USE THIS IF nRows IS A POWER OF 2)
+
+//(USE THIS FOR THE ""GENERIC"" CASE)
+
+//------------------------------------------------------------------------------------------
+
+
+//Performs a reduced-round duplexing operation over M[row*] XOR M[prev], updating both M[row*] and M[row]
+
+//update prev: it now points to the last row ever computed
+
+//updates row: goes to the next row to be computed
+
+//------------------------------------------------------------------------------------------
+
+//row = (row + step) & (nRows-1);	//(USE THIS IF nRows IS A POWER OF 2)
+
+//(USE THIS FOR THE ""GENERIC"" CASE)
+
+//------------------------------------------------------------------------------------------
+
+
+//==========================================================================/
+
+
+//============================ Wrap-up Phase ===============================//
+
+//Absorbs the last block of the memory matrix
+
+//Squeezes the key
+
+//==========================================================================/
+
+
+//========================= Freeing the memory =============================//
+
+//Wiping out the sponge's internal state before freeing it
+
+//==========================================================================/
+
+"
+Lyra2RE.c,"/*-
+ * Copyright 2009 Colin Percival, 2011 ArtForz, 2013 Neisklar, 2014 James Lovejoy
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ * This file was originally written by Colin Percival as part of the Tarsnap
+ * online backup system.
+ */
+
+"
+org_bitcoin_NativeSecp256k1.c,"/*  secp256k1_pubkey* pubkey = (secp256k1_pubkey*) (*env)->GetDirectBufferAddress(env, byteBufferObject);*/
+"
+org_bitcoin_Secp256k1Context.c,
+secp256k1.c,"/**********************************************************************
+ * Copyright (c) 2013-2015 Pieter Wuille                              *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+
+/* When the secp256k1_ge_storage type is exactly 64 byte, use its
+         * representation inside secp256k1_pubkey, as conversion is very fast.
+         * Note that secp256k1_pubkey_save must use the same representation. */
+
+/* Otherwise, fall back to 32-byte big endian for X and Y. */
+
+/* When the secp256k1_scalar type is exactly 32 byte, use its
+         * representation inside secp256k1_ecdsa_signature, as conversion is very fast.
+         * Note that secp256k1_ecdsa_signature_save must use the same representation. */
+
+/* We feed a byte array to the PRNG as input, consisting of:
+    * - the private key (32 bytes) and message (32 bytes), see RFC 6979 3.2d.
+    * - optionally 32 extra bytes of data, see RFC 6979 3.6 Additional Data.
+    * - optionally 16 extra bytes with the algorithm name.
+    * Because the arguments have distinct fixed lengths it is not possible for
+    *  different argument mixtures to emulate each other and result in the same
+    *  nonces.
+    */
+
+/* Fail if the secret key is invalid. */
+//www.opensource.org/licenses/mit-license.php.*
+"
+skein.c,"/* $Id: skein.c 254 2011-06-07 19:38:58Z tp $ */
+
+/*
+ * Skein implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/* obsolete */
+
+/*
+ * M5_ ## s ## _ ## i  evaluates to s+i mod 5 (0 <= s <= 18, 0 <= i <= 3).
+ */
+
+
+/*
+ * M9_ ## s ## _ ## i  evaluates to s+i mod 9 (0 <= s <= 18, 0 <= i <= 7).
+ */
+
+
+/*
+ * M3_ ## s ## _ ## i  evaluates to s+i mod 3 (0 <= s <= 18, 0 <= i <= 1).
+ */
+
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/*
+	 * Unrolling the loop yields a slight performance boost, while
+	 * keeping the code size aorund 24 kB on 32-bit x86.
+	 */
+
+/*
+	 * The Skein ""final bit"" in the tweak is troublesome here,
+	 * because if the input has a length which is a multiple of the
+	 * block size (512 bits) then that bit must be set for the
+	 * final block, which is full of message bits (padding in
+	 * Skein can be reduced to no extra bit at all). However, this
+	 * function cannot know whether it processes the last chunks of
+	 * the message or not. Hence we may keep a full block of buffered
+	 * data (64 bytes).
+	 */
+
+/* obsolete */
+
+/*
+	 * Add bit padding if necessary.
+	 */
+
+/*
+	 * At that point, if ptr == 0, then the message was empty;
+	 * otherwise, there is between 1 and 64 bytes (inclusive) which
+	 * are yet to be processed. Either way, we complete the buffer
+	 * to a full block with zeros (the Skein specification mandates
+	 * that an empty message is padded so that there is at least
+	 * one block to process).
+	 *
+	 * Once this block has been processed, we do it again, with
+	 * a block full of zeros, for the output (that block contains
+	 * the encoding of ""0"", over 8 bytes, then padded with zeros).
+	 */
+
+/*
+	 * We use a temporary buffer because we must support the case
+	 * where output size is not a multiple of 64 (namely, a 224-bit
+	 * output).
+	 */
+
+/* obsolete */
+
+/* obsolete */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+"
+Sponge.c,"/**
+ * A simple implementation of Blake2b's internal permutation
+ * in the form of a sponge.
+ *
+ * Author: The Lyra PHC team (http://www.lyra-kdf.net/) -- 2014.
+ *
+ * This software is hereby placed in the public domain.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE AUTHORS ''AS IS'' AND ANY EXPRESS
+ * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHORS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/**
+ * Initializes the Sponge State. The first 512 bits are set to zeros and the remainder
+ * receive Blake2b's IV as per Blake2b's specification. <b>Note:</b> Even though sponges
+ * typically have their internal state initialized with zeros, Blake2b's G function
+ * has a fixed point: if the internal state and message are both filled with zeros. the
+ * resulting permutation will always be a block filled with zeros; this happens because
+ * Blake2b does not use the constants originally employed in Blake2 inside its G function,
+ * relying on the IV for avoiding possible fixed points.
+ *
+ * @param state         The 1024-bit array to be initialized
+ */
+
+/*16*/
+/**
+ * Execute Blake2b's G function, with all 12 rounds.
+ *
+ * @param v     A 1024-bit (16 uint64_t) array to be processed by Blake2b's G function
+ */
+
+/**
+ * Executes a reduced version of Blake2b's G function with only one round
+ * @param v     A 1024-bit (16 uint64_t) array to be processed by Blake2b's G function
+ */
+
+/**
+ * Performs a squeeze operation, using Blake2b's G function as the
+ * internal permutation
+ *
+ * @param state      The current state of the sponge
+ * @param out        Array that will receive the data squeezed
+ * @param len        The number of bytes to be squeezed into the ""out"" array
+ */
+
+/**
+ * Performs an absorb operation for a single block (BLOCK_LEN_INT64 words
+ * of type uint64_t), using Blake2b's G function as the internal permutation
+ *
+ * @param state The current state of the sponge
+ * @param in    The block to be absorbed (BLOCK_LEN_INT64 words)
+ */
+
+/**
+ * Performs an absorb operation for a single block (BLOCK_LEN_BLAKE2_SAFE_INT64
+ * words of type uint64_t), using Blake2b's G function as the internal permutation
+ *
+ * @param state The current state of the sponge
+ * @param in    The block to be absorbed (BLOCK_LEN_BLAKE2_SAFE_INT64 words)
+ */
+
+/**
+ * Performs a reduced squeeze operation for a single row, from the highest to
+ * the lowest index, using the reduced-round Blake2b's G function as the
+ * internal permutation
+ *
+ * @param state     The current state of the sponge
+ * @param rowOut    Row to receive the data squeezed
+ */
+
+/**
+ * Performs a reduced duplex operation for a single row, from the highest to
+ * the lowest index, using the reduced-round Blake2b's G function as the
+ * internal permutation
+ *
+ * @param state		The current state of the sponge
+ * @param rowIn		Row to feed the sponge
+ * @param rowOut	Row to receive the sponge's output
+ */
+
+/**
+ * Performs a duplexing operation over ""M[rowInOut][col] [+] M[rowIn][col]"" (i.e.,
+ * the wordwise addition of two columns, ignoring carries between words). The
+ * output of this operation, ""rand"", is then used to make
+ * ""M[rowOut][(N_COLS-1)-col] = M[rowIn][col] XOR rand"" and
+ * ""M[rowInOut][col] =  M[rowInOut][col] XOR rotW(rand)"", where rotW is a 64-bit
+ * rotation to the left and N_COLS is a system parameter.
+ *
+ * @param state          The current state of the sponge
+ * @param rowIn          Row used only as input
+ * @param rowInOut       Row used as input and to receive output after rotation
+ * @param rowOut         Row receiving the output
+ *
+ */
+
+/**
+ * Performs a duplexing operation over ""M[rowInOut][col] [+] M[rowIn][col]"" (i.e.,
+ * the wordwise addition of two columns, ignoring carries between words). The
+ * output of this operation, ""rand"", is then used to make
+ * ""M[rowOut][col] = M[rowOut][col] XOR rand"" and
+ * ""M[rowInOut][col] =  M[rowInOut][col] XOR rotW(rand)"", where rotW is a 64-bit
+ * rotation to the left.
+ *
+ * @param state          The current state of the sponge
+ * @param rowIn          Row used only as input
+ * @param rowInOut       Row used as input and to receive output after rotation
+ * @param rowOut         Row receiving the output
+ *
+ */
+
+/**
+ * Performs a duplex operation over ""M[rowInOut] [+] M[rowIn]"", writing the output ""rand""
+ * on M[rowOut] and making ""M[rowInOut] =  M[rowInOut] XOR rotW(rand)"", where rotW is a 64-bit
+ * rotation to the left.
+ *
+ * @param state          The current state of the sponge
+ * @param rowIn          Row used only as input
+ * @param rowInOut       Row used as input and to receive output after rotation
+ * @param rowOut         Row receiving the output
+ *
+ */
+
+/*
+inline void reducedDuplexRowSetupOLD(uint64_t *state, uint64_t *rowIn, uint64_t *rowInOut, uint64_t *rowOut) {
+    uint64_t* ptrWordIn = rowIn; //In Lyra2: pointer to prev
+    uint64_t* ptrWordInOut = rowInOut; //In Lyra2: pointer to row*
+    uint64_t* ptrWordOut = rowOut; //In Lyra2: pointer to row
+    int i;
+    for (i = 0; i < N_COLS; i++) {
+
+	//Absorbing ""M[rowInOut] XOR M[rowIn]""
+	state[0] ^= ptrWordInOut[0] ^ ptrWordIn[0];
+	state[1] ^= ptrWordInOut[1] ^ ptrWordIn[1];
+	state[2] ^= ptrWordInOut[2] ^ ptrWordIn[2];
+	state[3] ^= ptrWordInOut[3] ^ ptrWordIn[3];
+	state[4] ^= ptrWordInOut[4] ^ ptrWordIn[4];
+	state[5] ^= ptrWordInOut[5] ^ ptrWordIn[5];
+	state[6] ^= ptrWordInOut[6] ^ ptrWordIn[6];
+	state[7] ^= ptrWordInOut[7] ^ ptrWordIn[7];
+	state[8] ^= ptrWordInOut[8] ^ ptrWordIn[8];
+	state[9] ^= ptrWordInOut[9] ^ ptrWordIn[9];
+	state[10] ^= ptrWordInOut[10] ^ ptrWordIn[10];
+	state[11] ^= ptrWordInOut[11] ^ ptrWordIn[11];
+
+	//Applies the reduced-round transformation f to the sponge's state
+	reducedBlake2bLyra(state);
+
+	//M[row][col] = rand
+	ptrWordOut[0] = state[0];
+	ptrWordOut[1] = state[1];
+	ptrWordOut[2] = state[2];
+	ptrWordOut[3] = state[3];
+	ptrWordOut[4] = state[4];
+	ptrWordOut[5] = state[5];
+	ptrWordOut[6] = state[6];
+	ptrWordOut[7] = state[7];
+	ptrWordOut[8] = state[8];
+	ptrWordOut[9] = state[9];
+	ptrWordOut[10] = state[10];
+	ptrWordOut[11] = state[11];
+
+
+	//M[row*][col] = M[row*][col] XOR rotW(rand)
+	ptrWordInOut[0] ^= state[10];
+	ptrWordInOut[1] ^= state[11];
+	ptrWordInOut[2] ^= state[0];
+	ptrWordInOut[3] ^= state[1];
+	ptrWordInOut[4] ^= state[2];
+	ptrWordInOut[5] ^= state[3];
+	ptrWordInOut[6] ^= state[4];
+	ptrWordInOut[7] ^= state[5];
+	ptrWordInOut[8] ^= state[6];
+	ptrWordInOut[9] ^= state[7];
+	ptrWordInOut[10] ^= state[8];
+	ptrWordInOut[11] ^= state[9];
+
+	//Goes to next column (i.e., next block in sequence)
+	ptrWordInOut += BLOCK_LEN_INT64;
+	ptrWordIn += BLOCK_LEN_INT64;
+	ptrWordOut += BLOCK_LEN_INT64;
+    }
+}
+*/
+
+
+/**
+ * Performs a duplex operation over ""M[rowInOut] XOR M[rowIn]"", writing the output ""rand""
+ * on M[rowOut] and making ""M[rowInOut] =  M[rowInOut] XOR rotW(rand)"", where rotW is a 64-bit
+ * rotation to the left.
+ *
+ * @param state          The current state of the sponge
+ * @param rowIn          Row used only as input
+ * @param rowInOut       Row used as input and to receive output after rotation
+ * @param rowOut         Row receiving the output
+ *
+ */
+
+/*
+inline void reducedDuplexRowSetupv5(uint64_t *state, uint64_t *rowIn, uint64_t *rowInOut, uint64_t *rowOut) {
+    uint64_t* ptrWordIn = rowIn; //In Lyra2: pointer to prev
+    uint64_t* ptrWordInOut = rowInOut; //In Lyra2: pointer to row*
+    uint64_t* ptrWordOut = rowOut; //In Lyra2: pointer to row
+    int i;
+    for (i = 0; i < N_COLS; i++) {
+
+	//Absorbing ""M[rowInOut] XOR M[rowIn]""
+	state[0] ^= ptrWordInOut[0] + ptrWordIn[0];
+	state[1] ^= ptrWordInOut[1] + ptrWordIn[1];
+	state[2] ^= ptrWordInOut[2] + ptrWordIn[2];
+	state[3] ^= ptrWordInOut[3] + ptrWordIn[3];
+	state[4] ^= ptrWordInOut[4] + ptrWordIn[4];
+	state[5] ^= ptrWordInOut[5] + ptrWordIn[5];
+	state[6] ^= ptrWordInOut[6] + ptrWordIn[6];
+	state[7] ^= ptrWordInOut[7] + ptrWordIn[7];
+	state[8] ^= ptrWordInOut[8] + ptrWordIn[8];
+	state[9] ^= ptrWordInOut[9] + ptrWordIn[9];
+	state[10] ^= ptrWordInOut[10] + ptrWordIn[10];
+	state[11] ^= ptrWordInOut[11] + ptrWordIn[11];
+
+	//Applies the reduced-round transformation f to the sponge's state
+	reducedBlake2bLyra(state);
+
+
+	//M[row*][col] = M[row*][col] XOR rotW(rand)
+	ptrWordInOut[0] ^= state[10];
+	ptrWordInOut[1] ^= state[11];
+	ptrWordInOut[2] ^= state[0];
+	ptrWordInOut[3] ^= state[1];
+	ptrWordInOut[4] ^= state[2];
+	ptrWordInOut[5] ^= state[3];
+	ptrWordInOut[6] ^= state[4];
+	ptrWordInOut[7] ^= state[5];
+	ptrWordInOut[8] ^= state[6];
+	ptrWordInOut[9] ^= state[7];
+	ptrWordInOut[10] ^= state[8];
+	ptrWordInOut[11] ^= state[9];
+
+
+	//M[row][col] = rand
+	ptrWordOut[0] = state[0] ^ ptrWordIn[0];
+	ptrWordOut[1] = state[1] ^ ptrWordIn[1];
+	ptrWordOut[2] = state[2] ^ ptrWordIn[2];
+	ptrWordOut[3] = state[3] ^ ptrWordIn[3];
+	ptrWordOut[4] = state[4] ^ ptrWordIn[4];
+	ptrWordOut[5] = state[5] ^ ptrWordIn[5];
+	ptrWordOut[6] = state[6] ^ ptrWordIn[6];
+	ptrWordOut[7] = state[7] ^ ptrWordIn[7];
+	ptrWordOut[8] = state[8] ^ ptrWordIn[8];
+	ptrWordOut[9] = state[9] ^ ptrWordIn[9];
+	ptrWordOut[10] = state[10] ^ ptrWordIn[10];
+	ptrWordOut[11] = state[11] ^ ptrWordIn[11];
+
+	//Goes to next column (i.e., next block in sequence)
+	ptrWordInOut += BLOCK_LEN_INT64;
+	ptrWordIn += BLOCK_LEN_INT64;
+	ptrWordOut += BLOCK_LEN_INT64;
+    }
+}
+*/
+
+
+/**
+ * Performs a duplex operation over ""M[rowInOut] XOR M[rowIn]"", writing the output ""rand""
+ * on M[rowOut] and making ""M[rowInOut] =  M[rowInOut] XOR rotW(rand)"", where rotW is a 64-bit
+ * rotation to the left.
+ *
+ * @param state          The current state of the sponge
+ * @param rowIn          Row used only as input
+ * @param rowInOut       Row used as input and to receive output after rotation
+ * @param rowOut         Row receiving the output
+ *
+ */
+
+/*
+inline void reducedDuplexRowSetupv5c(uint64_t *state, uint64_t *rowIn, uint64_t *rowInOut, uint64_t *rowOut) {
+    uint64_t* ptrWordIn = rowIn; //In Lyra2: pointer to prev
+    uint64_t* ptrWordInOut = rowInOut; //In Lyra2: pointer to row*
+    uint64_t* ptrWordOut = rowOut;
+    int i;
+
+    for (i = 0; i < N_COLS / 2; i++) {
+	//Absorbing ""M[rowInOut] XOR M[rowIn]""
+	state[0] ^= ptrWordInOut[0] + ptrWordIn[0];
+	state[1] ^= ptrWordInOut[1] + ptrWordIn[1];
+	state[2] ^= ptrWordInOut[2] + ptrWordIn[2];
+	state[3] ^= ptrWordInOut[3] + ptrWordIn[3];
+	state[4] ^= ptrWordInOut[4] + ptrWordIn[4];
+	state[5] ^= ptrWordInOut[5] + ptrWordIn[5];
+	state[6] ^= ptrWordInOut[6] + ptrWordIn[6];
+	state[7] ^= ptrWordInOut[7] + ptrWordIn[7];
+	state[8] ^= ptrWordInOut[8] + ptrWordIn[8];
+	state[9] ^= ptrWordInOut[9] + ptrWordIn[9];
+	state[10] ^= ptrWordInOut[10] + ptrWordIn[10];
+	state[11] ^= ptrWordInOut[11] + ptrWordIn[11];
+
+	//Applies the reduced-round transformation f to the sponge's state
+	reducedBlake2bLyra(state);
+
+
+	//M[row*][col] = M[row*][col] XOR rotW(rand)
+	ptrWordInOut[0] ^= state[10];
+	ptrWordInOut[1] ^= state[11];
+	ptrWordInOut[2] ^= state[0];
+	ptrWordInOut[3] ^= state[1];
+	ptrWordInOut[4] ^= state[2];
+	ptrWordInOut[5] ^= state[3];
+	ptrWordInOut[6] ^= state[4];
+	ptrWordInOut[7] ^= state[5];
+	ptrWordInOut[8] ^= state[6];
+	ptrWordInOut[9] ^= state[7];
+	ptrWordInOut[10] ^= state[8];
+	ptrWordInOut[11] ^= state[9];
+
+
+	//M[row][col] = rand
+	ptrWordOut[0] = state[0] ^ ptrWordIn[0];
+	ptrWordOut[1] = state[1] ^ ptrWordIn[1];
+	ptrWordOut[2] = state[2] ^ ptrWordIn[2];
+	ptrWordOut[3] = state[3] ^ ptrWordIn[3];
+	ptrWordOut[4] = state[4] ^ ptrWordIn[4];
+	ptrWordOut[5] = state[5] ^ ptrWordIn[5];
+	ptrWordOut[6] = state[6] ^ ptrWordIn[6];
+	ptrWordOut[7] = state[7] ^ ptrWordIn[7];
+	ptrWordOut[8] = state[8] ^ ptrWordIn[8];
+	ptrWordOut[9] = state[9] ^ ptrWordIn[9];
+	ptrWordOut[10] = state[10] ^ ptrWordIn[10];
+	ptrWordOut[11] = state[11] ^ ptrWordIn[11];
+
+	//Goes to next column (i.e., next block in sequence)
+	ptrWordInOut += BLOCK_LEN_INT64;
+	ptrWordIn += BLOCK_LEN_INT64;
+	ptrWordOut += 2 * BLOCK_LEN_INT64;
+    }
+
+    ptrWordOut =  rowOut + BLOCK_LEN_INT64;
+    for (i = 0; i < N_COLS / 2; i++) {
+	//Absorbing ""M[rowInOut] XOR M[rowIn]""
+	state[0] ^= ptrWordInOut[0] + ptrWordIn[0];
+	state[1] ^= ptrWordInOut[1] + ptrWordIn[1];
+	state[2] ^= ptrWordInOut[2] + ptrWordIn[2];
+	state[3] ^= ptrWordInOut[3] + ptrWordIn[3];
+	state[4] ^= ptrWordInOut[4] + ptrWordIn[4];
+	state[5] ^= ptrWordInOut[5] + ptrWordIn[5];
+	state[6] ^= ptrWordInOut[6] + ptrWordIn[6];
+	state[7] ^= ptrWordInOut[7] + ptrWordIn[7];
+	state[8] ^= ptrWordInOut[8] + ptrWordIn[8];
+	state[9] ^= ptrWordInOut[9] + ptrWordIn[9];
+	state[10] ^= ptrWordInOut[10] + ptrWordIn[10];
+	state[11] ^= ptrWordInOut[11] + ptrWordIn[11];
+
+	//Applies the reduced-round transformation f to the sponge's state
+	reducedBlake2bLyra(state);
+
+
+	//M[row*][col] = M[row*][col] XOR rotW(rand)
+	ptrWordInOut[0] ^= state[10];
+	ptrWordInOut[1] ^= state[11];
+	ptrWordInOut[2] ^= state[0];
+	ptrWordInOut[3] ^= state[1];
+	ptrWordInOut[4] ^= state[2];
+	ptrWordInOut[5] ^= state[3];
+	ptrWordInOut[6] ^= state[4];
+	ptrWordInOut[7] ^= state[5];
+	ptrWordInOut[8] ^= state[6];
+	ptrWordInOut[9] ^= state[7];
+	ptrWordInOut[10] ^= state[8];
+	ptrWordInOut[11] ^= state[9];
+
+
+	//M[row][col] = rand
+	ptrWordOut[0] = state[0] ^ ptrWordIn[0];
+	ptrWordOut[1] = state[1] ^ ptrWordIn[1];
+	ptrWordOut[2] = state[2] ^ ptrWordIn[2];
+	ptrWordOut[3] = state[3] ^ ptrWordIn[3];
+	ptrWordOut[4] = state[4] ^ ptrWordIn[4];
+	ptrWordOut[5] = state[5] ^ ptrWordIn[5];
+	ptrWordOut[6] = state[6] ^ ptrWordIn[6];
+	ptrWordOut[7] = state[7] ^ ptrWordIn[7];
+	ptrWordOut[8] = state[8] ^ ptrWordIn[8];
+	ptrWordOut[9] = state[9] ^ ptrWordIn[9];
+	ptrWordOut[10] = state[10] ^ ptrWordIn[10];
+	ptrWordOut[11] = state[11] ^ ptrWordIn[11];
+
+	//Goes to next column (i.e., next block in sequence)
+	ptrWordInOut += BLOCK_LEN_INT64;
+	ptrWordIn += BLOCK_LEN_INT64;
+	ptrWordOut += 2 * BLOCK_LEN_INT64;
+    }
+}
+*/
+
+
+/**
+ * Performs a duplex operation over ""M[rowInOut] XOR M[rowIn]"", using the output ""rand""
+ * to make ""M[rowOut][col] = M[rowOut][col] XOR rand"" and ""M[rowInOut] = M[rowInOut] XOR rotW(rand)"",
+ * where rotW is a 64-bit rotation to the left.
+ *
+ * @param state          The current state of the sponge
+ * @param rowIn          Row used only as input
+ * @param rowInOut       Row used as input and to receive output after rotation
+ * @param rowOut         Row receiving the output
+ *
+ */
+
+/*
+inline void reducedDuplexRowd(uint64_t *state, uint64_t *rowIn, uint64_t *rowInOut, uint64_t *rowOut) {
+    uint64_t* ptrWordInOut = rowInOut; //In Lyra2: pointer to row*
+    uint64_t* ptrWordIn = rowIn; //In Lyra2: pointer to prev
+    uint64_t* ptrWordOut = rowOut; //In Lyra2: pointer to row
+    int i;
+    for (i = 0; i < N_COLS; i++) {
+
+	//Absorbing ""M[rowInOut] XOR M[rowIn]""
+	state[0] ^= ptrWordInOut[0] + ptrWordIn[0];
+	state[1] ^= ptrWordInOut[1] + ptrWordIn[1];
+	state[2] ^= ptrWordInOut[2] + ptrWordIn[2];
+	state[3] ^= ptrWordInOut[3] + ptrWordIn[3];
+	state[4] ^= ptrWordInOut[4] + ptrWordIn[4];
+	state[5] ^= ptrWordInOut[5] + ptrWordIn[5];
+	state[6] ^= ptrWordInOut[6] + ptrWordIn[6];
+	state[7] ^= ptrWordInOut[7] + ptrWordIn[7];
+	state[8] ^= ptrWordInOut[8] + ptrWordIn[8];
+	state[9] ^= ptrWordInOut[9] + ptrWordIn[9];
+	state[10] ^= ptrWordInOut[10] + ptrWordIn[10];
+	state[11] ^= ptrWordInOut[11] + ptrWordIn[11];
+
+	//Applies the reduced-round transformation f to the sponge's state
+	reducedBlake2bLyra(state);
+
+	//M[rowOut][col] = M[rowOut][col] XOR rand
+	ptrWordOut[0] ^= state[0];
+	ptrWordOut[1] ^= state[1];
+	ptrWordOut[2] ^= state[2];
+	ptrWordOut[3] ^= state[3];
+	ptrWordOut[4] ^= state[4];
+	ptrWordOut[5] ^= state[5];
+	ptrWordOut[6] ^= state[6];
+	ptrWordOut[7] ^= state[7];
+	ptrWordOut[8] ^= state[8];
+	ptrWordOut[9] ^= state[9];
+	ptrWordOut[10] ^= state[10];
+	ptrWordOut[11] ^= state[11];
+
+	//M[rowInOut][col] = M[rowInOut][col] XOR rotW(rand)
+
+
+	//Goes to next block
+	ptrWordOut += BLOCK_LEN_INT64;
+	ptrWordInOut += BLOCK_LEN_INT64;
+	ptrWordIn += BLOCK_LEN_INT64;
+    }
+}
+*/
+
+
+/**
+ Prints an array of unsigned chars
+ */
+//www.lyra-kdf.net/) -- 2014.
+
+//First 512 bis are zeros
+
+//Remainder BLOCK_LEN_BLAKE2_SAFE_BYTES are reserved to the IV
+
+//Squeezes full blocks
+
+//Squeezes remaining bytes
+
+//XORs the first BLOCK_LEN_INT64 words of ""in"" with the current state
+
+//Applies the transformation f to the sponge's state
+
+//XORs the first BLOCK_LEN_BLAKE2_SAFE_INT64 words of ""in"" with the current state
+
+
+//Applies the transformation f to the sponge's state
+
+//In Lyra2: pointer to M[0][C-1]
+
+//M[row][C-1-col] = H.reduced_squeeze()
+
+//Goes to next block (column) that will receive the squeezed data
+
+//Applies the reduced-round transformation f to the sponge's state
+
+//In Lyra2: pointer to prev
+
+//In Lyra2: pointer to row
+
+//Absorbing ""M[prev][col]""
+
+//Applies the reduced-round transformation f to the sponge's state
+
+//M[row][C-1-col] = M[prev][col] XOR rand
+
+//Input: next column (i.e., next block in sequence)
+
+//Output: goes to previous column
+
+//In Lyra2: pointer to prev
+
+//In Lyra2: pointer to row*
+
+//In Lyra2: pointer to row
+
+//Absorbing ""M[prev] [+] M[row*]""
+
+//Applies the reduced-round transformation f to the sponge's state
+
+//M[row][col] = M[prev][col] XOR rand
+
+//M[row*][col] = M[row*][col] XOR rotW(rand)
+
+//Inputs: next column (i.e., next block in sequence)
+
+//Output: goes to previous column
+
+//In Lyra2: pointer to row*
+
+//In Lyra2: pointer to prev
+
+//In Lyra2: pointer to row
+
+//Absorbing ""M[prev] [+] M[row*]""
+
+//Applies the reduced-round transformation f to the sponge's state
+
+//M[rowOut][col] = M[rowOut][col] XOR rand
+
+//M[rowInOut][col] = M[rowInOut][col] XOR rotW(rand)
+
+//Goes to next block
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//In Lyra2: pointer to prev
+
+//In Lyra2: pointer to row*
+
+//In Lyra2: pointer to row
+
+//Absorbing ""M[rowInOut] XOR M[rowIn]""
+
+//Applies the reduced-round transformation f to the sponge's state
+
+//M[row][col] = rand
+
+//M[row*][col] = M[row*][col] XOR rotW(rand)
+
+//Goes to next column (i.e., next block in sequence)
+
+//In Lyra2: pointer to prev
+
+//In Lyra2: pointer to row*
+
+//In Lyra2: pointer to row
+
+//Absorbing ""M[rowInOut] XOR M[rowIn]""
+
+//Applies the reduced-round transformation f to the sponge's state
+
+//M[row*][col] = M[row*][col] XOR rotW(rand)
+
+//M[row][col] = rand
+
+//Goes to next column (i.e., next block in sequence)
+
+//In Lyra2: pointer to prev
+
+//In Lyra2: pointer to row*
+
+//Absorbing ""M[rowInOut] XOR M[rowIn]""
+
+//Applies the reduced-round transformation f to the sponge's state
+
+//M[row*][col] = M[row*][col] XOR rotW(rand)
+
+//M[row][col] = rand
+
+//Goes to next column (i.e., next block in sequence)
+
+//Absorbing ""M[rowInOut] XOR M[rowIn]""
+
+//Applies the reduced-round transformation f to the sponge's state
+
+//M[row*][col] = M[row*][col] XOR rotW(rand)
+
+//M[row][col] = rand
+
+//Goes to next column (i.e., next block in sequence)
+
+//In Lyra2: pointer to row*
+
+//In Lyra2: pointer to prev
+
+//In Lyra2: pointer to row
+
+//Absorbing ""M[rowInOut] XOR M[rowIn]""
+
+//Applies the reduced-round transformation f to the sponge's state
+
+//M[rowOut][col] = M[rowOut][col] XOR rand
+
+//M[rowInOut][col] = M[rowInOut][col] XOR rotW(rand)
+
+
+
+//Goes to next block
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+"
+test.c,"/*********************************************************************
+ * Copyright (c) 2016 Pieter Wuille                                   *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+
+/* AES test vectors from FIPS 197. */
+
+/* AES-ECB test vectors from NIST sp800-38a. */
+//www.opensource.org/licenses/mit-license.php.*
+"
+tests.c,"/**********************************************************************
+ * Copyright (c) 2013, 2014, 2015 Pieter Wuille, Gregory Maxwell      *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+
+/* Dummy callback function that just counts. */
+
+/* Dummy callback function that just counts (backwards). */
+
+/*** clone and destroy all of them to make sure cloning was complete ***/
+
+/* Verify that the error callback makes it across the clone. */
+
+/* And that it resets back to default. */
+
+/*** attempt to use them ***/
+
+/* Verify context-type checking illegal-argument errors. */
+
+/* This shouldn't leak memory, due to already-set tests. */
+
+/* obtain a working nonce */
+
+/* try signing */
+
+/* try verifying */
+
+/* cleanup */
+
+/* Defined as no-op. */
+
+/***** HASH TESTS *****/
+
+
+/***** RANDOM TESTS *****/
+
+
+/* (1-1/2^B)^rounds[B] < 1/10^9, so rounds is the number of iterations to
+     * get a false negative chance below once in a billion */
+
+/* We try multiplying the results with various odd numbers, which shouldn't
+     * influence the uniform distribution modulo a power of 2. */
+
+/* We only select up to 6 bits from the output to analyse */
+
+/* For each of the maxshift+1 usebits-bit sequences inside a bits-bit
+       number, track all observed outcomes, one per bit in a uint64_t. */
+
+/* Multiply the output of all rand calls with the odd number m, which
+       should not change the uniformity of its distribution. */
+
+/* Test that the lower usebits bits of x[shift] are 1 */
+
+/* Subrange must be a whole divisor of range, and at most 64 */
+
+/* (1-1/subrange)^rounds < 1/10^9 */
+
+/* Test that the lower subrange bits of x are 1. */
+
+/***** NUM TESTS *****/
+
+
+/* n1 = R */
+
+/* n2 = R */
+
+/* n1 = n2-n1 = 0 */
+
+/* n1 = R */
+
+/* n1 = -R */
+
+/* n1 = n2+n1 = 0 */
+
+/* n1 = R */
+
+/* n1 = -R */
+
+/* n1 = R */
+
+/* n1 = R1 */
+
+/* n2 = R2 */
+
+/* n1p2 = R1 + R2 */
+
+/* n2p1 = R2 + R1 */
+
+/* n1m2 = R1 - R2 */
+
+/* n2m1 = R2 - R1 */
+
+/* n2m1 = -R2 + R1 */
+
+/* n2m1 = -R2 + R1 + R2 = R1 */
+
+/* n2p1 = R2 + R1 - R2 = R1 */
+
+/* check is_one */
+
+/* check that 2^n + 1 is never 1 */
+
+/* n1 *= 2 */
+
+/* n1p2 = n1 + 1 */
+
+/* check that 0 mod anything is 0 */
+
+/* check that anything mod 1 is 0 */
+
+/* check that increasing the number past 2^256 does not break this */
+
+/* multiply by 2^8, which'll test this case with high probability */
+
+/* five is not a quadratic residue */
+
+/* squares mod 5 are 1, 4 */
+
+/* check some small values with 5 as the order */
+
+/** test large values with 5 as group order */
+
+/* we first need a scalar which is not a multiple of 5 */
+
+/* next force it to be a residue. 2 is a nonresidue mod 5 so we can
+     * just multiply by two, i.e. add the number to itself */
+
+/* test residue */
+
+/* test nonresidue */
+
+/** test with secp group order as order */
+
+/* test residue */
+
+/* test nonresidue */
+
+/* test multiple of the order*/
+
+/* check one less than the order */
+
+/* sage confirms this is 1 */
+
+/***** SCALAR TESTS *****/
+
+
+/* Set 's' to a random scalar, with value 'snum'. */
+
+/* Set 's1' to a random scalar, with value 's1num'. */
+
+/* Set 's2' to a random scalar, with value 'snum2', and byte array representation 'c'. */
+
+/* Test that fetching groups of 4 bits from a scalar and recursing n(i)=16*n(i-1)+p(i) reconstructs it. */
+
+/* Test that fetching groups of randomly-sized bits from a scalar and recursing n(i)=b*n(i-1)+p(i) reconstructs it. */
+
+/* Test that adding the scalars together is equal to adding their numbers together modulo the order. */
+
+/* Test that multiplying the scalars is equal to multiplying their numbers modulo the order. */
+
+/* The result can only be zero if at least one of the factors was zero. */
+
+/* The results can only be equal to one of the factors if that factor was zero, or the other factor was one. */
+
+/* Check that comparison with zero matches comparison with zero on the number. */
+
+/* Check that comparison with the half order is equal to testing for high scalar. */
+
+/* Check that comparison with the half order is equal to testing for high scalar after negation. */
+
+/* Negating should change the high property, unless the value was already zero. */
+
+/* Negating a scalar should be equal to (order - n) mod order on the number. */
+
+/* Adding a number to its negation should result in zero. */
+
+/* Negating zero should still result in zero. */
+
+/* Test secp256k1_scalar_mul_shift_var. */
+
+/* test secp256k1_scalar_shr_int */
+
+/* Test that scalar inverses are equal to the inverse of their number modulo the order. */
+
+/* Multiplying a scalar with its inverse must result in one. */
+
+/* Inverting one must result in one. */
+
+/* Test commutativity of add. */
+
+/* Test add_bit. */
+
+/* No overflow happened. */
+
+/* cadd is a noop when flag is zero */
+
+/* Test commutativity of mul. */
+
+/* Test associativity of add. */
+
+/* Test associativity of mul. */
+
+/* Test distributitivity of mul over add. */
+
+/* Test square. */
+
+/* Test multiplicative identity. */
+
+/* Test additive identity. */
+
+/* Test zero product property. */
+
+/* (-1)+1 should be zero. */
+
+/* A scalar with value of the curve order should be 0. */
+
+/* Does check_overflow check catch all ones? */
+
+/* Static test vectors.
+         * These were reduced from ~10^12 random vectors based on comparison-decision
+         *  and edge-case coverage on 32-bit and 64-bit implementations.
+         * The responses were generated with Sage 5.9.
+         */
+
+/***** FIELD TESTS *****/
+
+
+/* Infinitesimal probability of spurious failure here */
+
+/* Check conversions to fe. */
+
+/* Check conversion from fe. */
+
+/* Test the fe equality and comparison operations. */
+
+/* Test fe conditional move; z is not normalized here. */
+
+/* Test storage conversion and conditional moves. */
+
+/* Test that mul_int, mul, and add agree. */
+
+/* Check it's safe to call for 0 elements */
+
+/* Check that the returned root is +/- the given known answer */
+
+/* Check sqrt(0) is 0 */
+
+/* Check sqrt of small squares (and their negatives) */
+
+/* Consistency checks for large random values */
+
+/***** GROUP TESTS *****/
+
+
+/* This compares jacobian points including their Z, not just their geometric meaning. */
+
+/* Check a.x * b.z^2 == b.x && a.y * b.z^3 == b.y, to avoid inverses. */
+
+/* Points: (infinity, p1, p1, -p1, -p1, p2, p2, -p2, -p2, p3, p3, -p3, -p3, p4, p4, -p4, -p4).
+     * The second in each pair of identical points uses a random Z coordinate in the Jacobian form.
+     * All magnitudes are randomized.
+     * All 17*17 combinations of points are added to each other, using all applicable methods.
+     *
+     * When the endomorphism code is compiled in, p5 = lambda*p1 and p6 = lambda^2*p1 are added as well.
+     */
+
+/* Compute z inverses. */
+
+/* The point at infinity does not have a meaningful z inverse. Any should do. */
+
+/* Generate random zf, and zfi2 = 1/zf^2, zfi3 = 1/zf^3 */
+
+/* Compute reference result using gej + gej (var). */
+
+/* Check Z ratio. */
+
+/* Test gej + ge with Z ratio result (var). */
+
+/* Test gej + ge (var, with additional Z factor). */
+
+/* the second term with x and y rescaled for z = 1/zf */
+
+/* Test gej + ge (const). */
+
+/* secp256k1_gej_add_ge does not support its second argument being infinity. */
+
+/* Test doubling (var). */
+
+/* Normal doubling with Z ratio result. */
+
+/* Check Z ratio. */
+
+/* Normal doubling. */
+
+/* Test adding opposites. */
+
+/* Test adding infinity. */
+
+/* Test adding all points together in random order equals infinity. */
+
+/* Test batch gej -> ge conversion with and without known z ratios. */
+
+/* Compute gej[i + 1].z / gez[i].z (with gej[n].z taken to be 1). */
+
+/* The point of this test is to check that we can add two points
+     * whose y-coordinates are negatives of each other but whose x
+     * coordinates differ. If the x-coordinates were the same, these
+     * points would be negatives of each other and their sum is
+     * infinity. This is cool because it ""covers up"" any degeneracy
+     * in the addition algorithm that would cause the xy coordinates
+     * of the sum to be wrong (since infinity has no xy coordinates).
+     * HOWEVER, if the x-coordinates are different, infinity is the
+     * wrong answer, and such degeneracies are exposed. This is the
+     * root of https://github.com/bitcoin-core/secp256k1/issues/257
+     * which this test is a regression test for.
+     *
+     * These points were generated in sage as
+     * # secp256k1 params
+     * F = FiniteField (0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F)
+     * C = EllipticCurve ([F (0), F (7)])
+     * G = C.lift_x(0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798)
+     * N = FiniteField(G.order())
+     *
+     * # endomorphism values (lambda is 1^{1/3} in N, beta is 1^{1/3} in F)
+     * x = polygen(N)
+     * lam  = (1 - x^3).roots()[1][0]
+     *
+     * # random ""bad pair""
+     * P = C.random_element()
+     * Q = -int(lam) * P
+     * print ""    P: %x %x"" % P.xy()
+     * print ""    Q: %x %x"" % Q.xy()
+     * print ""P + Q: %x %x"" % (P + Q).xy()
+     */
+
+/* The input itself, normalized. */
+
+/* Results of set_xquad_var, set_xo_var(..., 0), set_xo_var(..., 1). */
+
+/* Return values of the above calls. */
+
+/* No infinity allowed. */
+
+/* Check that the x coordinates check out. */
+
+/* Check that the Y coordinate result in ge_quad is a square. */
+
+/* Check odd/even Y in ge_odd, ge_even. */
+
+/* Check secp256k1_gej_has_quad_y_var. */
+
+/***** ECMULT TESTS *****/
+
+
+/* random starting point A (on the curve) */
+
+/* two random initial factors xn and gn */
+
+/* two small multipliers to be applied to xn and gn in every iteration: */
+
+/* accumulators with the resulting coefficients to A and G */
+
+/* actual points */
+
+/* the point being computed */
+
+/* in each iteration, compute X = xn*X + gn*G; */
+
+/* also compute ae and ge: the actual accumulated factors for A and G */
+
+/* if X was (ae*A+ge*G), xn*X + gn*G results in (xn*ae*A + (xn*ge+gn)*G) */
+
+/* modify xn and gn */
+
+/* verify */
+
+/* expected result after 19999 iterations */
+
+/* redo the computation, but directly with the resulting ae and ge coefficients: */
+
+/* X * (point + G) + (order-X) * (pointer + G) = 0 */
+
+/* calc res1 = x * point + x * G; */
+
+/* calc res2 = (order - x) * point + (order - x) * G; */
+
+/* check zero/one edge cases */
+
+/* random starting point A (on the curve) */
+
+/* random initial factor xn */
+
+/* expected xn * A (from sage) */
+
+/* Check known result (randomly generated test problem from sage) */
+
+/* check that distance between non-zero elements is at least w-1 */
+
+/* check non-zero elements are odd */
+
+/* check range below */
+
+/* check range above */
+
+/* check that no unnecessary zero padding exists */
+
+/* check that wnaf represents number */
+
+/* With USE_ENDOMORPHISM on we only consider 128-bit numbers */
+
+/* check nonzero */
+
+/* check parity */
+
+/* check range above */
+
+/* check range below */
+
+
+/* Skew num because when encoding numbers as odd we use an offset */
+
+/* Sanity check: 1 and 2 are the smallest odd and even numbers and should
+     *               have easier-to-diagnose failure modes  */
+
+/* Random tests */
+
+/* Test ecmult_gen() for [0..36) and [order-36..0). */
+
+/* Test ecmult_gen() blinding and confirm that the blinding changes, the affine points match, and the z's don't match. */
+
+/* Test ecmult_gen() blinding reset and confirm that the blinding is consistent. */
+
+/***** ENDOMORPHISH TESTS *****/
+
+/* check that both are <= 128 bits in size */
+
+/* Smaller sizes are tested exhaustively elsewhere. */
+
+/* Try all type bytes. */
+
+/* What sign does this point have? */
+
+/* For the current type (i) do we expect parsing to work? Handled all of compressed/uncompressed/hybrid. */
+
+/* Do we expect a parse and re-serialize as uncompressed to give a matching y? */
+
+/* These cases must parse. */
+
+/* This test isn't always done because we decode with alternative signs, so the y won't match. */
+
+/* These cases must fail to parse. */
+
+/* Point with leading and trailing zeros in x and y serialization. */
+
+/* Point with x equal to a 3rd root of unity.*/
+
+/* Point with largest x. (1/2) */
+
+/* Point with largest x. (2/2) */
+
+/* Point with smallest x. (1/2) */
+
+/* Point with smallest x. (2/2) */
+
+/* Point with largest y. (1/3) */
+
+/* Point with largest y. (2/3) */
+
+/* Point with largest y. (3/3) */
+
+/* Point with smallest y. (1/3) */
+
+/* Point with smallest y. (2/3) */
+
+/* Point with smallest y. (3/3) */
+
+/* Valid if y overflow ignored (y = 1 mod p). (1/3) */
+
+/* Valid if y overflow ignored (y = 1 mod p). (2/3) */
+
+/* Valid if y overflow ignored (y = 1 mod p). (3/3)*/
+
+/* x on curve, y is from y^2 = x^3 + 8. */
+
+/* x is third root of -8, y is -1 * (x^3+7); also on the curve for y^2 = x^3 + 9. */
+
+/* Valid if x overflow ignored (x = 1 mod p). */
+
+/* Valid if x overflow ignored (x = 1 mod p). */
+
+/* x is -1, y is the result of the sqrt ladder; also on the curve for y^2 = x^3 - 5. */
+
+/* x is -1, y is the result of the sqrt ladder; also on the curve for y^2 = x^3 - 5. */
+
+/* x is zero, y is the result of the sqrt ladder; also on the curve for y^2 = x^3 - 7. */
+
+/* x is zero, y is the result of the sqrt ladder; also on the curve for y^2 = x^3 - 7. */
+
+/* Serialization of G. */
+
+/* Nothing should be reading this far into pubkeyc. */
+
+/* Zero length claimed, fail, zeroize, no illegal arg error. */
+
+/* Length one claimed, fail, zeroize, no illegal arg error. */
+
+/* Length two claimed, fail, zeroize, no illegal arg error. */
+
+/* 33 bytes claimed on otherwise valid input starting with 0x04, fail, zeroize output, no illegal arg error. */
+
+/* NULL pubkey, illegal arg error. Pubkey isn't rewritten before this step, since it's NULL into the parser. */
+
+/* NULL input string. Illegal arg and zeroize output. */
+
+/* 64 bytes claimed on input starting with 0x04, fail, zeroize output, no illegal arg error. */
+
+/* 66 bytes claimed, fail, zeroize output, no illegal arg error. */
+
+/* Valid parse. */
+
+/* secp256k1_ec_pubkey_serialize illegal args. */
+
+/* Multiple illegal args. Should still set arg error only once. */
+
+/* Does the illegal arg callback actually change the behavior? */
+
+/* Try a bunch of prefabbed points with all possible encodings. */
+
+/* Group order is too large, reject. */
+
+/* Maximum value is too large, reject. */
+
+/* Zero is too small, reject. */
+
+/* One must be accepted. */
+
+/* Group order + 1 is too large, reject. */
+
+/* -1 must be accepted. */
+
+/* Tweak of zero leaves the value changed. */
+
+/* Multiply tweak of zero zeroizes the output. */
+
+/* Overflowing key tweak zeroizes. */
+
+/* Private key tweaks results in a key of zero. */
+
+/* Tweak computation wraps and results in a key of 1. */
+
+/* Tweak mul * 2 = 1+1. */
+
+/* Test argument errors. */
+
+/* Zeroize pubkey on parse error. */
+
+/* Plain argument errors. */
+
+/* secp256k1_ec_pubkey_combine tests. */
+
+/* Result is infinity. */
+
+/* Passes through infinity but comes out one. */
+
+/* Adds to two. */
+
+/** Dummy nonce generation function that just uses a precomputed nonce, and fails if it is not accepted. Use only for testing. */
+
+/* Dummy nonce generator that has a fatal error on the first counter value. */
+
+/* Dummy nonce generator that produces unacceptable nonces for the first several counter values. */
+
+/* Retry rate of 6979 is negligible esp. as we only call this in deterministic tests. */
+
+/* If someone does fine a case where it retries for secp256k1, we'd like to know. */
+
+/* Generate a random key and message. */
+
+/* Construct and verify corresponding public key. */
+
+/* Verify exporting and importing public key. */
+
+/* Verify negation changes the key and changes it back */
+
+/* Verify private key import and export. */
+
+/* Optionally tweak the keys using addition. */
+
+/* Optionally tweak the keys using multiplication. */
+
+/* Sign. */
+
+/* Verify. */
+
+/* Test lower-S form, malleate, verify and fail, test again, malleate again */
+
+/* Serialize/parse DER and verify again */
+
+/* Serialize/destroy/parse DER and verify again. */
+
+/* Generate some randomly sized pubkeys. */
+
+/* If the pubkey can be parsed, it should round-trip... */
+
+/* ... except for the type of hybrid inputs. */
+
+/* Check that the X9.62 hybrid type is checked. */
+
+/* Delete a byte. */
+
+/* Insert a byte. */
+
+/* Modify a byte. */
+
+/* action < 8 */
+
+/* Modify a bit. */
+
+/* We generate two classes of numbers: nlow==1 ""low"" ones (up to 32 bytes), nlow==0 ""high"" ones (32 bytes with 129 top bits set, or larger than 32 bytes) */
+
+/* The length of the number in bytes (the first byte of which will always be nonzero) */
+
+/* The top bit of the number. */
+
+/* The top byte of the number (after the potential hardcoded 16 0xFF characters for ""high"" 32 bytes numbers) */
+
+/* The number of zero bytes in front of the number (which is 0 or 1 in case of DER, otherwise we extend up to 300 bytes) */
+
+/* The length of the length descriptor for the number. 0 means short encoding, anything else is long encoding. */
+
+/* nlenlen[n] max 127 bytes */
+
+/* The total length of the data to go, so far */
+
+/* The length of the garbage inside the tuple. */
+
+/* The length of the garbage after the end of the tuple. */
+
+/* Write the tuple header. */
+
+/* Indeterminate length */
+
+/* Short length notation */
+
+/* Long length notation */
+
+/* Write the integer header. */
+
+/* Short length notation */
+
+/* Long length notation. */
+
+/* Write zero padding */
+
+/* Special extra 16 0xFF bytes in ""high"" 32-byte numbers */
+
+/* Write first byte of number */
+
+/* Generate remaining random bytes of number */
+
+/* Generate random garbage inside tuple. */
+
+/* Generate end-of-contents bytes. */
+
+/* Generate random garbage outside tuple. */
+
+/* We don't know anything anymore about the DERness of the result */
+
+/* Tests several edge cases. */
+
+/* Test the case where ECDSA recomputes a point that is infinity. */
+
+/* Verify signature with r of zero fails. */
+
+/* Verify signature with s of zero fails. */
+
+/* Verify signature with message 0 passes. */
+
+/* Verify signature with message 1 passes. */
+
+/* Verify signature with message -1 passes. */
+
+/* Signature where s would be zero. */
+
+/* That pubkeyload fails via an ARGCHECK is a little odd but makes sense because pubkeys are an opaque data type. */
+
+/* Too little room for a signature does not fail via ARGCHECK. */
+
+/* Nonce function corner cases. */
+
+/* High key results in signature failure. */
+
+/* Zero key results in signature failure. */
+
+/* Nonce function failure results in signature failure. */
+
+/* The retry loop successfully makes its way to the first good value. */
+
+/* The default nonce function is deterministic. */
+
+/* The default nonce function changes output with different messages. */
+
+/* The default nonce function changes output with different keys. */
+
+/* Check that optional nonce arguments do not have equivalent effect. */
+
+/* Privkey export where pubkey is the point at infinity. */
+
+/* find iteration count */
+
+/* find random seed */
+
+/* initialize */
+
+/* num tests */
+
+/* scalar tests */
+
+/* field tests */
+
+/* group tests */
+
+/* ecmult tests */
+
+/* endomorphism tests */
+
+/* EC point parser test */
+
+/* EC key edge cases */
+
+/* ecdh tests */
+
+/* ecdsa tests */
+
+/* ECDSA pubkey recovery tests */
+
+/* shutdown */
+//www.opensource.org/licenses/mit-license.php.*
+
+//github.com/bitcoin-core/secp256k1/issues/257
+"
+tests_exhaustive.c,"/***********************************************************************
+ * Copyright (c) 2016 Andrew Poelstra                                 *
+ * Distributed under the MIT software license, see the accompanying   *
+ * file COPYING or http://www.opensource.org/licenses/mit-license.php.*
+ **********************************************************************/
+
+
+/* see group_impl.h for allowable values */
+
+/* cube root of 1 mod 13 */
+
+/** stolen from tests.c */
+
+/* Check a.x * b.z^2 == b.x && a.y * b.z^3 == b.y, to avoid inverses. */
+
+/** END stolen from tests.c */
+
+
+/* Some nonces cannot be used because they'd cause s and/or r to be zero.
+     * The signing function has retry logic here that just re-calls the nonce
+     * function with an increased `attempt`. So if attempt > 0 this means we
+     * need to change the nonce to avoid an infinite loop. */
+
+/* Sanity-check (and check infinity functions) */
+
+/* Check all addition formulae */
+
+/* add_var */
+
+/* add_ge */
+
+/* add_ge_var */
+
+/* add_zinv_var */
+
+/* Check doubling */
+
+/* Check negation */
+
+/* Verify by hand */
+
+/* Run through every k value that gives us this r and check that *one* works.
+                     * Note there could be none, there could be multiple, ECDSA is weird. */
+
+/* nb we have a ""high s"" rule */
+
+/* Verify by calling verify */
+
+/* Loop */
+
+/* message */
+
+/* key */
+
+/* nonce */
+
+/* Note that we compute expected_r *after* signing -- this is important
+                 * because our nonce-computing function function might change k during
+                 * signing. */
+
+/* Overflow means we've tried every possible nonce */
+
+/* We would like to verify zero-knowledge here by counting how often every
+     * possible (s, r) tuple appears, but because the group order is larger
+     * than the field order, when coercing the x-values to scalar values, some
+     * appear more often than others, so we are actually not zero-knowledge.
+     * (This effect also appears in the real code, but the difference is on the
+     * order of 1/2^128th the field order, so the deviation is not useful to a
+     * computationally bounded attacker.)
+     */
+
+/* Loop */
+
+/* message */
+
+/* key */
+
+/* nonce */
+
+/* Check directly */
+
+/* In computing the recid, there is an overflow condition that is disabled in
+                 * scalar_low_impl.h `secp256k1_scalar_set_b32` because almost every r.y value
+                 * will exceed the group order, and our signing code always holds out for r
+                 * values that don't overflow, so with a proper overflow check the tests would
+                 * loop indefinitely. */
+
+/* Also the recovery id is flipped depending if we hit the low-s branch */
+
+/* Convert to a standard sig then check */
+
+/* Note that we compute expected_r *after* signing -- this is important
+                 * because our nonce-computing function function might change k during
+                 * signing. */
+
+/* Overflow means we've tried every possible nonce */
+
+/* This is essentially a copy of test_exhaustive_verify, with recovery added */
+
+/* Verify by hand */
+
+/* Run through every k value that gives us this r and check that *one* works.
+                     * Note there could be none, there could be multiple, ECDSA is weird. */
+
+/* nb we have a ""high s"" rule */
+
+/* We would like to try recovering the pubkey and checking that it matches,
+                     * but pubkey recovery is impossible in the exhaustive tests (the reason
+                     * being that there are 12 nonzero r values, 12 nonzero points, and no
+                     * overlap between the sets, so there are no valid signatures). */
+
+
+/* Verify by converting to a standard signature and calling verify */
+
+/* Build context */
+
+/* TODO set z = 1, then do num_tests runs with random z values */
+
+
+/* Generate the entire group */
+
+/* Set a different random z-value for each Jacobian point */
+
+/* Verify against ecmult_gen */
+
+/* Run the tests */
+//www.opensource.org/licenses/mit-license.php.*
+"

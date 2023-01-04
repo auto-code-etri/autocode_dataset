@@ -1,0 +1,425 @@
+any.c,"// NOTE: The standard library (string.h), cotains the function strpbrk which
+
+// returns a pointer to the location of the char from the first string.
+"
+atof.c,
+atoi.c,
+bfree.c,"// Force alignment of blocks.
+"
+binsearch.c,"// printVector(v, MAXLEN);
+
+
+// Test binsearch_kr()
+
+// Test binsearch()
+
+// NOTE: By using a simple test in the for loop there is a chance to increase the
+
+// binsearch() execution speed. Just modifying an if-else statement from 3 branches
+
+// with two condition testing to 2 branches with 1 condition testing will not
+
+// increase drasticaly the program performance on modern machines, but is a better
+
+// aproach.
+"
+bitcount.c,"// NOTE: The expression x &= (x - 1) deletes the rightmost 1-bit of x because
+
+// x is decremented by 1 and masked with the initial x. If decremented x has
+
+// the rightmost bit 1, shifted to right by logic & operation, it is deleted.
+"
+calculator.c,"// NOTE: run: ./calculator <<< ""2 3 4 2 - + +""
+"
+calloc.c,"// Force alignment of blocks.
+"
+case.c,"// NOTE: run: ( exec -a upper ./case < case.c )
+
+// It is possible to change argv[0] by using the exec command.
+"
+cat.c,
+celsius_fahrenheit.c,"// Print Celsius-Fahrenheit table
+
+// for celsius = 0, 20, ... 300
+
+// floating point version with for loop
+
+
+// NOTE: Sometimes the for loop can be more explicit and more readable then the
+
+// while loop because it's more compact. The initialization and the incrementation
+
+// of the counter variable is done through the for loop params. However, the while
+
+// loop can be, sometimes, more customizable.
+"
+check_syntax.c,
+compare.c,"// NOTE: run: ./compare file_1.txt file_2.txt
+"
+copy_io.c,
+copy_io_esc_replace.c,
+copy_io_nl.c,
+count_b_t_n.c,
+count_c_keywords.c,"// NOTE: run: ./count_c_keywords < count_c_keywords.c
+"
+cross_referencer.c,"// There is a strdup available with POSIX, but it's not part of ISO C.
+
+// NOTE: run: ./cross_referencer < test.txt
+"
+c_remove_comments.c,"/**
+   * This is multiline
+   * block
+   * comment.
+  */
+
+// This is a test comment.
+
+
+// This is another test comment.
+
+// NOTE: run: ./c_remove_comments < c_remove_comments.c
+"
+date_conversion.c,"// Additional checks for month.
+
+// Additional checks for day.
+
+// Additional check for yearday.
+
+// Reset the provided month and day.
+"
+date_conversion_pointers.c,"// Additional checks for month.
+
+// Additional checks for day.
+
+// Additional check for yearday.
+
+// Reset the provided month and day.
+"
+dcl.c,"// NOTE: run: ./dcl < test.txt
+"
+define.c,"// There is a strdup available with POSIX, but it's not part of ISO C.
+
+// NOTE: run: ./define < define.c
+"
+detab.c,"// NOTE: The current program works in a similar fashion as expand.
+
+// run: ./detab 4 8 12 16 < file_tabs.txt > file_spaces.txt
+
+// run: ./detab +8 -2 < file_tabs.txt > file_spaces.txt
+"
+entab.c,"// NOTE: The current program works in a similar fashion as unexpand.
+
+// run: ./entab 4 8 12 16 > file_tabs.txt < file_spaces.txt
+"
+escape.c,
+expand.c,"/**
+   * a-z
+   * a-b-c
+   * a-c-h-v
+   * a-c-b-v
+   * 0-9
+   * 1-5
+   * a-zA-Z
+   * 0-9a-zA-Z
+   * -a-z
+   * a-z-
+   * -a-z-
+   */
+"
+expr.c,"// This char might require to be escaped when passed as an argument.
+"
+fahrenheit_celsius.c,"// Print Fahrenheit-Celsius table
+
+// for fahr = 0, 20, ... 300
+
+// floating point version
+
+
+// Printing a heading above the table
+
+// NOTE: If all operands from an operation are integers then a integer operation
+
+// is performed. If at least one operand is a floating point number then a
+
+// floating point operation will be performed.
+"
+find.c,"// NOTE: run: ./find -n ""Some people"" file_1.txt file_2.txt
+"
+fold_line.c,
+frequency_histogram.c,"// Initialize the chars_freq array with 0
+
+// Count characters from the standard input
+
+// Print horizontal histogram
+"
+fsize.c,"/**
+   * off_t st_size         File size, in bytes
+   * dev_t st_dev          ID of device containing file
+   * ino_t st_ino          File serial number
+   * mode_t st_mode        Mode of file (see below)
+   * nlink_t st_nlink      Number of hard links
+   * uid_t st_uid          User ID of the file
+   * gid_t st_gid          Group ID of the file
+   * dev_t st_rdev         Device ID
+   * time_t st_atime       Time of last access
+   * time_t st_mtime       Last data modification time
+   * time_t st_ctime       Time of last status change
+   * blkcnt_t st_blocks    Blocks allocated for file
+   * blksize_t st_blksize  Optimal blocksize for I/O
+   */
+
+// Printed in a similary fashion to ls -l
+
+// Skip self and parent.
+"
+getch.c,"// NOTE: The getch() function can't manage correctly the EOF character because
+
+// in the original K&R version buf was a char array, which can't hold the EOF
+
+// because EOF is -1 and char can't hold negative number. However the gcc
+
+// compiler, on Windows, uses by default signed chars which can hold EOF, but
+
+// this is not platform independent.
+"
+getfloat.c,"// NOTE: The getfloat() function should return an integer like getint().
+"
+getint.c,
+getline.c,
+getop.c,"// Skip blanks (spaces and tabs)
+
+// Not a number
+
+// Collect the integer part
+
+// Collect the fraction part
+"
+hello_world.c,
+histogram.c,"// Initialize the histogram array with 0
+
+// Count the words length and store in histogram array at the
+
+// specific index
+
+// Add in the histogram array a end of useful data char
+
+// Print horizontal histogram
+
+// Print a vertical histogram
+"
+htoi.c,"// NOTE: The conversion algorithm from hex to dec is very similar with the
+
+// conversion algorithm from bin to dec, but the base is not 2 but 16.
+
+// The general formula is: x1*B^N + x2*B^(N - 1) + ... + xn*B^(N - N), where B
+
+// is the base from we convert to dec, in this case B = 16.
+"
+invert.c,"// First position is 0
+
+"
+isupper.c,
+itoa.c,
+itob.c,"// NOTE: It is simple to convert an integer variable to any base just by taking
+
+// the remainder of the number divided by base and then dividing the initial
+
+// number by base. The result need to be reversed to be correct.
+"
+line_80.c,
+longest_line.c,
+loop.c,"// int i;
+
+// int c;
+
+// for (i = 0; (i < MAXLINE - 1) * ((c = getchar()) != '\n') * (c != EOF); ++i)
+
+// {
+
+//   s[i] = c;
+
+// }
+
+
+// NOTE: The multiplication operation could work in this case because each
+
+// expression is evaluated as a 1 or 0 (true or false), and a multiplication
+
+// between expressions can have the value 1 only if all the expressions are true.
+
+// However, the order of multiplication is not guaranteed to be sequenced as with
+
+// logical operations. So, this is could cause serious problems depending on how
+
+// the compiler deals with multiplication.
+"
+lower.c,"// NOTE: The ternary operator ?: can be used direct in return.
+"
+malloc_free.c,"// Force alignment of blocks.
+"
+math.c,
+minprintf.c,
+minscanf.c,"// NOTE: run: ./minscanf <<< ""1 2 3 4 5r hello 2.3""
+
+// In Unix like systems:< file or directory, << here doc, <<< here string
+"
+print.c,"// NOTE: run: ./print ../exercise_7_7/file_1.txt ../exercise_7_7/file_2.txt ./print.c
+"
+printf_argument.c,
+print_eof.c,"// NOTE: The value of the EOF character is -1, which is an integer.
+"
+readlines.c,"// max # of lines to be sorted
+
+// max # of chars from all lines to be stored
+
+
+// pointers to text lines
+
+
+// # of input lines read
+
+// # of chars to be stored for all lines
+
+
+// Init p with the first empty position from stored_lines
+
+// Checking if the current # of lines exceeds the max # of lines that can be stored
+
+// Also checking if the max # of chars from the stored_lines buffer is not exceeded
+
+// Delete newline
+
+// Move p to the next empty position
+
+// Do nothing if the array contains less than 2 elements
+"
+reverse.c,
+rightrot.c,"// NOTE: The rightrot function rotate the entire unsigned int var and if we print
+
+// just a byte we can't see all bits. In order to print all the bits from an
+
+// unsigned int we need to determine the size of an unsigned int, wich is
+
+// machine dependent, and then print 0 or 1 to the output using powers of 2.
+"
+setbits.c,"// First position is 0
+
+
+// NOTE: Masking is a very good technique to work with bits. We can think about
+
+// logic AND as a multiply and for OR as an addition.
+"
+sort.c,"// 1 ascendent, -1 descendent
+
+// 0 case sensitive, 1 case insensitive
+
+// 0 normal, 1 directory
+
+// NOTE: run: ./sort -3nr -2f < file_in.txt
+"
+squeeze.c,
+stack.c,
+strcat.c,"// Concatenate t to end of s; s must be big enough.
+
+// Find the end of s
+
+// copy t to the end of s
+"
+strend.c,"// Test if the string t1 occurs at the end of string s.
+
+// Test if the string t2 occurs at the end of string s.
+
+//  Returns 1 if the string t occurs at the end of the string s, and zero otherwise.
+
+// Determine the lengths of the strings.
+
+// Move the s & t pointer to the end of the corresponding strings.
+
+// Check backwards if each character from string t occurs in the corresonding
+
+// location from the string s.
+"
+strindex.c,
+strncat.c,"// Concatenate t to end of s; s must be big enough.
+
+// Find the end of s
+
+// Move the s pointer to the end of the s string.
+
+// copy t to the end of s
+"
+strncmp.c,"// Return <0 if s<t, 0 if s==t, >0 if s>t *1
+
+// If the s string contains more characters than t, then the t char will
+
+// become '\0' before s char. If this happen then the s char will be >0 and
+
+// t char will be 0, so the final result will be >0.
+
+
+// If the t string contains more character than s, then the s char will
+
+// become '\0' before t char. If this happen then the s char will be <0 and
+
+// t char will be 0, so the final result will be <0.
+
+"
+strncpy.c,
+swap.c,"// NOTE: A use of a block is very useful because there can be created local
+
+// variables that don't create conflicts with already existed entities.
+"
+syscalls.c,"// RW for owners, group, others
+
+
+// stdin
+
+// stdout
+
+// stderr
+
+// found free slot
+
+// no free slots
+
+// couldn't access name
+"
+tail.c,"// NOTE: run: ./tail -5 < file_in.txt
+"
+temperature_conversion.c,"// Printing a heading abouve the table
+"
+trailing_blanks.c,
+types_ranges.c,"// NOTE: The limits.h header contains all the necessary constants machine
+
+// dependent for types sizes.
+"
+undcl.c,"// NOTE: run: ./undcl < test.txt
+"
+undef.c,"// There is a strdup available with POSIX, but it's not part of ISO C.
+
+// Install other collision values for the same hash as for ""TEST"" -> 51.
+"
+ungets.c,"// NOTE: The ungetstr() function doesn't need access to buf and bufp. It is enough
+
+// just to use the ungetch() function.
+"
+variables.c,
+var_group.c,"// There is a strdup available with POSIX, but it's not part of ISO C.
+
+// NOTE: This approach takes into consideration both variable and function names.
+
+// NOTE: run: ./var_group 5 < test.txt
+"
+verify_expression.c,"// NOTE: The expression getchar() != EOF is equal with 1 only if input char
+
+// is != with EOF. A useful thing to know is that on Windows the EOF char is
+
+// accessible with CTRL+Z, while on Unix like systems the EOF char is
+
+// accessible with CTRL+D.
+"
+words_frequency.c,"// There is a strdup available with POSIX, but it's not part of ISO C.
+
+// NOTE: run: ./words_frequency < words_frequency.c
+"
+word_count_test.c,

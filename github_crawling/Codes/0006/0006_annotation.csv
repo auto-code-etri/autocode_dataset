@@ -1,0 +1,214 @@
+call_center.py,"""""""Assume the employee will always successfully take the call.""""""
+"
+deck_of_cards.py,"""""""Jack = 11, Queen = 12, King = 13""""""
+
+""""""Return a list of possible scores, taking Aces into account.""""""
+"
+hash_map.py,
+lru_cache.py,"# key: query, value: node
+
+# Key exists in cache, update the value
+
+# Key does not exist in cache
+
+# Remove the oldest entry from the linked list and lookup
+
+# Add the new key and value
+""""""Get the stored query result from the cache.
+
+        Accessing a node updates its position to the front of the LRU list.
+        """"""
+
+""""""Set the result for the given query key in the cache.
+
+        When updating an entry, updates its position to the front of the LRU list.
+        If the entry is new and the cache is at capacity, removes the oldest entry
+        before the new entry is added.
+        """"""
+"
+mint_mapreduce.py,"# -*- coding: utf-8 -*-
+
+""""""Return the current year and month.""""""
+
+""""""Return the year and month portions of the timestamp.""""""
+
+""""""Call notification API if nearing or exceeded budget.""""""
+
+""""""Parse each log line, extract and transform relevant lines.
+
+        Emit key value pairs of the form:
+
+        (2016-01, shopping), 25
+        (2016-01, shopping), 100
+        (2016-01, gas), 50
+        """"""
+
+""""""Sum values for each key.
+
+        (2016-01, shopping), 125
+        (2016-01, gas), 50
+        """"""
+
+""""""Run the map and reduce steps.""""""
+"
+mint_snippets.py,"# -*- coding: utf-8 -*-
+
+
+# ...
+
+
+"
+online_chat.py,"# key: user id, value: User
+
+
+# key: friend id, value: User
+
+# key: friend id, value: private chats
+
+# key: chat id, value: GroupChat
+
+# key: friend id, value: AddRequest
+
+# key: friend id, value: AddRequest
+
+"
+parking_lot.py,"# List of Levels
+
+
+# List of ParkingSpots
+
+""""""Find an available spot where vehicle can fit, or return None""""""
+
+""""""Occupy starting at spot.spot_number to vehicle.spot_size.""""""
+"
+pastebin.py,"# -*- coding: utf-8 -*-
+
+""""""Extract the generated url from the log line.""""""
+
+""""""Return the year and month portions of the timestamp.""""""
+
+""""""Parse each log line, extract and transform relevant lines.
+
+        Emit key value pairs of the form:
+
+        (2016-01, url0), 1
+        (2016-01, url0), 1
+        (2016-01, url1), 1
+        """"""
+
+""""""Sum values for each key.
+
+        (2016-01, url0), 2
+        (2016-01, url1), 1
+        """"""
+
+""""""Run the map and reduce steps.""""""
+"
+query_cache_snippets.py,"# -*- coding: utf-8 -*-
+
+
+
+# Key exists in cache, update the value
+
+# Key does not exist in cache
+
+# Remove the oldest entry from the linked list and lookup
+
+# Add the new key and value
+""""""Remove markup, break text into terms, deal with typos,
+        normalize capitalization, convert to use boolean operations.
+        """"""
+
+""""""Get the stored query result from the cache.
+
+        Accessing a node updates its position to the front of the LRU list.
+        """"""
+
+""""""Set the result for the given query key in the cache.
+
+        When updating an entry, updates its position to the front of the LRU list.
+        If the entry is new and the cache is at capacity, removes the oldest entry
+        before the new entry is added.
+        """"""
+"
+sales_rank_mapreduce.py,"# -*- coding: utf-8 -*-
+
+""""""Return True if timestamp is within past week, False otherwise.""""""
+
+""""""Parse each log line, extract and transform relevant lines.
+
+        Emit key value pairs of the form:
+
+        (foo, p1), 2
+        (bar, p1), 2
+        (bar, p1), 1
+        (foo, p2), 3
+        (bar, p3), 10
+        (foo, p4), 1
+        """"""
+
+""""""Sum values for each key.
+
+        (foo, p1), 2
+        (bar, p1), 3
+        (foo, p2), 3
+        (bar, p3), 10
+        (foo, p4), 1
+        """"""
+
+""""""Construct key to ensure proper sorting.
+
+        Transform key and value to the form:
+
+        (foo, 2), p1
+        (bar, 3), p1
+        (foo, 3), p2
+        (bar, 10), p3
+        (foo, 1), p4
+
+        The shuffle/sort step of MapReduce will then do a
+        distributed sort on the keys, resulting in:
+
+        (category1, 1), product4
+        (category1, 2), product1
+        (category1, 3), product2
+        (category2, 3), product1
+        (category2, 7), product3
+        """"""
+
+""""""Run the map and reduce steps.""""""
+"
+social_graph_snippets.py,"# -*- coding: utf-8 -*-
+
+# key: person_id, value: person_server
+
+
+# key: person_id, value: person
+
+
+# Use self.visited_ids to track visited nodes
+
+# Use self.lookup to translate a person_id to a Person
+"
+web_crawler_mapreduce.py,"# -*- coding: utf-8 -*-
+
+""""""Run the map and reduce steps.""""""
+"
+web_crawler_snippets.py,"# -*- coding: utf-8 -*-
+
+
+
+# Create signature based on url and contents
+""""""Add the given link to `links_to_crawl`.""""""
+
+""""""Remove the given link from `links_to_crawl`.""""""
+
+""""""Reduce the priority of a link in `links_to_crawl` to avoid cycles.""""""
+
+""""""Return the highest priority link in `links_to_crawl`.""""""
+
+""""""Add the given link to `crawled_links`.""""""
+
+""""""Determine if we've already crawled a page matching the given signature""""""
+"
+__init__.py,

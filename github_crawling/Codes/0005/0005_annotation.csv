@@ -1,0 +1,185 @@
+format.py,"# -*- coding: utf-8 -*-
+
+
+# Temporary replacement
+
+# The descriptions that contain () at the end must adapt to the new policy later
+
+###'
+
+# Type aliases
+
+# url should be wrapped in ""[TITLE](LINK)"" Markdown syntax
+
+# do not allow ""... API"" in the entry title
+
+# check each category for the minimum number of entries
+
+# skips lines that we do not care about
+
+# every line segment should start and end with exactly 1 space
+"
+links.py,"# -*- coding: utf-8 -*-
+
+
+## Index')
+
+# Remove routes, arguments and anchors
+
+#' in host:
+
+#', 1)[0]
+
+""""""Find links in a text and return a list of URLs.""""""
+
+
+""""""Find links in a file and return a list of URLs from text file.""""""
+
+
+""""""Check for duplicated links.
+
+    Returns a tuple with True or False and duplicate list.
+    """"""
+
+
+""""""Faking user agent as some hosting services block not-whitelisted UA.""""""
+
+
+""""""Checks if there is any cloudflare protection in the response.
+
+    Cloudflare implements multiple network protections on a given link,
+    this script tries to detect if any of them exist in the response from request.
+
+    Common protections have the following HTTP code as a response:
+        - 403: When host header is missing or incorrect (and more)
+        - 503: When DDOS protection exists
+
+    See more about it at:
+        - https://support.cloudflare.com/hc/en-us/articles/115003014512-4xx-Client-Error
+        - https://support.cloudflare.com/hc/en-us/articles/115003011431-Troubleshooting-Cloudflare-5XX-errors
+        - https://www.cloudflare.com/ddos/
+        - https://superuser.com/a/888526
+
+    Discussions in issues and pull requests:
+        - https://github.com/public-apis/public-apis/pull/2409
+        - https://github.com/public-apis/public-apis/issues/2960 
+    """"""
+
+
+""""""Checks if a link is working.
+
+    If an error is identified when the request for the link occurs,
+    the return will be a tuple with the first value True and the second
+    value a string containing the error message.
+
+    If no errors are identified, the return will be a tuple with the
+    first value False and the second an empty string.
+    """"""
+
+"
+test_validate_format.py,"# -*- coding: utf-8 -*-
+
+
+### A',
+
+### B',
+
+### A',
+
+### B',
+
+### A',
+
+### B',
+
+#$%&'*+,-./:;<=>?@[\]^_`{|}~""""""
+
+## Index',
+
+#a)',
+
+#b)',
+
+### A',
+
+### B',
+
+## Index',
+
+### A',
+
+## Index',
+
+#a)',
+
+#b)',
+
+### A',
+
+### B',
+
+## Index',
+
+#a)',
+
+### A',
+
+# missing https and cors
+
+## Index',
+
+#a)',
+
+### A',
+
+# space between segment of auth column missing
+""""""!""#$%&'*+,-./:;<=>?@[\]^_`{|}~""""""
+"
+test_validate_links.py,"# -*- coding: utf-8 -*-
+
+
+# this is valid
+
+
+#anchor
+
+#anchor
+
+#anchor)
+
+#anchor
+
+#anchor lorem ipsum
+
+
+# this not is valid
+
+
+#anchor'
+
+#', host)
+
+""""""
+            # this is valid
+
+            http://example.com?param1=1&param2=2#anchor
+            https://www.example.com?param1=1&param2=2#anchor
+            https://www.example.com.br
+            https://www.example.com.gov.br
+            [Example](https://www.example.com?param1=1&param2=2#anchor)
+            lorem ipsum https://www.example.com?param1=1&param2=2#anchor
+            https://www.example.com?param1=1&param2=2#anchor lorem ipsum
+
+            # this not is valid
+
+            example.com
+            https:example.com
+            https:/example.com
+            https//example.com
+            https//.com
+        """"""
+
+"
+__init__.py,"# -*- coding: utf-8 -*-
+
+"
