@@ -337,7 +337,7 @@ class GitHubCrawler:
                         
                 
                 
-if __name__ == '__main__':  #python zip_downloader.py
+if __name__ == '__main__':  #python .\GitHub_Crawler.py
     LOGD("Program Starting! Name: %s", (os.path.basename(__file__)))
     handler = GitHubCrawler()
     handler.ReadCSV('github_URL_list.csv')
