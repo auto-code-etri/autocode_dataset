@@ -2,6 +2,7 @@
 #### A tool to extract metadata, source code and annotations from GitHub, an open source project repository
 <br/>
 
+
 ## Process
 1. Get the information of GitHub project in `github_URL_list.csv`
 2. Extract metadata(Commits, Watchers, Forks, Stars, Releases, Contributors, Branches, Issues, Pull requests) of GitHub project
@@ -13,6 +14,8 @@
 ## Requirements
 - selenium==4.7.2
 - beautifulsoup4==4.11.1
+- Download the version of [geckodriver](https://github.com/mozilla/geckodriver/releases) that fits your computer and replace `modules/geckodriver.exe`
+- Download the version of [firefox](https://www.mozilla.org/firefox/new/) that fits your computer
 
 
 ## How to use
