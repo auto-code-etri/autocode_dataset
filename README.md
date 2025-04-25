@@ -32,3 +32,22 @@ Building a database infrastructure that can be used for additional research of s
 >- When a user makes a query using NL, a function that converts the automatically generated source code to suit the user's environment must be provided.
 
 >- The automatic source code generation system must be provided in the API form so that third parties can easily use it from the outside.
+
+# Crawling Code for Github Project
+>- GithubCrawling
+
+This directory contains source code for searching GitHub projects and crawling the source code within those projects. Although the target source codes are in C/C++ and Python, there is no language restriction if the code is modified accordingly.
+
+# Dataset Description
+>- CodeSearchNet-Python
+
+This directory contains an augmented dataset based on Python source code from the CodeSearchNet dataset. The original dataset consists of natural language (problem):code pairs, and in this version, the natural language part has been enhanced. In addition to the original problem description, we added solution strategies and pseudocode to enrich the natural language component. This augmented dataset can help improve the ability to find the correct code solutions for given problems.
+
+>- Github-Cpp-2024
+
+This directory contains C/C++ source codes that were crawled, filtered, and collected from GitHub. In particular, during the filtering process, the source codes were scored, and low-quality codes were removed. Additionally, the natural language descriptions for the codes were generated using an LLM, resulting in a complete dataset in the form of (natural language : code) pairs.
+
+>- MutMut
+
+The MutMut dataset was created by applying minor code mutations using a mutation testing tool, with the goal of generating faulty code that fails to pass test cases. These mutations involve various techniques, such as renaming variables, changing operators, and modifying statements—typically at the line level. By applying these transformations to an existing dataset, a collection of buggy code samples was produced.
+
