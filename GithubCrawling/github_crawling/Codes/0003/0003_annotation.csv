@@ -1,0 +1,669 @@
+add-debug-link.py,"#!/usr/bin/env python3
+
+# Skip because no objcopy binary on the given target.
+
+# Make sure the path to the binary is not relative because of cwd param.
+"
+apply_all_patches.py,"#!/usr/bin/env python3
+
+"
+build.py,"#!/usr/bin/env python3
+
+
+#ifndef ELECTRON_FUSES_H_
+
+#define ELECTRON_FUSES_H_
+
+
+#if defined(WIN32)
+
+#define FUSE_EXPORT __declspec(dllexport)
+
+#else
+
+#define FUSE_EXPORT __attribute__((visibility(""default"")))
+
+#endif
+
+
+#endif  // ELECTRON_FUSES_H_
+
+#include ""electron/fuses.h""
+
+""""""
+#ifndef ELECTRON_FUSES_H_
+#define ELECTRON_FUSES_H_
+
+#if defined(WIN32)
+#define FUSE_EXPORT __declspec(dllexport)
+#else
+#define FUSE_EXPORT __attribute__((visibility(""default"")))
+#endif
+
+namespace electron::fuses {
+
+extern const volatile char kFuseWire[];
+
+{getters}
+
+}  // namespace electron::fuses
+
+#endif  // ELECTRON_FUSES_H_
+""""""
+
+
+""""""
+#include ""electron/fuses.h""
+
+namespace electron::fuses {
+
+const volatile char kFuseWire[] = { /* sentinel */ {sentinel}, /* fuse_version */ {fuse_version}, /* fuse_wire_length */ {fuse_wire_length}, /* fuse_wire */ {initial_config}};
+
+{getters}
+
+}  // namespace electron:fuses
+""""""
+
+
+""""""
+bool Is{name}Enabled() {
+  return kFuseWire[{index}] == '1';
+}
+"""""""
+check-relative-doc-links.py,"#!/usr/bin/env python3
+
+
+#')
+
+#'):
+
+# (?P<header>.*)')
+
+# This does the following to slugify a header name:
+
+#  * Replace whitespace with dashes
+
+#  * Strip anything that's not alphanumeric or a dash
+
+#  * Anything quoted with backticks (`) is an exception and will
+
+#    not have underscores stripped
+"
+check-zip-manifest.py,"#!/usr/bin/env python3
+
+"
+config.py,"#!/usr/bin/env python3
+
+
+# TODO Remove ATOM_SHELL_* fallback values
+"
+copy-debug-symbols.py,"#!/usr/bin/env python3
+
+# It has to be done before stripping the binaries.
+
+# Skip because no objcopy binary on the given target.
+"
+dbus_mock.py,"#!/usr/bin/env python3
+
+"
+dump_syms.py,"# The BINARY_INFO tuple describes a binary as dump_syms identifies it.
+
+# header info is of the form ""MODULE $PLATFORM $ARCH $HASH $BINARY""
+""""""Simulates mkdir -p.""""""
+"
+export_all_patches.py,"#!/usr/bin/env python3
+
+"
+fake_v8_context_snapshot_generator.py,
+generate-config-gypi.py,"#!/usr/bin/env python3
+
+
+# Enabled in Chromium's V8, will be disabled on 32bit via
+
+# common.gypi rules
+
+# Work around ""No acceptable ASM compiler found"" error on some System,
+
+# it breaks nothing since Electron does not use OpenSSL.
+
+#'):
+
+# Remove the generated config.gypi to make the parallel/test-process-config
+
+# test pass.
+
+# Electron specific variables:
+
+# Used by certain versions of node-gyp.
+"
+generate-template.py,
+generate-zip-manifest.py,"#!/usr/bin/env python3
+
+"
+generate_node_defines.py,"# *define (\w*)', re.MULTILINE)
+
+
+#pragma push_macro(""%s"")\n' % define
+
+#undef %s\n' % define
+
+#pragma pop_macro(""%s"")\n' % define
+"
+git.py,"#!/usr/bin/env python3
+
+
+# Check if we're in the root folder already.
+
+# Keep the CR of CRLF in case any patches target files with Windows line
+
+# endings.
+
+# Ensure it is not possible to match anything
+
+# Disabled for now as we have consistent chunk headers
+
+# '-c',
+
+# 'diff.electron.xfuncname=$^',
+
+# Per RFC 3676 the signature is separated from the body by a line with
+
+# '-- ' on it. If the signature option is omitted the signature defaults
+
+# to the Git version number.
+
+# The name of the parent commit object isn't useful information in this
+
+# context, so zero it out to avoid needless patch-file churn.
+
+# Some versions of git print out different numbers of characters in the
+
+# 'index' line of patches, so pass --full-index to get consistent
+
+# behaviour.
+
+# Keep line endings in case any patches target files with CRLF.
+
+# If no patch-filename header, munge the subject.
+
+# drop this line
+
+# If we're doing a dry run, iterate through each patch and see if the newly
+
+# exported patch differs from what exists. Report number of mismatched
+
+# patches and fail if there's more than one.
+
+# Remove old patches so that deleted commits are correctly reflected in the
+
+# patch files (as a removed file)
+
+# Write in binary mode to retain mixed line endings on write.
+""""""Git helper functions.
+
+Everything here should be project agnostic: it shouldn't rely on project's
+structure, or make assumptions about the passed arguments or calls' outcomes.
+""""""
+
+
+""""""Finds a closest ancestor folder which is a repo root.""""""
+
+""""""same as am(), but we save the upstream HEAD so we can refer to it when we
+  later export patches""""""
+
+""""""Guess which commit the patches might be based on""""""
+
+""""""Split a concatenated series of patches into N separate patches""""""
+
+""""""Derive a suitable filename from a commit's subject""""""
+
+""""""Return the name of the file to which the patch should be written""""""
+
+""""""Joins and formats patch contents""""""
+
+""""""Strip out the Patch-Filename trailer from a patch's message body""""""
+
+""""""Python 2/3 compatibility: unicode has been renamed to str in Python3""""""
+"
+js2c.py,"#!/usr/bin/env python3
+
+
+#include ""node_native_module.h""
+
+#include ""node_internals.h""
+
+""""""
+#include ""node_native_module.h""
+#include ""node_internals.h""
+
+namespace node::native_module {{
+
+{definitions}
+
+void NativeModuleLoader::LoadEmbedderJavaScriptSource() {{
+  {initializers}
+}}
+
+}}  // namespace node::native_module
+""""""
+
+"
+make_locale_dirs.py,"# usage: make_locale_dirs.py locale_dir [...]
+
+#
+
+# This script is intended to create empty locale directories (.lproj) in a
+
+# Cocoa .app bundle. The presence of these empty directories is sufficient to
+
+# convince Cocoa that the application supports the named localization, even if
+
+# an InfoPlist.strings file is not provided. Chrome uses these empty locale
+
+# directories for its helper executable bundles, which do not otherwise
+
+# require any direct Cocoa locale support.
+
+
+# It's OK if it already exists
+"
+native-tests.py,"#!/usr/bin/env python3
+
+
+# https://youtu.be/bXd-zZLV2i0?t=41s
+
+# Additional checks.
+
+# Absolutize and check paths.
+
+# 'config' must exist and be a file.
+
+# 'tests_dir' must exist and be a directory.
+
+# 'output_dir' must exist and be a directory.
+"
+native_tests.py,"#pylint: disable=wrong-import-position,wrong-import-order
+
+
+# Python 2
+
+# Python 3
+
+# pylint: disable=redefined-builtin
+
+
+
+# stdout and stderr
+
+# stderr only
+
+# no output
+
+
+# Disabled tests are disabled. Wow. Much sense.
+
+# Only disabled tests should be run.
+
+# Do not disable any tests.
+
+
+
+# A dict with binary names (e.g. 'base_unittests') as keys
+
+# and various test data as values of dict type.
+
+# Don't run anything twice.
+
+# First check that all names are present in the config.
+
+# Respect the ""platform"" setting.
+
+# It looks ugly as hell, but it does the job.
+
+# List of excluded tests.
+
+# List of platforms to run the tests on.
+
+# There is nothing to run.
+
+# Is only used when writing to a file.
+""""""Greater or equal""""""
+
+""""""Less or equal""""""
+
+"""""" Treat a string as {'string_value': None}.""""""
+
+""""""Make a list if not already a list.""""""
+
+""""""Converts a dict of lists to a list.""""""
+"
+npm-run.py,"#!/usr/bin/env python3
+"
+npm.py,
+npx.py,
+patches-mtime-cache.py,"#!/usr/bin/env python3
+
+
+# File may be patched multiple times, we don't need to
+
+# rehash it since we are looking at the final result
+
+# We can't atomically set the times for all files at once, but by waiting
+
+# to update until we've checked all the files we at least have less chance
+
+# of only updating some files due to an error on one of the files
+
+# Cache file may exist from a previously aborted sync. Reuse it.
+
+# Make sure it's not an empty file
+
+# Cache file may not exist, fail more gracefully
+
+
+# Python 2/3 compatibility
+"
+patches.py,"#!/usr/bin/env python3
+
+""""""Read a patch from |patch_dir/filename| and amend the commit message with
+  metadata about the patch file it came from.""""""
+
+""""""Read a directory of patches into a format suitable for passing to
+  'git am'""""""
+"
+print-version.py,
+profile_toolchain.py,"# file_path = os.path.join(os.getcwd(), 'installed_software.json')
+
+# return json.loads(open('installed_software.json').read().decode('utf-8'))
+
+# since current windows executable are symbols path dependant,
+
+# profile the current directory too
+"
+run-clang-format.py,"#!/usr/bin/env python3
+
+#'):
+
+# pylint: disable=W0707
+
+# pylint: disable=W0707
+
+# pylint: disable=W0707
+
+# use default signal handling, like diff return SIGINT value on ^C
+
+# https://bugs.python.org/issue14229#msg156446
+
+# compatibility, SIGPIPE does not exist on Windows
+
+# don't check deleted files
+
+# execute directly instead of in a pool,
+
+# less overhead, simpler stacktraces
+
+# stop at the first unexpected error,
+
+# something could be very wrong,
+
+# don't process all files unnecessarily
+""""""A wrapper script around clang-format, suitable for linting multiple files
+and to use for continuous integration.
+
+This is an alternative API for the clang-format command line.
+It runs over multiple files and directories in parallel.
+A diff output is produced and a sensible exit code is returned.
+""""""
+
+"
+run-gn-format.py,"# Helper to run gn format on multiple files
+
+# (gn only formats a single file at a time)
+"
+run-in-dir.py,
+run-node.py,"# Proxy all args to node script
+"
+strip-binaries.py,"#!/usr/bin/env python3
+"
+strip_framework.py,"#!/usr/bin/env python3
+
+# Ensure any existing framework is removed
+
+# Strip headers, we do not need to ship them
+"
+upload-index-json.py,"#!/usr/bin/env python3
+
+
+# Upload the index.json.
+"
+upload-node-checksums.py,"#!/usr/bin/env python3
+
+"
+upload-node-headers.py,"#!/usr/bin/env python3
+
+
+# Upload node's headers to artifact storage.
+
+# Copy electron.lib to node.lib and iojs.lib.
+
+# Upload the node.lib.
+
+# Upload the iojs.lib.
+
+# Upload the v4 node.lib.
+"
+upload-symbols.py,"#!/usr/bin/env python3
+
+
+# The file upload needs to be symbols/:symbol_name/:hash/:symbol
+
+# The symbol server needs lowercase paths, it will fail otherwise
+
+# So lowercase all the file paths here
+"
+upload.py,"#!/usr/bin/env python3
+
+
+# Upload Electron files.
+
+# Rename dist.zip to  get_zip_name('electron', version, suffix='')
+
+# Upload libcxx_objects.zip for linux only
+
+# Upload headers.zip and abi_headers.zip as non-platform specific
+
+# Upload free version of ffmpeg.
+
+# Upload the x64 binary for arm/arm64 mksnapshot
+
+# Upload the hunspell dictionaries only from the linux x64 build
+
+# Upload symbols to symbol server.
+
+# In CI we just build as told.
+
+# pylint: disable=W0707
+
+# 0. id
+
+# 1. length
+
+# Some sort of extended time data, see
+
+# ftp://ftp.info-zip.org/pub/infozip/src/zip30.zip ./proginfo/extrafld.txt
+
+# fallthrough
+
+# Unix extra data; UID / GID stuff, see
+
+# ftp://ftp.info-zip.org/pub/infozip/src/zip30.zip ./proginfo/extrafld.txt
+
+# ZIP64.
+
+# When a ZIP64 extra field is present this 8byte length
+
+# will override the 4byte length defined in canonical zips.
+
+# This is in the form:
+
+# - 0x0001 (header_id)
+
+# - 0x0010 [16] (header_length)
+
+# - ... (8byte uncompressed_length)
+
+# - ... (8byte compressed_length)
+
+# 0. L signature
+
+# 1. H version_needed
+
+# 2. H gp_bits
+
+# 3. H compression_method
+
+# 4. H last_mod_time
+
+# 5. H last_mod_date
+
+# 6. L crc32
+
+# 7. L compressed_size
+
+# 8. L uncompressed_size
+
+# 9. H name_length
+
+# 10. H extra_field_length
+
+# 0. L signature
+
+# 1. H version_made_by
+
+# 2. H version_needed
+
+# 3. H gp_bits
+
+# 4. H compression_method
+
+# 5. H last_mod_time
+
+# 6. H last_mod_date
+
+# 7. L crc32
+
+# 8. L compressed_size
+
+# 9. L uncompressed_size
+
+# 10. H file_name_length
+
+# 11. H extra_field_length
+
+# 12. H file_comment_length
+
+# 13. H disk_number_start
+
+# 14. H internal_attr
+
+# 15. L external_attr
+
+# 16. L rel_offset_local_header
+
+# reset last_mod_time
+
+# reset last_mod_date
+
+# reset last_mod_time
+
+# reset last_mod_date
+
+# Strip zip non determinism before upload, in-place operation
+
+# if upload_to_storage is set, skip github upload.
+
+# todo (vertedinde): migrate this variable to upload_to_storage
+
+# Upload the file.
+
+# Upload the checksum file.
+""""""Raised when a given file does not appear to be a zip""""""
+
+
+
+"""""" Wrap strip-zip zero_zip_date_time within a file opening operation """"""
+"
+util.py,"#!/usr/bin/env python3
+
+
+# Python 3 / 2 compat import
+
+# from lib.config import is_verbose_mode
+
+# Azure Storage
+
+# NOTE: This path is not created by gn, it is used as a scratch zone by our
+
+#       upload scripts
+"
+verify-chromedriver.py,"#!/usr/bin/env python3
+
+"
+verify-ffmpeg.py,"#!/usr/bin/env python3
+
+# Copy ffmpeg without proprietary codecs into app.
+
+# FIXME: Enable after ELECTRON_ENABLE_LOGGING works again
+
+# env['ELECTRON_ENABLE_LOGGING'] = 'true'
+
+# Create copy of app to install ffmpeg library without proprietary codecs into
+"
+verify-mksnapshot.py,"#!/usr/bin/env python3
+
+# Create copy of app to install custom snapshot
+"
+zip-symbols.py,"#!/usr/bin/env python3
+
+"
+zip.py,"#!/usr/bin/env python3
+
+# Skip because it is an output of //ui/gl that we don't need.
+
+# Skip because these are outputs that we don't need.
+
+# Skip because these are outputs that we don't need.
+
+# Skip because its an output of create_bundle from
+
+# //build/config/mac/rules.gni that we don't need
+
+# Refs https://chromium-review.googlesource.com/c/angle/angle/+/2425197.
+
+# Remove this when Angle themselves remove the file:
+
+# https://issuetracker.google.com/issues/168736059
+
+# //chrome/browser:resources depends on this via
+
+# //chrome/browser/resources/ssl/ssl_error_assistant, but we don't need to
+
+# ship it.
+
+# Skip because these are outputs that we don't need.
+
+# Skip specific paths and extensions as well as the following special case:
+
+# snapshot_blob.bin is a dependency of mksnapshot.zip because
+
+# v8_context_generator needs it, but this file does not get generated for arm
+
+# and arm 64 binaries of mksnapshot since they are built on x64 hardware.
+
+# Consumers of arm and arm64 mksnapshot can generate snapshot_blob.bin
+
+# themselves by running mksnapshot.
+"
+zip_libcxx.py,"#!/usr/bin/env python3
+"
+__init__.py,

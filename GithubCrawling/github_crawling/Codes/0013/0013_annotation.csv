@@ -1,0 +1,426 @@
+decompress.c,"/*  http://tukaani.org/xz/xz-file-format.txt */
+
+/* Code in decompress_zlib from
+ *
+ * https://raw.github.com/madler/zlib/master/examples/zpipe.c
+ *
+ * zpipe.c: example of proper use of zlib's inflate() and deflate()
+ *    Not copyrighted -- provided to the public domain
+ *    Version 1.4  11 December 2005  Mark Adler 
+ */
+
+/* allocate inflate state */
+
+/* Add 32 to allow zlib and gzip format detection */
+
+/* Explicitly cast away the const-ness of buf */
+
+/* Double the buffer size and realloc */
+
+/* Double the buffer size and realloc */
+
+/* This function is very hot. It's called on every file when zip is enabled. */
+
+/* This function is very hot. It's called on every file. */
+
+/* Zip magic numbers
+     * compressed file: { 0x1F, 0x9B }
+     * http://en.wikipedia.org/wiki/Compress
+     * 
+     * gzip file:       { 0x1F, 0x8B }
+     * http://www.gzip.org/zlib/rfc-gzip.html#file-format
+     *
+     * zip file:        { 0x50, 0x4B, 0x03, 0x04 }
+     * http://www.pkware.com/documents/casestudies/APPNOTE.TXT (Section 4.3)
+     */
+
+
+/* Check for gzip & compress */
+
+/* Check for zip */
+
+/* LZMA doesn't really have a header: http://www.mail-archive.com/xz-devel@tukaani.org/msg00003.html */
+//tukaani.org/xz/xz-file-format.txt */
+
+//raw.github.com/madler/zlib/master/examples/zpipe.c
+
+//en.wikipedia.org/wiki/Compress
+
+//www.gzip.org/zlib/rfc-gzip.html#file-format
+
+//www.pkware.com/documents/casestudies/APPNOTE.TXT (Section 4.3)
+
+//www.mail-archive.com/xz-devel@tukaani.org/msg00003.html */
+"
+ignore.c,"/* TODO: build a huge-ass list of files we want to ignore by default (build cache stuff, pyc files, etc) */
+
+
+/* Warning: changing the first two strings will break skip_vcs_ignores. */
+
+/* Strip off the leading dot so that matches are more likely. */
+
+/* Kill trailing whitespace */
+
+/* a balanced binary tree is best for performance, but I'm lazy */
+
+/* TODO: de-dupe these patterns */
+
+/* For loading git/hg ignore patterns */
+
+/* kill the \n */
+
+/* we just care about the match, not where the matches are */
+
+/* This is the hottest code in Ag. 10-15% of all execution time is spent here */
+
+/* This function is REALLY HOT. It gets called for every file */
+//ig->abs_path has its leading slash stripped, so we have to strip the leading slash
+
+//of temp as well
+
+// The dot is not the last character, extension starts at the next one
+
+// No extension
+"
+lang.c,"/* Keep it fixed as 100 for the reason that if you have more than 100
+     * file types to search, you'd better search all the files.
+     * */
+"
+log.c,
+main.c,"/* Search routine needs the query to be lowercase */
+
+/* The device is ignored if opts.one_dev is false, so it's fine
+             * to leave it at the default 0
+             */
+"
+options.c,"/* bold yellow */
+
+/* black with yellow background */
+
+/* bold green */
+
+
+/* TODO: try to obey out_fd? */
+
+/* mamp() is slower than normal read() on macos. default to off */
+
+/* Using pcre_free_study on pcre_extra* can segfault on some versions of PCRE */
+
+/* deprecated for --numbers. Remove eventually. */
+
+/* Accept both --no-* and --no* forms for convenience/BC */
+
+/* If we're not outputting to a terminal. change output to:
+        * turn off colors
+        * print filenames on every line
+     */
+
+/* Don't search the file that stdout is redirected to */
+
+/* This arg must be the search string instead of the after length */
+
+/* This arg must be the search string instead of the before length */
+
+/* This arg must be the search string instead of the context length */
+
+/* fall through */
+
+/* Color highlighting doesn't make sense when inverting matches */
+
+/* Long option */
+
+/* Continue to usage if we don't recognize the option */
+
+/* fall through */
+
+/* kill trailing slash */
+
+/* add trailing slash */
+
+/* Make sure we search these paths instead of stdin. */
+//geoff.greer.fm/ag\n"");
+
+// use default query
+
+// use the provided query
+
+// use default query
+"
+print.c,"/* We found the start of a match */
+
+/* TODO: better, but still needs work */
+
+/* print the previous line(s) */
+
+/* We found the end of a match. */
+
+/* We found the end of a line. */
+
+/* We don't want to strcpy the \n */
+
+/* print headers for ackmate to parse */
+
+/* close highlight of match term */
+
+/* skip remaining characters if truncation width exceeded, needs to be done
+                         * before highlight opening */
+
+/* prevent any more characters or highlights */
+
+/* open highlight of match term */
+
+/* Don't print the null terminator */
+
+/* if only_matching is set, print only matches and newlines */
+
+/* print context after matching line */
+
+/* skip the newline */
+
+/* File doesn't end with a newline. Print one so the output is pretty. */
+
+/* Flush output if stdout is not a tty */
+"
+print_w32.c,"/* _WIN32 */
+// BUFSIZ is guarenteed to be ""at least 256 bytes"" which might
+
+// not be enough for us. Use an arbitrary but reasonably big
+
+// buffer. win32 colored output will be truncated to this length.
+
+// max consecutive ansi sequence values beyond which we're aborting
+
+// e.g. this is 3 values: \e[0;1;33m
+
+// if we don't output to screen (tty) e.g. for pager/pipe or
+
+// if for other reason we can't access the screen info, of if
+
+// the user just prefers ansi, do plain passthrough.
+
+// truncates to (null terminated) BUF_SIZE if too long.
+
+// if too long - vsnprintf will fill count chars without
+
+// terminating null. buf is zeroed, so make sure we don't fill it.
+
+// reset is defined to have all (non color) attributes off
+
+// n is the last occupied index, so we have n+1 values
+
+// blink is typically applied as bg intensity
+
+// symbol on
+
+// symbol off
+
+// doesn't affect attributes
+
+// reset fg color and attributes
+
+// reset bg color
+"
+scandir.c,
+search.c,"/* Returns: -1 if skipped, otherwise # of matches */
+
+/* 1 = yes, 0 = no, -1 = don't know */
+
+/* if not using mmap, binary files have already been skipped */
+
+/* If we are going to invert the set of matches at the end, we will need
+         * one extra match struct, even if there are no matches at all. So make
+         * sure we have a nonempty array; and make sure we always have spare
+         * capacity for one extra.
+         */
+
+/* hash_strnstr only for little-endian platforms that allow unaligned access */
+
+/* Decide whether to fall back on boyer-moore */
+
+/* Check whether both start and end of the match lie on a word
+                 * boundary
+                 */
+
+/* It's a match */
+
+/* It's not a match */
+
+/* FIXME: handle case where matches_len > SSIZE_MAX */
+
+/* Return value: -1 if skipped, otherwise # of matches */
+
+/* TODO: this will only match single lines. multi-line regexes silently don't match */
+
+/* XXXX: strerror is not thread-safe */
+
+/* TODO: Append matches to some data structure instead of just printing them out.
+ * Then ag can have sweet summaries of matches/files scanned/time/etc.
+ */
+
+/* find .*ignore files to load ignore patterns from */
+
+/* path_start is the part of path that isn't in base_path
+     * base_path will have a trailing '/' because we put it there in parse_options
+     */
+
+/* Not a directory. Probably a file. */
+
+/* If we're only searching one file, don't print the filename header at the top. */
+
+/* If we're only searching one file and --only-matching is specified, disable line numbers too. */
+
+/* If a link points to a directory then we need to treat it as a directory. */
+
+/* no match */
+
+/*
+                     * If the user didn't intentionally specify a particular depth,
+                     * this is a warning...
+                     */
+
+/* ... if they did, let's settle for debug. */
+// handling only regular files and FIFOs
+
+// repeating stat check with file handle to prevent TOCTOU issue
+
+// handling only regular files and FIFOs
+
+// Optimization: If skipping binary files, don't read the whole buffer before checking if binary or not.
+"
+util.c,"/* Boyer-Moore strstr */
+
+/* No matches, so the whole buffer is now a match. */
+
+/* TODO: benchmark initial size of matches. 100 may be too small/big */
+
+/* This function is very hot. It's called on every file. */
+
+/* Is an empty file binary? Is it text? */
+
+/* UTF-8 BOM. This isn't binary. */
+
+/* PDF. This is binary. */
+
+/* NULL char. It's binary */
+
+/* UTF-8 detection */
+
+/* Disk IO is so slow that it's worthwhile to do this calculation after every suspicious byte. */
+
+/* This is true even on a 1.6Ghz Atom with an Intel 320 SSD. */
+
+/* Read at least 32 bytes before making a decision */
+
+/* Some filesystems, e.g. ReiserFS, always return a type DT_UNKNOWN from readdir or scandir. */
+
+/* Call stat if we don't find DT_DIR to get the information we need. */
+
+/* Also works for symbolic links to directories. */
+
+/* Some filesystems, e.g. ReiserFS, always return a type DT_UNKNOWN from readdir or scandir. */
+
+/* Call lstat if we find DT_UNKNOWN to get the information we need. */
+
+/*
+ * Do it yourself getline() implementation
+ */
+
+/* get line, bail on error */
+
+/* line is too big for buffer, must realloc */
+
+/* double the buffer, bail on error */
+
+/* Our own implementation of fgetln() returns a malloc()d buffer that we
+     * must free
+     */
+
+/*
+ * realpath() for Windows. Turns slashes into backslashes and calls _fullpath
+ */
+
+/* Copy as many bytes as will fit */
+
+/* Not enough room in dst, add NUL and traverse rest of src */
+
+/* NUL-terminate dst */
+
+/* count does not include NUL */
+
+/* vsnprintf can destroy args, so we need to copy it for the second call */
+
+/* non-standard macro, but usually exists */
+
+/* C99 macro. We compile with -std=c89 but you never know */
+
+/* Ancient compiler. This usually works but there are no guarantees. */
+
+/* vsnprintf doesn't count \0 */
+// Add all 2^sizeof(uint16_t) combinations of capital letters to the hash table
+
+// Capitalize the letters whose corresponding bits in caps_set are 1
+
+// Find next free cell
+
+// Don't add capital letters if case sensitive
+
+// Clang's -fsanitize=alignment (included in -fsanitize=undefined) will flag
+
+// the intentional unaligned access here, so suppress it for this function
+
+// Step through s
+
+// Check putative match
+
+// Found
+
+// Check tail
+"
+zfile.c,"/* Compiler false positive - unreachable. */
+
+/*
+ * Open compressed file 'path' as a (forward-)seekable (and rewindable),
+ * read-only stream.
+ */
+
+/*
+	 * No validation of compression type is done -- file is assumed to
+	 * match input.  In Ag, the compression type is already detected, so
+	 * that's ok.
+	 */
+
+/*
+ * Return number of bytes into buf, 0 on EOF, -1 on error.  Update stream
+ * offset.
+ */
+
+/* Drain output buffer first */
+
+/*
+		 * If we have not satisfied read, the output buffer must be
+		 * empty.
+		 */
+
+/* Read more input if empty */
+
+/* Reset stream state to beginning of output buffer */
+
+/* SEEK_END not ok */
+
+/* Backward seeks to anywhere but 0 are not ok */
+
+/* rewind(3) */
+
+/* Emulate forward seek by skipping ... */
+
+/* Seek past EOF gets positioned at EOF */
+
+/* HAVE_FOPENCOOKIE */
+// Source FILE stream
+
+// Logical offset in output (forward seeks)
+
+// Where we've decoded to
+
+// Ran out of output before we seek()ed up.
+"

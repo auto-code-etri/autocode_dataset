@@ -1,0 +1,1283 @@
+aes_helper.c,"/* $Id: aes_helper.c 220 2010-06-09 09:21:50Z tp $ */
+
+/*
+ * AES tables. This file is not meant to be compiled by itself; it
+ * is included by some hash function implementations. It contains
+ * the precomputed tables and helper macros for evaluating an AES
+ * round, optionally with a final XOR with a subkey.
+ *
+ * By default, this file defines the tables and macros for little-endian
+ * processing (i.e. it is assumed that the input bytes have been read
+ * from memory and assembled with the little-endian convention). If
+ * the 'AES_BIG_ENDIAN' macro is defined (to a non-zero integer value)
+ * when this file is included, then the tables and macros for big-endian
+ * processing are defined instead. The big-endian tables and macros have
+ * names distinct from the little-endian tables and macros, hence it is
+ * possible to have both simultaneously, by including this file twice
+ * (with and without the AES_BIG_ENDIAN macro).
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * The AES*[] tables allow us to perform a fast evaluation of an AES
+ * round; table AESi[] combines SubBytes for a byte at row i, and
+ * MixColumns for the column where that byte goes after ShiftRows.
+ */
+
+"
+blake.c,"/* $Id: blake.c 252 2011-06-07 17:55:14Z tp $ */
+
+/*
+ * BLAKE implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+ 14 10  4  8  9 15 13  6  1 12  0  2 11  7  5  3
+ 11  8 12  0  5  2 15 13 10 14  3  6  7  1  9  4
+  7  9  3  1 13 12 11 14  2  6  5 10  4  0 15  8
+  9  0  5  7  2  4 10 15 14  1 11 12  6  8  3 13
+  2 12  6 10  0 11  8  3  4 13  7  5 15 14  1  9
+ 12  5  1 15 14 13  4 10  0  7  6  3  9  2  8 11
+ 13 11  7 14 12  1  3  9  5  0 15  4  8  6  2 10
+  6 15 14  9 11  3  0  8 12  2 13  7  1  4 10  5
+ 10  2  8  4  7  6  1  5 15 11  9 14  3 12 13  0
+*/
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+
+/* see sph_blake.h */
+"
+bmw.c,"/* $Id: bmw.c 227 2010-06-16 17:28:38Z tp $ */
+
+/*
+ * BMW implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+
+/* see sph_bmw.h */
+"
+cubehash.c,"/* $Id: cubehash.c 227 2010-06-16 17:28:38Z tp $ */
+
+/*
+ * CubeHash implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * Some tests were conducted on an Intel Core2 Q6600 (32-bit and 64-bit
+ * mode), a PowerPC G3, and a MIPS-compatible CPU (Broadcom BCM3302).
+ * It appears that the optimal settings are:
+ *  -- full unroll, no state copy on the ""big"" systems (x86, PowerPC)
+ *  -- unroll to 4 or 8, state copy on the ""small"" system (MIPS)
+ */
+
+
+/*
+ * There is no need to unroll all 16 rounds. The word-swapping permutation
+ * is an involution, so we need to unroll an even number of rounds. On
+ * ""big"" systems, unrolling 4 rounds yields about 97% of the speed
+ * achieved with full unrolling; and it keeps the code more compact
+ * for small architectures.
+ */
+
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+
+/* see sph_cubehash.h */
+"
+c_test.c,"/* Copyright (c) 2011 The LevelDB Authors. All rights reserved.
+   Use of this source code is governed by a BSD-style license that can be
+   found in the LICENSE file. See the AUTHORS file for names of contributors. */
+
+// ok
+
+// ok
+
+// Callback from leveldb_writebatch_iterate()
+
+// Callback from leveldb_writebatch_iterate()
+
+// Custom filter policy
+
+// First run uses custom filter, second run uses bloom filter
+
+// Create new database
+
+// Must not find value when custom filter returns false
+"
+echo.c,"/* $Id: echo.c 227 2010-06-16 17:28:38Z tp $ */
+
+/*
+ * ECHO implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * Some measures tend to show that the 64-bit implementation offers
+ * better performance only on a ""64-bit architectures"", those which have
+ * actual 64-bit registers.
+ */
+
+/*
+ * We can use a 64-bit implementation only if a 64-bit type is available.
+ */
+
+/*
+	 * If elen is zero, then this block actually contains no message
+	 * bit, only the first padding bit.
+	 */
+
+/*
+	 * If elen is zero, then this block actually contains no message
+	 * bit, only the first padding bit.
+	 */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+
+/* see sph_echo.h */
+"
+groestl.c,"/* $Id: groestl.c 260 2011-07-21 01:02:38Z tp $ */
+
+/*
+ * Groestl implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * Apparently, the 32-bit-only version is not faster than the 64-bit
+ * version unless using the ""small footprint"" code on a 32-bit machine.
+ */
+
+/*
+ * The internal representation may use either big-endian or
+ * little-endian. Using the platform default representation speeds up
+ * encoding and decoding between bytes and the matrix columns.
+ */
+
+
+/*
+ * Apparently, unrolling more than that confuses GCC, resulting in
+ * lower performance, even though L1 cache would be no problem.
+ */
+
+/* obsolete
+#if SPH_SMALL_FOOTPRINT_GROESTL
+
+#define COMPRESS_BIG   do { \
+		sph_u64 g[16], m[16], *ya; \
+		const sph_u64 *yc; \
+		size_t u; \
+		int i; \
+		for (u = 0; u < 16; u ++) { \
+			m[u] = dec64e_aligned(buf + (u << 3)); \
+			g[u] = m[u] ^ H[u]; \
+		} \
+		ya = g; \
+		yc = CP; \
+		for (i = 0; i < 2; i ++) { \
+			PERM_BIG(ya, yc); \
+			ya = m; \
+			yc = CQ; \
+		} \
+		for (u = 0; u < 16; u ++) { \
+			H[u] ^= g[u] ^ m[u]; \
+		} \
+	} while (0)
+
+#else
+*/
+
+
+/* obsolete
+#endif
+*/
+
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+
+/* see sph_groestl.h */
+"
+jh.c,"/* $Id: jh.c 255 2011-06-07 19:50:20Z tp $ */
+
+/*
+ * JH implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * The internal bitslice representation may use either big-endian or
+ * little-endian (true bitslice operations do not care about the bit
+ * ordering, and the bit-swapping linear operations in JH happen to
+ * be invariant through endianness-swapping). The constants must be
+ * defined according to the chosen endianness; we use some
+ * byte-swapping macros for that.
+ */
+
+
+/*
+ * The ""small footprint"" 64-bit version just uses a partially unrolled
+ * loop.
+ */
+
+
+/*
+ * On a ""true 64-bit"" architecture, we can unroll at will.
+ */
+
+
+/*
+ * We are not aiming at a small footprint, but we are still using a
+ * 32-bit implementation. Full loop unrolling would smash the L1
+ * cache on some ""big"" architectures (32 kB L1 cache).
+ */
+
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+
+/* see sph_jh.h */
+"
+keccak.c,"/* $Id: keccak.c 259 2011-07-19 22:11:27Z tp $ */
+
+/*
+ * Keccak implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * Parameters:
+ *
+ *  SPH_KECCAK_64          use a 64-bit type
+ *  SPH_KECCAK_UNROLL      number of loops to unroll (0/undef for full unroll)
+ *  SPH_KECCAK_INTERLEAVE  use bit-interleaving (32-bit type only)
+ *  SPH_KECCAK_NOCOPY      do not copy the state into local variables
+ * 
+ * If there is no usable 64-bit type, the code automatically switches
+ * back to the 32-bit implementation.
+ *
+ * Some tests on an Intel Core2 Q6600 (both 64-bit and 32-bit, 32 kB L1
+ * code cache), a PowerPC (G3, 32 kB L1 code cache), an ARM920T core
+ * (16 kB L1 code cache), and a small MIPS-compatible CPU (Broadcom BCM3302,
+ * 8 kB L1 code cache), seem to show that the following are optimal:
+ *
+ * -- x86, 64-bit: use the 64-bit implementation, unroll 8 rounds,
+ * do not copy the state; unrolling 2, 6 or all rounds also provides
+ * near-optimal performance.
+ * -- x86, 32-bit: use the 32-bit implementation, unroll 6 rounds,
+ * interleave, do not copy the state. Unrolling 1, 2, 4 or 8 rounds
+ * also provides near-optimal performance.
+ * -- PowerPC: use the 64-bit implementation, unroll 8 rounds,
+ * copy the state. Unrolling 4 or 6 rounds is near-optimal.
+ * -- ARM: use the 64-bit implementation, unroll 2 or 4 rounds,
+ * copy the state.
+ * -- MIPS: use the 64-bit implementation, unroll 2 rounds, copy
+ * the state. Unrolling only 1 round is also near-optimal.
+ *
+ * Also, interleaving does not always yield actual improvements when
+ * using a 32-bit implementation; in particular when the architecture
+ * does not offer a native rotation opcode (interleaving replaces one
+ * 64-bit rotation with two 32-bit rotations, which is a gain only if
+ * there is a native 32-bit rotation opcode and not a native 64-bit
+ * rotation opcode; also, interleaving implies a small overhead when
+ * processing input words).
+ *
+ * To sum up:
+ * -- when possible, use the 64-bit code
+ * -- exception: on 32-bit x86, use 32-bit code
+ * -- when using 32-bit code, use interleaving
+ * -- copy the state, except on x86
+ * -- unroll 8 rounds on ""big"" machine, 2 rounds on ""small"" machines
+ */
+
+
+/*
+ * By default, we select the 64-bit implementation if a 64-bit type
+ * is available, unless a 32-bit x86 is detected.
+ */
+
+/*
+ * If using a 32-bit implementation, we prefer to interleave.
+ */
+
+/*
+ * Unroll 8 rounds on big systems, 2 rounds on small systems.
+ */
+
+/*
+ * We do not want to copy the state to local variables on x86 (32-bit
+ * and 64-bit alike).
+ */
+
+/* ROL64(b00, b00,  0); */
+/*
+ * The KHI macro integrates the ""lane complement"" optimization. On input,
+ * some words are complemented:
+ *    a00 a01 a02 a04 a13 a20 a21 a22 a30 a33 a34 a43
+ * On output, the following words are complemented:
+ *    a04 a10 a20 a22 a23 a31
+ *
+ * The (implicit) permutation and the theta expansion will bring back
+ * the input mask for the next round.
+ */
+
+
+/*
+	 * Initialization for the ""lane complement"".
+	 */
+
+/*
+	 * Initialization for the ""lane complement"".
+	 * Note: since we set to all-one full 64-bit words,
+	 * interleaving (if applicable) is a no-op.
+	 */
+
+/* for alignment */
+/* Finalize the ""lane complement"" */
+/* for alignment */
+/* Finalize the ""lane complement"" */
+/* un-interleave */
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+
+/* see sph_keccak.h */
+"
+luffa.c,"/* $Id: luffa.c 219 2010-06-08 17:24:41Z tp $ */
+
+/*
+ * Luffa implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+
+/* see sph_luffa.h */
+"
+shavite.c,"/* $Id: shavite.c 227 2010-06-16 17:28:38Z tp $ */
+
+/*
+ * SHAvite-3 implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * As of round 2 of the SHA-3 competition, the published reference
+ * implementation and test vectors are wrong, because they use
+ * big-endian AES tables while the internal decoding uses little-endian.
+ * The code below follows the specification. To turn it into a code
+ * which follows the reference implementation (the one called ""BugFix""
+ * on the SHAvite-3 web site, published on Nov 23rd, 2009), comment out
+ * the code below (from the '#define AES_BIG_ENDIAN...' to the definition
+ * of the AES_ROUND_NOKEY macro) and replace it with the version which
+ * is commented out afterwards.
+ */
+
+
+/*
+ * This is the code needed to match the ""reference implementation"" as
+ * published on Nov 23rd, 2009, instead of the published specification.
+ * 
+
+#define AES_BIG_ENDIAN   1
+#include ""aes_helper.c""
+
+static const sph_u32 IV224[] = {
+	C32(0xC4C67795), C32(0xC0B1817F), C32(0xEAD88924), C32(0x1ABB1BB0),
+	C32(0xE0C29152), C32(0xBDE046BA), C32(0xAEEECF99), C32(0x58D509D8)
+};
+
+static const sph_u32 IV256[] = {
+	C32(0x3EECF551), C32(0xBF10819B), C32(0xE6DC8559), C32(0xF3E23FD5),
+	C32(0x431AEC73), C32(0x79E3F731), C32(0x98325F05), C32(0xA92A31F1)
+};
+
+static const sph_u32 IV384[] = {
+	C32(0x71F48510), C32(0xA903A8AC), C32(0xFE3216DD), C32(0x0B2D2AD4),
+	C32(0x6672900A), C32(0x41032819), C32(0x15A7D780), C32(0xB3CAB8D9),
+	C32(0x34EF4711), C32(0xDE019FE8), C32(0x4D674DC4), C32(0xE056D96B),
+	C32(0xA35C016B), C32(0xDD903BA7), C32(0x8C1B09B4), C32(0x2C3E9F25)
+};
+
+static const sph_u32 IV512[] = {
+	C32(0xD5652B63), C32(0x25F1E6EA), C32(0xB18F48FA), C32(0xA1EE3A47),
+	C32(0xC8B67B07), C32(0xBDCE48D3), C32(0xE3937B78), C32(0x05DB5186),
+	C32(0x613BE326), C32(0xA11FA303), C32(0x90C833D4), C32(0x79CEE316),
+	C32(0x1E1AF00F), C32(0x2829B165), C32(0x23B25F80), C32(0x21E11499)
+};
+
+#define AES_ROUND_NOKEY(x0, x1, x2, x3)   do { \
+		sph_u32 t0 = (x0); \
+		sph_u32 t1 = (x1); \
+		sph_u32 t2 = (x2); \
+		sph_u32 t3 = (x3); \
+		AES_ROUND_NOKEY_BE(t0, t1, t2, t3, x0, x1, x2, x3); \
+	} while (0)
+
+ */
+
+
+/*
+ * This function assumes that ""msg"" is aligned for 32-bit access.
+ */
+
+/*
+ * This function assumes that ""msg"" is aligned for 32-bit access.
+ */
+
+/* round 0 */
+
+/* round 1 */
+
+/* round 2 */
+
+/* round 3 */
+
+/* round 4 */
+
+/* round 5 */
+
+/* round 6 */
+
+/* round 7 */
+
+/* round 8 */
+
+/* round 9 */
+
+/* round 10 */
+
+/* round 11 */
+
+/*
+ * This function assumes that ""msg"" is aligned for 32-bit access.
+ */
+
+/*
+ * This function assumes that ""msg"" is aligned for 32-bit access.
+ */
+
+/* round 0 */
+
+/* round 1, 5, 9 */
+
+/* round 2, 6, 10 */
+
+/* round 3, 7, 11 */
+
+/* round 4, 8, 12 */
+
+/* round 13 */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+
+/* see sph_shavite.h */
+"
+simd.c,"/* $Id: simd.c 227 2010-06-16 17:28:38Z tp $ */
+
+/*
+ * SIMD implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/*
+ * The powers of 41 modulo 257. We use exponents from 0 to 255, inclusive.
+ */
+
+/*
+ * Ranges:
+ *   REDS1: from -32768..98302 to -383..383
+ *   REDS2: from -2^31..2^31-1 to -32768..98302
+ */
+
+/*
+ * If, upon entry, the values of q[] are all in the -N..N range (where
+ * N >= 98302) then the new values of q[] are in the -2N..2N range.
+ *
+ * Since alpha_tab[v] <= 256, maximum allowed range is for N = 8388608.
+ */
+
+/*
+ * Output ranges:
+ *   d0:   min=    0   max= 1020
+ *   d1:   min=  -67   max= 4587
+ *   d2:   min=-4335   max= 4335
+ *   d3:   min=-4147   max=  507
+ *   d4:   min= -510   max=  510
+ *   d5:   min= -252   max= 4402
+ *   d6:   min=-4335   max= 4335
+ *   d7:   min=-4332   max=  322
+ */
+
+/*
+ * When k=16, we have alpha=2. Multiplication by alpha^i is then reduced
+ * to some shifting.
+ *
+ * Output: within -591471..591723
+ */
+
+/*
+ * Output range: |q| <= 1183446
+ */
+
+/*
+ * Output range: |q| <= 2366892
+ */
+
+/*
+ * Output range: |q| <= 4733784
+ */
+
+/*
+ * For SIMD-384 / SIMD-512, the fully unrolled FFT yields a compression
+ * function which does not fit in the 32 kB L1 cache of a typical x86
+ * Intel. We therefore add a function call layer at the FFT64 level.
+ */
+
+
+/*
+ * Output range: |q| <= 9467568
+ */
+
+/*
+ * alpha^(127*i) mod 257
+ */
+
+/*
+ * alpha^(127*i) + alpha^(125*i) mod 257
+ */
+
+/*
+ * beta^(255*i) mod 257
+ */
+
+/*
+ * beta^(255*i) + beta^(253*i) mod 257
+ */
+
+/*
+ * Not needed -- already defined for SIMD-224 / SIMD-256
+ *
+#define STEP2_ELT(n, w, fun, s, ppb)   do { \
+		u32 tt = T32(D ## n + (w) + fun(A ## n, B ## n, C ## n)); \
+		A ## n = T32(ROL32(tt, s) + tA[(ppb) ^ n]); \
+		D ## n = C ## n; \
+		C ## n = B ## n; \
+		B ## n = tA[n]; \
+	} while (0)
+ */
+
+"
+skein.c,"/* $Id: skein.c 254 2011-06-07 19:38:58Z tp $ */
+
+/*
+ * Skein implementation.
+ *
+ * ==========================(LICENSE BEGIN)============================
+ *
+ * Copyright (c) 2007-2010  Projet RNRT SAPHIR
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * ""Software""), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED ""AS IS"", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ===========================(LICENSE END)=============================
+ *
+ * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
+ */
+
+
+/* obsolete */
+
+/*
+ * M5_ ## s ## _ ## i  evaluates to s+i mod 5 (0 <= s <= 18, 0 <= i <= 3).
+ */
+
+
+/*
+ * M9_ ## s ## _ ## i  evaluates to s+i mod 9 (0 <= s <= 18, 0 <= i <= 7).
+ */
+
+
+/*
+ * M3_ ## s ## _ ## i  evaluates to s+i mod 3 (0 <= s <= 18, 0 <= i <= 1).
+ */
+
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/* obsolete */
+
+/*
+	 * Unrolling the loop yields a slight performance boost, while
+	 * keeping the code size aorund 24 kB on 32-bit x86.
+	 */
+
+/*
+	 * The Skein ""final bit"" in the tweak is troublesome here,
+	 * because if the input has a length which is a multiple of the
+	 * block size (512 bits) then that bit must be set for the
+	 * final block, which is full of message bits (padding in
+	 * Skein can be reduced to no extra bit at all). However, this
+	 * function cannot know whether it processes the last chunks of
+	 * the message or not. Hence we may keep a full block of buffered
+	 * data (64 bytes).
+	 */
+
+/* obsolete */
+
+/*
+	 * Add bit padding if necessary.
+	 */
+
+/*
+	 * At that point, if ptr == 0, then the message was empty;
+	 * otherwise, there is between 1 and 64 bytes (inclusive) which
+	 * are yet to be processed. Either way, we complete the buffer
+	 * to a full block with zeros (the Skein specification mandates
+	 * that an empty message is padded so that there is at least
+	 * one block to process).
+	 *
+	 * Once this block has been processed, we do it again, with
+	 * a block full of zeros, for the output (that block contains
+	 * the encoding of ""0"", over 8 bytes, then padded with zeros).
+	 */
+
+/*
+	 * We use a temporary buffer because we must support the case
+	 * where output size is not a multiple of 64 (namely, a 224-bit
+	 * output).
+	 */
+
+/* obsolete */
+
+/* obsolete */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+
+/* see sph_skein.h */
+"
