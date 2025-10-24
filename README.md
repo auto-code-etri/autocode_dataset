@@ -153,14 +153,12 @@ The Secure Code dataset refines the Py150K dataset, ensuring compatibility with 
 [issues-url]: https://github.com/auto-code-etri/autocode_dataset/issues
 [license-shield]: https://img.shields.io/badge/LICENSE-ETRI_copyright-blue?style=for-the-badge
 [license-url]: https://github.com/auto-code-etri/autocode_dataset/blob/main/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
 [product-image]: assets/dataset.png
-[CodeSearchNet]: https://img.shields.io/badge/CodeSearchNet-white?style=for-the-badge
+[CodeSearchNet]: https://img.shields.io/badge/CodeSearchNet-black?style=for-the-badge
 [CodeSearchNet-url]: https://arxiv.org/abs/1909.09436
-[HumanEval]: https://img.shields.io/badge/HumanEval-white?style=for-the-badge&logo=openai&&logoColor=black
+[HumanEval]: https://img.shields.io/badge/HumanEval-black?style=for-the-badge&logo=openai&&logoColor=whithe
 [HumanEval-url]: https://arxiv.org/abs/2107.03374
-[MBPP]: https://img.shields.io/badge/MBPP-white?style=for-the-badge&&logo=google&logoColor=blue
+[MBPP]: https://img.shields.io/badge/MBPP-black?style=for-the-badge&&logo=google&logoColor=blue
 [MBPP-url]: https://arxiv.org/abs/1909.09436
 [Github.com]: https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white
 [Github-url]: https://github.com/
