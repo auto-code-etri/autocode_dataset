@@ -58,7 +58,7 @@
 ## About The Project
 <div align="center">
   <a href="https://github.com/auto-code-etri/autocode_dataset">
-    <img src="assets/dataset.png" alt="dataset" width="200" height="200">
+    <img src="assets/dataset.png" alt="dataset" width="400" height="400">
   </a>
 </div>
 <br />
