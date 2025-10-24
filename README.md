@@ -20,7 +20,7 @@
   <p align="center">
      From Ingestion to Management
     <br />
-    <a href="https://github.com/auto-code-etri/autocode_dataset/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/auto-code-etri/autocode_dataset/issues/new?labels=bug">Report Bug</a>
     &middot;
     <a href="https://github.com/auto-code-etri/autocode_dataset/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
     <br />
@@ -38,16 +38,19 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#storage-autocode-dataset">Storage: Autocode Dataset</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -82,7 +85,10 @@ This infrastructure also serves as the data foundation for [![PULSE][pulse-logo]
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-# Storage (autocode_dataset)
+### Data Infrastructure Pipeline
+![image](./overview.jpg)
+
+### Composition
 
 Building a database infrastructure that can be used for additional research of software generation by learning and analyzing codes, documents, and metadata in the source code repository in the future
 
@@ -94,10 +100,7 @@ Building a database infrastructure that can be used for additional research of s
 
 >- Description of code generation evaluation method reflecting actual needs such as code search, summary, and completion
 
-# Overview 
-![image](./overview.jpg)
-
-# Requirements of Source Code Infrastructure
+### Requirements
 
 >- Multiple source code collection systems provided by multiple organizations must be provided. 
    Currently, Sungkyunkwan University and Suresoft company are in charge of collecting source codes, and the relevant institutions must collect and store data sets according to some guidelines.
@@ -117,29 +120,91 @@ Building a database infrastructure that can be used for additional research of s
 
 >- The automatic source code generation system must be provided in the API form so that third parties can easily use it from the outside.
 
-# Crawling Code for Github Project
->- GithubCrawling
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-This directory contains source code for searching GitHub projects and crawling the source code within those projects. Although the target source codes are in C/C++ and Python, there is no language restriction if the code is modified accordingly.
 
-# Dataset Description
->- CodeSearchNet-Python
+## Dataset Description
+### [`CodeSearchNet-Python`][CodeSearchNet-Python-url]
+- This directory contains an augmented dataset based on Python source code from the CodeSearchNet dataset. 
+- The original dataset consists of natural language (problem):code pairs, and in this version, the natural language part has been enhanced. 
+- In addition to the original problem description, we added solution strategies and pseudocode to enrich the natural language component. 
+-This augmented dataset can help improve the ability to find the correct code solutions for given problems.
 
-This directory contains an augmented dataset based on Python source code from the CodeSearchNet dataset. The original dataset consists of natural language (problem):code pairs, and in this version, the natural language part has been enhanced. In addition to the original problem description, we added solution strategies and pseudocode to enrich the natural language component. This augmented dataset can help improve the ability to find the correct code solutions for given problems.
+### [`Github-Cpp-2024`][Github-Cpp-2024-url]
+- This directory contains C/C++ source codes that were crawled, filtered, and collected from GitHub. 
+- In particular, during the filtering process, the source codes were scored, and low-quality codes were removed. 
+- Additionally, the natural language descriptions for the codes were generated using an LLM, resulting in a complete dataset in the form of (natural language : code) pairs.
 
->- Github-Cpp-2024
+### [`MutMut`][MutMut-url]
+- The MutMut dataset was created by applying minor code mutations using a mutation testing tool, with the goal of generating faulty code that fails to pass test cases. 
+- These mutations involve various techniques, such as renaming variables, changing operators, and modifying statements—typically at the line level. 
+- By applying these transformations to an existing dataset, a collection of buggy code samples was produced.
 
-This directory contains C/C++ source codes that were crawled, filtered, and collected from GitHub. In particular, during the filtering process, the source codes were scored, and low-quality codes were removed. Additionally, the natural language descriptions for the codes were generated using an LLM, resulting in a complete dataset in the form of (natural language : code) pairs.
-
->- MutMut
-
-The MutMut dataset was created by applying minor code mutations using a mutation testing tool, with the goal of generating faulty code that fails to pass test cases. These mutations involve various techniques, such as renaming variables, changing operators, and modifying statements—typically at the line level. By applying these transformations to an existing dataset, a collection of buggy code samples was produced.
-
->- SecureCode-Python
-
-The Secure Code dataset refines the Py150K dataset, ensuring compatibility with Python 3, and applies static analysis to classify the code as secure. Potentially vulnerable snippets are manually reviewed by security experts, following strict guidelines and cross-validation, to preserve their original functionality. The dataset consists of secure code snippets, with deduplication measures in place to prevent data leakage between fine-tuning and evaluation sets.
+### [`SecureCode-Python`][SecureCode-Python-url]
+- The Secure Code dataset refines the Py150K dataset, ensuring compatibility with Python 3, and applies static analysis to classify the code as secure. 
+- Potentially vulnerable snippets are manually reviewed by security experts, following strict guidelines and cross-validation, to preserve their original functionality. 
+- The dataset consists of secure code snippets, with deduplication measures in place to prevent data leakage between fine-tuning and evaluation sets.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Getting Started
+### Crawling Code for Github Project
+
+[`GithubCrawling`][GithubCrawling-url]
+
+This directory contains source code for searching GitHub projects and crawling the source code within those projects. 
+
+Although the target source codes are in C/C++ and Python, there is no language restriction if the code is modified accordingly.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. 
+
+Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. 
+
+You can also simply [open an issue](https://github.com/auto-code-etri/autocode_dataset/issues/new?labels=enhancement) with the tag "`enhancement`".
+
+**🌟 Don't forget to give the project a star!🌟 Thanks again!**
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/YourFeatureName`)
+3. Commit your Changes (`git commit -m 'Add some YourFeatureName'`)
+4. Push to the Branch (`git push origin feature/YourFeatureName`)
+5. Open a Pull Request
+
+### Contributors:
+
+<a href="https://github.com/auto-code-etri/autocode_dataset/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=auto-code-etri/autocode_dataset" alt="contrib.rocks image" />
+</a>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- LICENSE -->
+## License
+
+Copyright *On-Device AI Model Research Laboratory, ETRI*.
+
+All rights reserved. For more details, see `LICENSE.txt`.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+> This work was supported by Institute of Information & communications Technology Planning & Evaluation (IITP) grant funded by the Korea government(MSIT) (No.2022-0-00995, Automated reliable source code generation from natural language descriptions)
+
+> 이 논문은 2025년도 정부(과학기술정보통신부)의 재원으로 정보통신기획평가원의 지원을 받아 수행된 연구임 (No.2022-0-00995, 자연어로 기술된 요구사항에서 전문 개발자 수준의 고품질 코드를 자동 생성하는 기술 개발)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
