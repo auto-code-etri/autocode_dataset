@@ -47,7 +47,7 @@ This project was built using the following main libraries and frameworks:
 - Download the version of [geckodriver](https://github.com/mozilla/geckodriver/releases) that fits your computer and replace `modules/geckodriver.exe`
 - Download the version of [firefox](https://www.mozilla.org/firefox/new/) that fits your computer
 
-## Working Process
+### Working Process
 1. Get the information of GitHub project in `github_URL_list.csv`
 2. Extract metadata(Commits, Watchers, Forks, Stars, Releases, Contributors, Branches, Issues, Pull requests) of GitHub project
 3. Get the source code of the GitHub Project in the form of a zip file, unzip file
