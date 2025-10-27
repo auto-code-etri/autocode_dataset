@@ -170,7 +170,7 @@ Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. 
 
-You can also simply [open an issue](https://github.com/auto-code-etri/autocode_dataset/issues/new?labels=enhancement) with the tag "`enhancement`".
+You can also simply [open an issue](https://github.com/auto-code-etri/autocode_dataset/issues/new?labels=enhancement) with the tag "`enhancement`."
 
 **🌟 Don't forget to give the project a star!🌟 Thanks again!**
 
