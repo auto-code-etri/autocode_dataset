@@ -85,7 +85,7 @@ This infrastructure also serves as the data foundation for [![PULSE][pulse-logo]
 
 
 ### Data Infrastructure Pipeline
-![image](./overview.jpg)
+![image](assets/overview_v1.1.png)
 
 ### Composition
 
