@@ -79,7 +79,7 @@ The project integrates data from multiple well-known sources, such as:
 
 Together, these datasets and tools establish a comprehensive data infrastructure that supports unified, data-driven research in code understanding, generation, and secure software engineering.
 
-This infrastructure also serves as the data foundation for [![PULSE][pulse-logo]][pulse-url] — a large language model–based framework that automatically generates expert-level, high-quality source code from natural language requirements.
+This infrastructure also serves as the data foundation for [![PULSE][pulse-logo]][pulse-url] — **P**ipeline for **U**nified **L**LM **S**oftware **E**ngineering — framework that automatically generates expert-level, high-quality source code from natural language requirements.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
